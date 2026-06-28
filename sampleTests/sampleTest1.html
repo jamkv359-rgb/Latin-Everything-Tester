@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Latin Stages 29–34 Grammar Practice Test</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: #2563eb;
+    --bluepopsel:#1d4ed8;
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+    --shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  body.dark {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #f1f5f9;
+        --consttext: #1f2937;
+        --muted: #94a3b8;
+        --border: #334155;
+        --accent: #818cf8;
+        --bluepop: #38bdf8;
+        --bluepopsel:#0ea5e9;
+        --greenpop: #34d399;
+        --greenpopsel:#34d399;
+        --redpop: #f87171;
+        --redpopsel:#dc2626;
+        --yellowpop: #fbbf24;
+        --yellowpopsel:#d97706;
+        --purplepop: #c084fc;
+        --purplepopsel: #a855f7;
+
+    }
+
+  * { box-sizing: border-box; }
+
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .container {
+    width: min(1200px, 94vw);
+    margin: 40px 0 56px;
+  }
+
+
+  header {
+    background: var(--card);
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+
+
+  h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+
+  .subtitle {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+
+  .stem {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 10px;
+    font-size: 12px;
+    
+    
+    border-radius: 999px;
+    font-weight: 700;
+  }
+
+
+  .macra-wrap {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+
+  .macra {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--bluepop);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.15s ease;
+    width: 10%;
+  }
+
+
+  .macra:hover {
+    background: var(--card);
+  }
+
+
+  .col-head {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+
+  .col-subhead {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+
+  .controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0 22px;
+  }
+
+
+  button {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.15s ease;
+    font-weight: 600;
+  }
+
+
+  button.primary {
+    background: var(--bluepop);
+    color: var(--consttext);
+  }
+
+
+  button.primary:hover { background-color:var(--bluepopsel); }
+
+
+  button.secondary {
+    background: var(--yellowpop);
+    color: var(--consttext);
+  }
+
+
+  button.secondary:hover { background: var(--yellowpopsel); }
+
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+
+  .section-head {
+    padding: 18px 20px 10px;
+    border-bottom: 1px solid var(--border);
+    
+  }
+
+
+  .section-head h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color:var(--consttext);
+    
+  }
+
+
+  .section-head p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color:var(--card);
+    table-layout: fixed;
+  }
+
+
+  th {
+    background-color:var(--card);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+
+  th, td {
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    transition: 0.25s;
+  }
+
+
+  tr:last-child td { border-bottom: none; }
+  th:last-child, td:last-child { border-right: none; }
+
+
+  tr:hover td { 
+    background-color:var(--bg); 
+    transition: 0.25s;
+    }
+
+
+  .row-label {
+    font-weight: 700;
+    font-size: 13px;
+    background-color:var(--bg);
+  }
+
+
+  .subtle {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+
+  .entry {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: 0.15s ease;
+    background-color:var(--bg);
+    color:var(--text);
+  }
+
+
+  .entry:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+  }
+
+
+  .feedback {
+    margin-top: 4px;
+    min-height: 16px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+
+  .correct {
+    color: var(--correct);
+    font-weight: 700;
+  }
+
+
+  .wrong {
+    color: var(--wrong);
+    font-weight: 700;
+  }
+
+
+  .answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 18px 20px 20px;
+  }
+
+
+  .answer-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    background: var(--card);
+  }
+
+
+  .answer-card h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+
+  .mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+
+  .mini-table td, .mini-table th {
+    border: 1px solid var(--border);
+    padding: 8px;
+    font-size: 13px;
+  }
+
+
+  .mini-table th {
+    background: var(--card);
+  }
+
+
+  .note {
+    padding: 0 20px 18px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+.adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    //margin-top: 12px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+  }
+  .bottom {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box; 
+    }
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .answer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<script src="../interact.js"></script>
+</head>
+<body data-page-type="sampleTest">
+    <img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+<div class="container" style="margin-top: 15vh;">
+  <header>
+    <h1>Latin Stages 29–34 Grammar Practice Test</h1>
+   <div style="color:var(--muted); margin: 10px 0px 0px 0px">Take a crack at one of the practice tests, now digitalised~</div>
+    <div style="display: flex; gap: 10px;">
+        <div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top:10px;"></div>
+        <div style="padding: 4px 8px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border)">
+            <input type="checkbox" id="darkModeToggle"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+    </div>
+   
+
+
+<div style="margin-top: 14px; font-weight: 800; font-size: 14px;">Macra</div>
+
+
+    <div class="macra-wrap">
+      <button class="macra" type="button" data-macron="ā">ā</button>
+      <button class="macra" type="button" data-macron="ē">ē</button>
+      <button class="macra" type="button" data-macron="ī">ī</button>
+      <button class="macra" type="button" data-macron="ō">ō</button>
+      <button class="macra" type="button" data-macron="ū">ū</button>
+    </div>
+  </header>
+
+
+  <div class="controls">
+    <button class="primary" onclick="checkAnswers()">Check Answers</button>
+    <button class="secondary" onclick="resetAll()">Reset</button>
+  </div>
+
+
+  <div class="section">
+    <div style="background-color: var(--bluepop);" class="section-head">
+      <h2>1. Noun Declensions</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16%">Case</th>
+            <th>
+              <span class="col-head">regina</span>
+              <span class="col-subhead">1st Declension</span>
+            </th>
+            <th>
+              <span class="col-head">locus</span>
+              <span class="col-subhead">2nd Declension</span>
+            </th>
+            <th>
+              <span class="col-head">hospes</span>
+              <span class="col-subhead">3rd Declension</span>
+            </th>
+            <th>
+              <span class="col-head">metus</span>
+              <span class="col-subhead">4th Declension</span>
+            </th>
+            <th>
+              <span class="col-head">fides</span>
+              <span class="col-subhead">5th Declension</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="nouns-grid"></tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div style="background-color: var(--redpop);"  class="section-head">
+      <h2>2. Verb Tables</h2>
+    </div>
+    <div class="answer-grid">
+      <div class="answer-card">
+        <h3>Present Indicative — festino, festinare, festinavi</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="present-indicative-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Imperfect Indicative — teneo, tenere, tenui, tentus</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="imperfect-indicative-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Perfect Indicative — vinco, vincere, vici, victus</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="perfect-indicative-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Pluperfect Indicative — pervenio, pervenire, perveni</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="pluperfect-indicative-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Imperfect Subjunctive — sedeo, sedere, sedi</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="imperfect-subjunctive-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Pluperfect Subjunctive — capio, capere, cepi, captus</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="pluperfect-subjunctive-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Future Indicative — ambulo, ambulare, ambulavi</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="future-indicative-1-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Future Indicative — trado, tradere, tradidi, traditus</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="future-indicative-2-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Future Perfect — terreo, terrere, terrui, territus</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="future-perfect-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Irregular Verb — sum, esse, fui</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Person</th><th>Answer</th></tr></thead>
+            <tbody id="sum-grid"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="section-head" style="background-color: var(--greenpop);" >
+      <h2>3. Infinitives, Imperatives, Participles, Gerundive</h2>
+    </div>
+    <div class="answer-grid">
+      <div class="answer-card">
+        <h3>Present Active Infinitive</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="pres-act-inf-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Present Passive Infinitive</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="pres-pass-inf-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Imperative Singular</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="imperative-sing-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Imperative Plural</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="imperative-plu-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Present Participle</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="present-participle-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Perfect Passive Participle</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="perfect-passive-participle-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Future Participle</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="future-participle-grid"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="answer-card">
+        <h3>Gerundive</h3>
+        <div class="table-wrap">
+          <table class="mini-table">
+            <thead><tr><th>Verb</th><th>Answer</th></tr></thead>
+            <tbody id="gerundive-grid"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="section-head" style="background-color: var(--yellowpop);" >
+      <h2>4. Passive Forms</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">Tense / Number</th>
+            <th>creare, creatus</th>
+            <th>augere, auctus</th>
+            <th>cogere, coactus</th>
+            <th>aperire, apertus</th>
+          </tr>
+        </thead>
+        <tbody id="passive-grid"></tbody>
+      </table>
+    </div>
+   
+  </div>
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+  const personRows = ["1st Singular", "2nd Singular", "3rd Singular", "1st Plural", "2nd Plural", "3rd Plural"];
+  const nounRows = ["Nominative Singular", "Accusative Singular", "Genitive Singular", "Dative Singular", "Ablative Singular", "Nominative Plural", "Accusative Plural", "Genitive Plural", "Dative Plural", "Ablative Plural"];
+
+
+  const nounAnswers = [
+    ["regina", "locus", "hospes", "metus", "fides"],
+    ["reginam", "locum", "hospitum", "metum", "fidem"],
+    ["reginae", "loci", "hospitis", "metus", "fidei"],
+    ["reginae", "loco", "hospiti", "metui", "fidei"],
+    ["regina", "regina", "hospite", "metu", "fide"],
+    ["reginae", "loci", "hospites", "manus", "fides"],
+    ["reginas", "locos", "hospites", "manus", "fides"],
+    ["reginarum", "locorum", "hospitum", "manuum", "fiderum"],
+    ["reginis", "locis", "hospitibus", "manibus", "fidebus"],
+    ["reginis", "locis", "hospitibus", "manibus", "fidebus"]
+  ];
+
+
+  const buildMatrix = (tbodyId, rowLabels, answers) => {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = "";
+
+
+    rowLabels.forEach((label, r) => {
+      const tr = document.createElement("tr");
+
+
+      const tdLabel = document.createElement("td");
+      tdLabel.className = "row-label";
+      tdLabel.innerHTML = `${label}`;
+      tr.appendChild(tdLabel);
+
+
+      answers[r].forEach((answer, c) => {
+        const td = document.createElement("td");
+        const input = document.createElement("input");
+        input.className = "entry";
+        input.dataset.answer = answer;
+        input.dataset.row = r;
+        input.dataset.col = c;
+        input.addEventListener("keydown", handleNavigation);
+
+
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+
+
+        td.appendChild(input);
+        td.appendChild(feedback);
+        tr.appendChild(td);
+      });
+
+
+      tbody.appendChild(tr);
+    });
+  };
+
+
+  const buildSimpleTable = (tbodyId, labels, answers) => {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = "";
+
+
+    labels.forEach((label, i) => {
+      const tr = document.createElement("tr");
+      const tdLabel = document.createElement("td");
+      tdLabel.className = "row-label";
+      tdLabel.textContent = label;
+
+
+      const td = document.createElement("td");
+      const input = document.createElement("input");
+      input.className = "entry";
+      input.dataset.answer = answers[i];
+      input.dataset.row = i;
+      input.dataset.col = 0;
+      input.addEventListener("keydown", handleNavigation);
+
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+
+
+      td.appendChild(input);
+      td.appendChild(feedback);
+      tr.appendChild(tdLabel);
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    });
+  };
+
+
+  const buildPassiveTable = () => {
+    const rows = [
+      ["Present Passive 3rd Singular", ["creatur", "augetur", "cogetur", "aperitur"]],
+      ["Present Passive 3rd Plural", ["creantur", "augentur", "cogentur", "aperintur"]],
+      ["Future Passive 3rd Singular", ["creabitur", "augebitur", "cogebitur", "aperibitur"]],
+      ["Future Passive 3rd Plural", ["creabuntur", "augebuntur", "cogebuntur", "aperibuntur"]],
+      ["Imperfect Passive 3rd Singular", ["creabatur", "augebatur", "cogebatur", "aperibatur"]],
+      ["Imperfect Passive 3rd Plural", ["creabantur", "augebantur", "cogebantur", "aperibantur"]],
+      ["Perfect Passive 3rd Singular", ["creatus est", "auctus est", "coactus est", "apertus est"]],
+      ["Perfect Passive 3rd Plural", ["creatus sunt", "auctus sunt", "coactus sunt", "apertus sunt"]],
+      ["Pluperfect Passive 3rd Singular", ["creatus erat", "auctus erat", "coactus erat", "apertus erat"]],
+      ["Pluperfect Passive 3rd Plural", ["creatus erant", "auctus erant", "coactus erant", "apertus erant"]]
+    ];
+
+
+    const tbody = document.getElementById("passive-grid");
+    tbody.innerHTML = "";
+
+
+    rows.forEach((row, r) => {
+      const tr = document.createElement("tr");
+      const tdLabel = document.createElement("td");
+      tdLabel.className = "row-label";
+      tdLabel.textContent = row[0];
+      tr.appendChild(tdLabel);
+
+
+      row[1].forEach((answer, c) => {
+        const td = document.createElement("td");
+        const input = document.createElement("input");
+        input.className = "entry";
+        input.dataset.answer = answer;
+        input.dataset.row = r;
+        input.dataset.col = c;
+        input.addEventListener("keydown", handleNavigation);
+
+
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+
+
+        td.appendChild(input);
+        td.appendChild(feedback);
+        tr.appendChild(td);
+      });
+
+
+      tbody.appendChild(tr);
+    });
+  };
+
+
+  buildMatrix("nouns-grid", nounRows, nounAnswers);
+  buildSimpleTable("present-indicative-grid", personRows, ["festino", "festinas", "festinat", "festinamus", "festinatis", "festinant"]);
+  buildSimpleTable("imperfect-indicative-grid", personRows, ["tenebam", "tenebas", "tenebat", "tenebamus", "tenebatis", "tenebant"]);
+  buildSimpleTable("perfect-indicative-grid", personRows, ["vici", "vicisti", "vicit", "vicimus", "vicitis", "vicerunt"]);
+  buildSimpleTable("pluperfect-indicative-grid", personRows, ["perveneram", "perveneras", "pervenerat", "perveneramus", "perveneratis", "pervenerant"]);
+  buildSimpleTable("imperfect-subjunctive-grid", personRows, ["sederem", "sederes", "sederet", "sederemus", "sederetis", "sederent"]);
+  buildSimpleTable("pluperfect-subjunctive-grid", personRows, ["capissem", "capisses", "capisset", "capissemus", "capissetis", "capissent"]);
+  buildSimpleTable("future-indicative-1-grid", personRows, ["ambulabo", "ambulabis", "ambulabit", "ambulabimus", "ambulabitis", "ambulabunt"]);
+  buildSimpleTable("future-indicative-2-grid", personRows, ["tradam", "trades", "tradet", "trademus", "tradetis", "tradent"]);
+  buildSimpleTable("future-perfect-grid", personRows, ["terruero", "terrueris", "terruerit", "terruerimus", "terrueritis", "terruerint"]);
+  buildSimpleTable("sum-grid", personRows, ["sum", "es", "est", "sumus", "estis", "sunt"]);
+
+
+  buildSimpleTable("pres-act-inf-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnare", "iubere", "occidere", "punire"]);
+  buildSimpleTable("pres-pass-inf-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnari", "iuberi", "occideri", "puniri"]);
+  buildSimpleTable("imperative-sing-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugna", "iube", "occide", "puni"]);
+  buildSimpleTable("imperative-plu-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnate", "iubete", "occidete", "punite"]);
+  buildSimpleTable("present-participle-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnans", "iubens", "occidens", "puniens"]);
+  buildSimpleTable("perfect-passive-participle-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnatus", "iubetus", "occidetus", "punitus"]);
+  buildSimpleTable("future-participle-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnaturus", "iubeturus", "occideturus", "puniturus"]);
+  buildSimpleTable("gerundive-grid", ["pugnare", "iubere", "occidere", "punire"], ["pugnandus", "iubendus", "occidendus", "puniendus"]);
+  buildPassiveTable();
+
+
+  function normalise(str) {
+    return str.trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+
+  function handleNavigation(e) {
+    const r = parseInt(this.dataset.row, 10);
+    const c = parseInt(this.dataset.col, 10);
+
+
+    if (e.key === "Tab" && !e.shiftKey) {
+      e.preventDefault();
+      moveTo(r, c + 1, this);
+    }
+
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+      moveTo(r + 1, c, this);
+    }
+  }
+
+
+  function moveTo(r, c, currentInput) {
+    const all = Array.from(document.querySelectorAll("input.entry"));
+    const candidates = all.filter(inp => parseInt(inp.dataset.row, 10) === r && parseInt(inp.dataset.col, 10) === c);
+
+
+    if (candidates.length === 0) {
+      const nextByOrder = all[all.indexOf(currentInput) + 1];
+      if (nextByOrder) nextByOrder.focus();
+      return;
+    }
+
+
+    candidates[0].focus();
+  }
+
+
+  function checkAnswers() {
+    document.querySelectorAll("input.entry").forEach(input => {
+      const correct = normalise(input.dataset.answer);
+      const value = normalise(input.value);
+      const feedback = input.parentElement.querySelector(".feedback");
+
+
+      if (value === correct) {
+        feedback.textContent = "Correct";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "Incorrect → " + input.dataset.answer;
+        feedback.className = "feedback wrong";
+      }
+    });
+  }
+
+
+  document.querySelectorAll(".macra").forEach(button => {
+  // 1. Listen for 'mousedown' (fires BEFORE the text box loses focus)
+  button.addEventListener("mousedown", (event) => {
+    
+    // 2. CRITICAL: Prevents the input element from losing focus!
+    event.preventDefault(); 
+
+    const macron = button.dataset.macron;
+    const activeEl = document.activeElement;
+
+    // 3. Verify the user is actually focused on an input or textarea
+    if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA")) {
+      
+      // 4. Get the current cursor position or highlighted text range
+      const start = activeEl.selectionStart;
+      const end = activeEl.selectionEnd;
+      const text = activeEl.value;
+
+      // 5. Slice the text up and inject the macron in the middle
+      activeEl.value = text.substring(0, start) + macron + text.substring(end);
+
+      // 6. Put the cursor right AFTER the newly injected character
+      activeEl.selectionStart = activeEl.selectionEnd = start + macron.length;
+      
+      // 7. Trigger an input event so frameworks (like React/Vue) know the value changed
+      activeEl.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+});
+
+  function resetAll() {
+    document.querySelectorAll("input.entry").forEach(input => input.value = "");
+    document.querySelectorAll(".feedback").forEach(f => {
+      f.textContent = "";
+      f.className = "feedback";
+    });
+    const first = document.querySelector("input.entry");
+    if (first) first.focus();
+  }
+</script>
+</body>
+</html>
+
+

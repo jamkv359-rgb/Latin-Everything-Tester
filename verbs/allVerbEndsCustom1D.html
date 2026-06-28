@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>1D Verb Tables</title>
+<style>
+    :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: #2563eb;
+    --bluepopsel:#1d4ed8;
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+  }
+
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    
+  }
+/*WORK ON ENABLING DARK MODE Line 28-35, 417*/  
+  body.dark { 
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --consttext: #1f2937;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #4f46e5;
+    --bluepop: #38bdf8;
+    --bluepopsel:#0ea5e9;
+    --greenpop: #34d399;
+    --greenpopsel:#34d399;
+    --redpop: #f87171;
+    --redpopsel:#dc2626;
+    --yellowpop: #fbbf24;
+    --yellowpopsel:#d97706;
+    --purplepop: #c084fc;
+    --purplepopsel: #a855f7;
+  }
+
+
+  .container {
+    width: min(1000px, 92vw);
+    margin: 40px 0;
+  }
+
+
+  header {
+    background: var(--card);
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+
+  .stem {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    background-color: var(--bg);
+    color: var(--text);
+    border:1px solid var(--border);
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .stem strong{
+    color:var(--bluepop);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+
+
+    /* FIX: prevents column overflow */
+    table-layout: fixed;
+  }
+
+
+  th {
+    background: var(--card);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+
+  th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+
+
+    /* FIX: prevents spill outside container */
+    overflow: hidden;
+  }
+
+
+  tr:hover td {
+    background: var(--border);
+  }
+
+
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: 0.15s ease;
+    background: #fff;
+
+
+    /* FIX: keeps padding inside width */
+    box-sizing: border-box;
+  }
+
+
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+  }
+
+
+  .feedback {
+    margin-top: 4px;
+    font-size: 13px;
+  }
+
+
+  .correct {
+    color: var(--correct);
+    font-weight: 600;
+  }
+
+
+  .wrong {
+    color: var(--wrong);
+    font-weight: 600;
+  }
+
+
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+
+  button {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.25s ease;
+  }
+  button {
+    background-color: var(--card);
+    color: var(--text); 
+  }
+
+
+  button:hover {
+    opacity: 0.9; 
+    background-color:var(--muted);
+  }
+
+/*
+  button:first-child {
+    background: var(--card);
+    color: text;
+  }
+
+
+  button:first-child:hover {
+    opacity: 0.9;
+  }*/
+
+
+  
+  .filterGrid{
+    display:flex;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+    align-items: flex-start;
+    width: 100%; 
+    
+}
+
+.filterGroup {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: calc(33% - 37px);
+        margin: 10px;
+    }
+
+    .filterGroup h3 {
+        margin-top: 0;
+        margin-bottom: 0px;
+    }
+
+    .filterGroup label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        /*width: calc(100% - 30px);
+        border:1px solid black;*/
+    }
+    .filterGroup input {
+        width:14px;
+        border:1px solid var(--border);
+    }
+/* Ads/Footer */
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+    color: var(--text);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    color: var(--text);
+    
+  }
+ 
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600; 
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+  }
+  .bottom {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box; 
+    }
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+  .adVocab{
+    color: var(--bluepop);
+  }
+  .adGrammar{
+    color: var(--greenpop);
+  }
+  .adOther{
+    color: var(--redpop);
+  }
+
+</style>
+<script src="../interact.js"></script>
+</head>
+
+
+<body data-page-type="verb">
+<img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+
+<div class="container" style="margin-top: 15vh;">
+
+
+    <header>
+    <h2>Latin Verb Tables: 1D Input</h2>
+        <div style="color:var(--muted); margin: 5px 0px 0px 0px">Select what verb endings you want, then start testing~</div>
+    <div style="display:flex; gap:10px;"><div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top:10px;"></div>
+        <div style="padding: 6px 10px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border); text-align:center; width:fit-content;">
+            <input type="checkbox" id="darkModeToggle" style="width:12px;border:1px solid var(--border); margin-right:6px;"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+        </div>
+    <div class="stem">Stem: <strong>porto</strong> • <strong>doceo</strong> • <strong>duco</strong> • <strong>audio</strong></div>
+    <div class="stem"><strong>Tab</strong> → Next input in row</div>
+    </header>
+    <div class="container">
+
+        <!-- SETTINGS -->
+        <section id="settingsPanel">
+
+            <h2 style="margin-bottom: 15px;">Select Forms To Test</h2>
+
+            <div class="filterGrid">
+                <div class="filterGroup">
+                    <h3>Tense</h3>
+
+                    <label><input type="checkbox" data-group="tense" value="present" checked>Present</label>
+                    <label><input type="checkbox" data-group="tense" value="imperfect" checked>Imperfect</label>
+                    <label><input type="checkbox" data-group="tense" value="future" checked>Future</label>
+                    <label><input type="checkbox" data-group="tense" value="perfect" checked>Perfect</label>
+                    <label><input type="checkbox" data-group="tense" value="pluperfect" checked>Pluperfect</label>
+                    <label><input type="checkbox" data-group="tense" value="future-perfect" checked>Future-Perfect</label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Mood</h3>
+
+                    <label><input type="checkbox" data-group="mood" value="indicative" checked>Indicative</label>
+                    <label><input type="checkbox" data-group="mood" value="subjunctive" checked>Subjunctive</label>
+                    <label><input type="checkbox" data-group="mood" value="infinitive" checked>Infinitive</label>
+                    <label><input type="checkbox" data-group="mood" value="imperative" checked>Imperative</label>
+                    <label><input type="checkbox" data-group="mood" value="participle" checked>Participle</label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Conjugation</h3>
+
+                    <label><input type="checkbox" data-group="conjugation" value="1st" checked>1st</label>
+                    <label><input type="checkbox" data-group="conjugation" value="2nd" checked>2nd</label>
+                    <label><input type="checkbox" data-group="conjugation" value="3rd" checked>3rd</label>
+                    <label><input type="checkbox" data-group="conjugation" value="4th" checked>4th</label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Person</h3>
+
+                    <label><input type="checkbox" data-group="person" value="1st" checked>1st</label>
+                    <label><input type="checkbox" data-group="person" value="2nd" checked>2nd</label>
+                    <label><input type="checkbox" data-group="person" value="3rd" checked>3rd</label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Number</h3>
+
+                    <label><input type="checkbox" data-group="number" value="singular" checked>Singular</label>
+                    <label><input type="checkbox" data-group="number" value="plural" checked>Plural</label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Voice</h3>
+
+                    <label><input type="checkbox" data-group="voice" value="active" checked>Active</label>
+                    <label><input type="checkbox" data-group="voice" value="passive" checked>Passive</label>
+                </div>
+            </div>
+
+            <button id="startBtn" style="color: var(--text); background-color: var(--card)">Start Test</button>
+
+        </section>
+
+        <!-- TEST -->
+        <section id="testPanel" style="display:none">
+
+            <table id="quizTable">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Tense</th>
+                        <th>Mood</th>
+                        <th>Voice</th>
+                        <th>Conjugation</th>
+                        <th>Answer</th>
+                    </tr> 
+                </thead>
+
+                <tbody id="tableBody"></tbody>
+            </table>
+
+            <div class="controls"> 
+
+                <button id="showAnswersBtn">
+                    Show Answers
+                </button>
+
+                <button id="restartBtn">
+                    Restart Test
+                </button>
+
+                <button id="rerenderBtn">
+                    Re-render Table
+                </button>
+
+            </div>
+
+        </section>
+        <section class="result hidden" style="width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); box-sizing: border-box;margin-top:15px;">
+
+                <div><strong>Finished!</strong></div>
+                <div class="results" style="display: flex; flex-wrap: wrap; width: 100%; flex-direction: row;">
+
+                </div>
+                
+                <style>.hidden{display:none;}</style>
+            </section>
+
+    </div>
+    <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad adVocab" onclick="window.location.href='../vocab/vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/hangman.html'">Hangman Game</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/scramble.html'">Anagram Scramble Game</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar other revision techniques!</div>
+        <div class="ads">
+            <div class="ad adGrammar" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad adOther" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad adOther" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+
+    
+
+
+</div>
+
+
+<script src="./grammarData.js"></script>
+
+<script>
+//WORK ON ENABLING DARK MODE Line 28-35, 417
+document.querySelector("body").classList.toggle("dark"); 
+let currentForms = [];
+
+/* =========================
+   HELPERS
+========================= */
+
+function getSelectedValues(groupName) {
+
+    return [
+        ...document.querySelectorAll(
+            `[data-group="${groupName}"]:checked`
+        )
+    ].map(cb => cb.value);
+}
+
+/* ========================= 
+   START TEST
+========================= */
+
+function startTest() {
+
+    const voices = getSelectedValues("voice");
+    const moods = getSelectedValues("mood");
+    const tenses = getSelectedValues("tense");
+    const conjugations = getSelectedValues("conjugation");
+    const persons = getSelectedValues("person"); 
+    const numbers = getSelectedValues("number");
+
+
+console.log("First grammar item:");
+console.log(grammarData[0]);
+    currentForms = grammarData.filter(form => {
+         
+        return (
+            voices.includes(form.voice) &&
+            moods.includes(form.mood) &&
+            tenses.includes(form.tense) &&
+            conjugations.includes(form.conjugation) &&
+            persons.includes(form.person) &&
+            numbers.includes(form.number)
+        );
+ 
+    });
+    
+
+    if (currentForms.length === 0) {
+
+        alert("No matching grammar forms found.");
+
+        return;
+    }
+
+    buildTable();
+
+    document.getElementById("settingsPanel").style.display = "none";
+    document.getElementById("testPanel").style.display = "block";
+}
+
+/* =========================
+   BUILD TABLE
+========================= */
+
+function buildTable() {
+
+    const tableBody =
+        document.getElementById("tableBody"); 
+
+    tableBody.innerHTML = "";
+
+    currentForms.forEach((form, index) => {
+
+        const row =
+            document.createElement("tr");
+        row.innerHTML = `
+            <td>
+                ${form.person}
+                ${form.number}
+            </td>
+
+            <td>
+                ${capitalise(form.tense)}
+            </td>
+
+            <td>
+                ${capitalise(form.mood)}
+            </td>
+
+            <td>
+                ${capitalise(form.voice)}
+            </td>
+
+            <td>
+                ${form.conjugation}
+            </td>
+
+            <td>
+
+                <input
+                    type="text"
+                    data-index="${index}"
+                    autocomplete="off"
+                    style="background-color:var(--bg);color:var(--text);"
+                >
+
+                <div class="feedback"></div>
+
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+
+    const firstInput =
+        document.querySelector('input[data-index="0"]');
+
+    if (firstInput) {
+        firstInput.focus();
+    }
+}
+
+/* =========================
+   SHOW ANSWERS
+========================= */
+
+function showAnswers() {
+    let score=0;
+    let total=0;
+    document
+        .querySelectorAll("input[data-index]")
+        .forEach(input => {
+
+            const index =
+                Number(input.dataset.index);
+
+            const correctWord =
+                currentForms[index].word;
+
+            const userAnswer =
+                input.value.trim().toLowerCase();
+
+            const feedback =
+                input.parentElement.querySelector(".feedback");
+
+            if (
+                userAnswer ===
+                correctWord.toLowerCase()
+            ) {
+
+                feedback.textContent ="✓ Correct";
+
+                feedback.className ="feedback correct";
+                score+=1;
+                total+=1;
+
+            } else {
+
+                feedback.textContent =`✗ ${correctWord}`;
+
+                feedback.className ="feedback wrong";
+                total+=1;
+            }
+
+        });
+        document.querySelector(".result").classList.remove("hidden");
+        document.querySelector(".results").innerHTML+=`
+            <div style="width: calc(((100% - 40px) * 0.25) - 24px); border: 1px solid var(--border); background-color: var(--bg); border-radius:15px; margin:5px; padding: 10px;">
+                <div id="score">${score}/${total} => ${Math.floor((score/total)*100)}%<div>
+                <div id="quotes" style="color: var(--text);">${calcScore(score, total)}</div>
+            </div>`;
+            const result = {
+        date: new Date().toISOString(),
+
+        testType: "Grammar",
+        page: document.title,
+
+        score,
+        total,
+        percent: Math.round(score/total*100),
+
+        quote: calcScore(score,total),
+
+        settings: {
+            voices: getSelectedValues("voice"),
+            moods: getSelectedValues("mood"),
+            tenses: getSelectedValues("tense"),
+            conjugations: getSelectedValues("conjugation"),
+            persons: getSelectedValues("person"),
+            numbers: getSelectedValues("number")
+        }
+    };
+    let history =JSON.parse(localStorage.getItem("latinHistory")) || [];
+        history.unshift(result);
+        localStorage.setItem("latinHistory",JSON.stringify(history));
+    
+}
+
+
+/* =========================
+   RESTART TEST
+========================= */
+
+function restartTest() {
+
+    document
+        .querySelectorAll("input[data-index]")
+        .forEach(input => {
+
+            input.value = "";
+
+        });
+
+    document
+        .querySelectorAll(".feedback")
+        .forEach(feedback => {
+
+            feedback.textContent = "";
+            feedback.className = "feedback";
+
+        });
+
+    const firstInput =
+        document.querySelector('input[data-index="0"]');
+
+    if (firstInput) {
+        firstInput.focus();
+    }
+}
+
+/* =========================
+   RERENDER
+========================= */
+
+function rerenderTable() {
+
+    document.getElementById("testPanel")
+        .style.display = "none";
+
+    document.getElementById("settingsPanel")
+        .style.display = "block";
+
+    document.getElementById("tableBody")
+        .innerHTML = "";
+
+    currentForms = [];
+}
+
+/* =========================
+   CAPITALISE
+========================= */
+
+function capitalise(str) {
+
+    if (!str) return "";
+
+    return (
+        str.charAt(0).toUpperCase() +
+        str.slice(1)
+    );
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+document
+    .getElementById("startBtn")
+    .addEventListener("click", startTest);
+
+document
+    .getElementById("showAnswersBtn")
+    .addEventListener("click", showAnswers);
+
+document
+    .getElementById("restartBtn")
+    .addEventListener("click", restartTest);
+
+document
+    .getElementById("rerenderBtn")
+    .addEventListener("click", rerenderTable);
+</script>
+
+</body>
+</html>

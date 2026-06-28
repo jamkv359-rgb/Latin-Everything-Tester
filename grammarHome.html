@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Latin Grammar Suite — Dashboard</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  
+  .side, .bottom {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+  } 
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    width: min(1000px, 100%);
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  h1 { margin: 0; font-size: 28px; font-weight: 800; }
+  p { color: var(--muted); margin-top: 8px; }
+
+  /* Grid Layout */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Section Cards */
+  .category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .category-card h2 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+  }
+
+  /* Links List */
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .nav-button:hover {
+    background: #eef2ff;
+    border-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .nav-button span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+    
+  }
+
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+/* <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed; top: 0; left: 0;   z-index: 9999;" >*/
+</style>
+</head>
+<body>
+   
+
+<div class="container" >
+  <header>
+    <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0;   z-index: 9999;" >
+    <h1 style="margin-top: 10vh;">Latin Grammar Suite</h1>
+    <p>Select a module to begin your practice</p>
+  </header>
+
+  <div class="dashboard-grid">
+    
+    <section class="category-card">
+      <h2>Nouns</h2>
+      <div class="link-group">
+        <a href="nouns/allNounEnds.html" class="nav-button">Nouns Endings Condensed<span>→</span></a>
+        <a href="nouns/decl1.html" class="nav-button">1st Declension <span>→</span></a>
+        <a href="nouns/decl2.html" class="nav-button">2nd Declension <span>→</span></a>
+        <a href="nouns/decl3.html" class="nav-button">3rd Declension <span>→</span></a>
+        <a href="nouns/decl4.html" class="nav-button">4th Declension <span>→</span></a>
+        <a href="nouns/decl5.html" class="nav-button">5th Declension <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="category-card">
+      <h2>Pronouns</h2>
+      <div class="link-group">
+        <a href="pronouns/allPronouns.html" class="nav-button">Pronouns Condensed<span>→</span></a>
+        <a href="pronouns/hic.html" class="nav-button">Hic, Haec, Hoc <span>→</span></a>
+        <a href="pronouns/ille.html" class="nav-button">Ille, Illa, Illud <span>→</span></a>
+        <a href="pronouns/is.html" class="nav-button">Is, Ea, Id <span>→</span></a>
+        <a href="pronouns/ipse.html" class="nav-button">Ipse, Ipsa, Ipsum <span>→</span></a>
+        <a href="pronouns/qui.html" class="nav-button">Qui, Quae, Quod <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="category-card">
+      <h2>Verbs</h2>
+      <div class="link-group">
+        <a href="verbs/allVerbEnds.html" class="nav-button">Verb Endings Condensed<span>→</span></a>
+        <a href="verbs/allVerbEndsCustom1D.html" class="nav-button">All Verb Endings, 1D input<span>→</span></a>
+        <a href="verbs/allVerbEndsCustom2D.html" class="nav-button">All Verb Endings, 2D input<span>→</span></a>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 5px;">Indicative Active</div>
+        <a href="verbs/indAct1Conj.html" class="nav-button">1st Conj. <span>→</span></a>
+        <a href="verbs/indAct2Conj.html" class="nav-button">2nd Conj. <span>→</span></a>
+        <a href="verbs/indAct3Conj.html" class="nav-button">3rd Conj. <span>→</span></a>
+        <a href="verbs/indAct4Conj.html" class="nav-button">4th Conj. <span>→</span></a>
+        
+        <div style="font-size: 12px; color: var(--muted); margin: 10px 0 5px 0;">Subjunctive Active</div>
+        <a href="verbs/subAct1Conj.html" class="nav-button">1st Conj. <span>→</span></a>
+        <a href="verbs/subAct2Conj.html" class="nav-button">2nd Conj. <span>→</span></a>
+        <a href="verbs/subAct3Conj.html" class="nav-button">3rd Conj. <span>→</span></a>
+        <a href="verbs/subAct4Conj.html" class="nav-button">4th Conj. <span>→</span></a>
+      </div>
+    </section>
+    <section class="category-card">
+      <h2>Sample tests</h2>
+      <div class="link-group">
+        <a href="sampleTests/sampleTest1.html" class="nav-button">Sample test 1<span>→</span></a>
+        <div class= "nav-button"><em>Work in progress...</em></div>
+      </div>
+    </section>
+    
+  </div>
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out other quiz games!</div>
+        <div class="ads">
+            <div class="ad" onclick="window.location.href='./index.html'">Type-in Vocab Tester</div>
+            <div class="ad" onclick="window.location.href='./grammarHome.html'">Grammar Tester</div>
+            <div class="ad" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" onclick="window.location.href='./scramble.html'">Word Scramble Game</div>
+            
+        </div>
+  </section>
+  
+  <div class="ad" onclick="window.location.href='./about.html'">About</div>
+</div>
+
+<script>
+  // Small touch for a nice greeting based on time of day
+  const h1 = document.querySelector('h1');
+  const hour = new Date().getHours();
+  let greeting = "Latin Grammar Suite";
+  
+  if (hour < 12) greeting = "Salve! Latin Suite";
+  else if (hour < 18) greeting = "Latin Grammar Suite";
+  else greeting = "Bona Nocte! Latin Suite";
+  
+  h1.textContent = greeting;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8">
+ 
+  <title>Vocab Tester</title>
+  <style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: #2563eb;
+    --bluepopsel:#1d4ed8;
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+    --shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  
+
+  /* 🌙 Dark Mode Variables */
+  body.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --consttext: #1f2937;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #818cf8;
+    --bluepop: #38bdf8;
+    --bluepopsel:#0ea5e9;
+    --greenpop: #34d399;
+    --greenpopsel:#34d399;
+    --redpop: #f87171;
+    --redpopsel:#dc2626;
+    --yellowpop: #fbbf24;
+    --yellowpopsel:#d97706;
+    --purplepop: #c084fc;
+    --purplepopsel: #a855f7;
+    
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    transition: background 0.3s ease;
+  }
+ 
+
+  /* Headings */
+  .title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .title2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  /* Layout Containers */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: min(1000px, 100%);
+    justify-content: center;
+  }
+
+  .side, .bottom {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+  }
+
+  .side { width: calc(50% - 10px); }
+  .bottom { width: 100%; }
+
+  /* Checkboxes & Selection */
+  .checkBoxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .checkBoxes label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .checkBoxes label:hover {
+    background: var(--border);
+  }
+
+  .allSelector {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  /* Buttons */
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+  }
+
+  button:hover { opacity: 0.9; }
+  button:active { transform: scale(0.98); }
+
+  #startBtn {
+    margin: 30px 0;
+    padding: 16px 40px;
+    font-size: 18px;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+  }
+
+  /* Tester Section */
+  .tester {
+    width: min(1000px, 100%);
+    text-align: center;
+    margin-top: 20px;
+  }
+  .result {
+    width: min(1000px, 100%);
+    text-align: center;
+    margin-top: 20px;
+  }
+
+
+  #question {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  #answerInput {
+    width: 80%;
+    padding: 14px;
+    font-size: 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    text-align: center;
+    background: var(--card);
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+
+  #answerInput:focus {
+    border-color: var(--accent);
+  }
+
+  #feedback {
+    margin-top: 15px;
+    font-size: 18px;
+    min-height: 1.5em;
+  }
+
+  #timer {
+    font-weight: 700;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Ads/Footer */
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    /*color: var(--accent);*/
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20% - 10px);
+  }
+
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+
+  .hidden { display: none; }
+  /* =========================
+    TYPE + SUBTYPE GROUPING
+    ========================= */
+
+    #typeCheckboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    }
+
+    /* Entire type section */
+    .typeGroup {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    }
+
+    /* Parent type label */
+    .typeHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    }
+
+    /* Container for subtypes */
+    .subtypeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin-left: 20px;
+    margin-top: 4px;
+    }
+
+    /* Child subtype labels */
+    .subtypeLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+    background: var(--card);
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+    }
+
+    .subtypeLabel:hover {
+    background: var(--border);
+    }
+
+    /* Parent checkbox */
+    .typeHeader input,
+    .subtypeLabel input {
+    cursor: pointer;
+    }
+
+    /* Remove old grid layout ONLY for type area */
+    #typeCheckboxes.checkBoxes {
+    display: flex;
+    flex-direction: column;
+    }
+</style>
+<script src="../interact.js"></script>
+</head>
+
+<body data-page-type="vocab">
+    <img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+  <div style="margin-top: 10vh;" class = "title">Latin Vocabulary Tester</div>
+  <div style="color:var(--muted); margin: 0px 0px 10px 0px">Compose a word pool by selecting the stages and wordtypes you want; then, start testing you vocab~</div>
+  <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+        <div style="padding: 4px 8px; background: var(--card); border-radius: 15px; margin: 8px; display: flex; border: 1px solid var(--border); margin: 15px;">
+            <input type="checkbox" id="darkModeToggle"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+  <section class="controls">
+
+    <div class= "side side1">
+        <div class = "title2">Stages</div>
+        <div class="checkBoxes" id="stageCheckboxes">
+        </div>
+        <button type="button" id="toggleStagesBtn" class="allSelector">
+            Deselect All
+        </button>
+    </div>
+
+    <div class= "side side2">
+        <div class = "title2">Word Types</div>
+        <div class="checkBoxes" id="typeCheckboxes">
+        </div>
+        <button type="button" id="toggleTypesBtn" class="allSelector">
+            Deselect All
+        </button>
+    </div>
+
+    <div class="bottom">
+        <div class = "title2">Other</div>
+        <div class="checkBoxes">
+            <label>
+                <input type="checkbox" id="directionToggle">
+                English → Latin
+            </label>
+
+            <label>
+                <input type="checkbox" id="noRepeatToggle">
+                Remove words once correct
+            </label>
+            <label>
+                <input type="checkbox" id="timerToggle">
+                Enable timer
+            </label>
+            <label>
+                <input type="checkbox" id="formatToggle">
+                Phone format
+            </label>
+        
+    </div>
+  </section>
+
+ <button id="startBtn">Start Test</button>
+
+  <section class="tester hidden bottom">
+
+    <div id="timer"></div>
+
+    <div id="question">Press 'Start Test' to start!</div>
+
+    <input type="text" id="answerInput" class="answerInput" autocomplete="off">
+    <button id="submitBtn">Submit</button>
+
+    <div id="feedback"></div>
+    <div id="score"></div>
+    
+  </section>
+<section class="result hidden" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); box-sizing: border-box;margin-bottom:15px;">
+
+                <div><strong>Finished!</strong></div>
+                <div class="results" style="display: flex; flex-wrap: wrap; width: 100%; flex-direction: row;">
+
+                </div>
+                
+                <style>.hidden{display:none;}</style>
+            </section>
+ 
+    <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+
+</body>
+<script src="vocabData.js"></script>
+<script>
+    let vocab = [];
+let pool = [];
+let current = null;
+let score = 0;
+let total = 0;
+let timerInterval = null;
+let timeLeft = 0;
+
+
+
+/* LOAD VOCAB */
+vocab = vocabData;
+
+buildCheckboxes();
+
+console.log(vocab.length);
+console.log(vocab[0]);
+
+/* =========================
+   BUILD CHECKBOXES
+========================= */
+function buildCheckboxes() {
+
+    const stages =
+        [...new Set(vocab.map(v => v.stage))]
+        .sort((a,b)=>Number(a)-Number(b));
+
+    const types =
+        [...new Set(vocab.map(v => v.type))];
+
+    const stageDiv =
+        document.getElementById("stageCheckboxes");
+
+    const typeDiv =
+        document.getElementById("typeCheckboxes");
+
+    /* =========================
+       STAGES
+    ========================== */
+
+    stages.forEach(stage => {
+
+        stageDiv.innerHTML += `
+        <label>
+            <input
+                class="stageCheckboxes"
+                type="checkbox"
+                value="${stage}"
+                checked
+            >
+            Stage ${stage}
+        </label>
+        `;
+    });
+
+    /* =========================
+       TYPES + SUBTYPES
+    ========================== */
+
+    types.forEach(type => {
+
+        // all subtypes for this type
+        const typeSubtypes =
+            [...new Set(
+                vocab
+                .filter(v => v.type === type)
+                .map(v => v.subtype)
+            )];
+
+        const hasSubtypes =
+            typeSubtypes.some(s => s && s.trim() !== "");
+
+        /* -------------------------
+           TYPE HEADER
+        -------------------------- */
+
+        let typeHTML = `
+        <div class="typeGroup"
+             style="
+                margin-bottom:18px;
+                border:1px solid var(--border);
+                border-radius:12px;
+                padding:12px;
+                background:var(--bg);
+             ">
+
+            <label style="
+                display:flex;
+                align-items:center;
+                gap:8px;
+                font-weight:700;
+                margin-bottom:${hasSubtypes ? "10px" : "0"};
+            ">
+
+                <input
+                    class="typeCheckboxes"
+                    type="checkbox"
+                    value="${type}"
+                    data-type="${type}"
+                    checked
+                >
+
+                ${capitalise(type)}s
+
+            </label>
+        `;
+
+        /* -------------------------
+           SUBTYPES
+        -------------------------- */
+
+        if (hasSubtypes) {
+
+            typeHTML += `
+            <div
+                class="subtypeContainer"
+                style="
+                    margin-left:22px;
+                    display:flex;
+                    flex-direction:column;
+                    gap:6px;
+                ">
+            `;
+
+            typeSubtypes.forEach(subtype => {
+
+                // Skip blank subtype
+                if (!subtype || subtype.trim() === "") return;
+
+                typeHTML += `
+                <label style="
+                    display:flex;
+                    align-items:center;
+                    gap:8px;
+                    font-size:14px;
+                ">
+
+                    <input
+                        class="subtypeCheckboxes"
+                        type="checkbox"
+                        value="${subtype}"
+                        data-parent="${type}"
+                        checked
+                    >
+
+                    ${capitalise(subtype)}
+
+                </label>
+                `;
+            });
+
+            typeHTML += `</div>`;
+        }
+
+        typeHTML += `</div>`;
+
+        typeDiv.innerHTML += typeHTML;
+    });
+
+    /* =========================
+       PARENT → CHILD LINKING
+    ========================== */
+
+    document
+    .querySelectorAll(".typeCheckboxes")
+    .forEach(parentBox => {
+
+        parentBox.addEventListener("change", () => {
+
+            const type =
+                parentBox.dataset.type;
+
+            const children =
+                document.querySelectorAll(
+                    `.subtypeCheckboxes[data-parent="${type}"]`
+                );
+
+            children.forEach(child => {
+                child.checked = parentBox.checked;
+            });
+
+            
+
+        });
+
+    });
+}
+
+
+/* =========================
+   START TEST
+========================= */
+document.getElementById("startBtn").onclick = () => {
+
+    const selectedStages =
+        [...document.querySelectorAll(".stageCheckboxes:checked")]
+        .map(cb => cb.value);
+
+    const selectedTypes =
+        [...document.querySelectorAll(".typeCheckboxes:checked")]
+        .map(cb => cb.value);
+
+    const selectedSubtypes =
+        [...document.querySelectorAll(".subtypeCheckboxes:checked")]
+        .map(cb => cb.value);
+
+    pool = vocab.filter(v => {
+
+        /* stage */
+        const stageMatch =
+            selectedStages.includes(v.stage);
+
+        /* type */
+        const typeMatch =
+            selectedTypes.includes(v.type);
+
+        /* subtype */
+
+        let subtypeMatch = true;
+
+        // words WITH subtypes
+        if (v.subtype && v.subtype.trim() !== "") {
+
+            subtypeMatch =
+                selectedSubtypes.includes(v.subtype);
+        }
+
+        // words WITHOUT subtypes
+        else {
+
+            subtypeMatch =
+                selectedTypes.includes(v.type);
+        }
+
+        return (
+            stageMatch &&
+            typeMatch &&
+            subtypeMatch
+        );
+    });
+
+    if (pool.length === 0) {
+
+        alert("No words selected!");
+
+        return;
+    }
+
+    score = 0;
+    total = 0;
+
+    document.querySelector(".tester").classList.remove("hidden");
+    
+
+    nextQuestion();
+    document.getElementById("score").textContent = "";
+};
+
+/* =========================
+   NEXT QUESTION
+========================= */
+function nextQuestion() {
+
+    if (pool.length === 0) {
+        document.querySelector(".tester").classList.add("hidden");
+        document.querySelector(".result").classList.remove("hidden")
+        if ((score/total)>0.8){
+            document.querySelector(".result").style.backgroundColor=`var(--greenpop)`;
+        }else{
+            document.querySelector(".result").style.backgroundColor=`var(--redpop)`;
+        }
+        
+        document.querySelector(".result").classList.remove("hidden");
+            document.querySelector(".results").innerHTML+=`
+                <div style="width: calc(((100% - 40px) * 0.25) - 24px); border: 1px solid var(--border); background-color: var(--bg); border-radius:15px; margin:5px; padding: 10px;">
+                    <div id="score">${score}/${total} => ${Math.floor((score/total)*100)}%</div>
+                    <div id="quotes" style="color: var(--text);">${calcScore(score, total)}</div>
+                </div>`;
+                document.getElementById("quotes").innerHTML=calcScore(score, total);
+            const result = {
+                date: new Date().toISOString(),
+
+                testType: "Vocab",
+                page: document.title,
+
+                score,
+                total,
+                percent: Math.round(score/total*100),
+
+                quote: calcScore(score,total),
+
+                settings: {
+                    stages: [...document.querySelectorAll(".stageCheckboxes:checked")].map(cb => cb.value),
+                    types: [...document.querySelectorAll(".typeCheckboxes:checked")].map(cb => cb.value),
+                    subtypes: [...document.querySelectorAll(".subtypeCheckboxes:checked")].map(cb => cb.value),
+                    direction: document.getElementById("directionToggle").checked ? "English to Latin" : "Latin to English",
+                    timerEnabled: document.getElementById("timerToggle").checked,
+                    noRepeatEnabled: document.getElementById("noRepeatToggle").checked
+                }
+            };
+            let history =JSON.parse(localStorage.getItem("latinHistory")) || [];
+                history.unshift(result);
+                localStorage.setItem("latinHistory",JSON.stringify(history));
+                console.log(localStorage.getItem('latinHistory'));
+        return;
+    }
+
+    current = pool[Math.floor(Math.random() * pool.length)];
+
+    total++;
+
+    const englishToLatin =
+        document.getElementById("directionToggle").checked;
+
+    let questionText = "";
+
+    if (englishToLatin) {
+
+        questionText = current.english.join(", ");
+
+    } else {
+
+        questionText = current.latin.join(", ");
+    }
+
+    /* SHOW TYPE + SUBTYPE */
+
+    const subtypeText = current.subtype
+        ? ` (${current.subtype})`
+        : "";
+
+    document.getElementById("question").innerHTML = `
+        <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+            ${capitalise(current.type)}${subtypeText}
+        </div>
+        ${questionText}
+    `;
+
+    document.getElementById("answerInput").value = "";
+    document.getElementById("feedback").textContent = " - ";
+
+    if (document.getElementById("timerToggle").checked) {
+        startTimer();
+    }
+    cooldown = false
+}
+
+/* =========================
+   SUBMIT ANSWER
+========================= */
+let cooldown = false;
+document.getElementById("submitBtn").onclick = () => {
+    if(cooldown === false){
+        const rawInput =
+            document.getElementById("answerInput")
+            .value;
+
+        const input = cleanAnswer(rawInput);
+
+        const englishToLatin =
+            document.getElementById("directionToggle").checked;
+
+        const correctAnswers = (
+            englishToLatin
+                ? current.latin
+                : current.english
+        );
+
+        const cleanedCorrectAnswers =
+            correctAnswers.map(answer => cleanAnswer(answer));
+
+        const isCorrect = cleanedCorrectAnswers.includes(input);
+        if(input != ""){
+            if (isCorrect) {
+
+                score++;
+
+                document.getElementById("feedback").textContent =
+                    "✅ Correct!";
+
+                if (document.getElementById("noRepeatToggle").checked) {
+
+                    pool = pool.filter(w => w !== current);
+                }
+                setTimeout(nextQuestion, 700);
+            } else {
+
+                document.getElementById("feedback").textContent =
+                        `❌ Correct answer: ${correctAnswers.join(", ")}`;
+                    document.getElementById("submitBtn").addEventListener("click", function nextQ(){
+                        nextQuestion();
+                        document.getElementById("submitBtn").removeEventListener("click", nextQ);
+                    });
+            }
+
+            document.getElementById("score").textContent =
+                `Score: ${score} / ${total}`;
+
+            stopTimer();
+            cooldown = true;
+        }
+    }
+};
+
+
+/* =========================
+   ENTER KEY SUBMIT
+========================= */
+document.getElementById("answerInput")
+.addEventListener("keydown", e => {
+
+    if (e.key === "Enter") {
+
+        e.preventDefault();
+
+        document.getElementById("submitBtn").click();
+    }
+});
+
+/* =========================
+   TIMER
+========================= */
+function startTimer() {
+
+    stopTimer();
+
+    timeLeft = 10;
+
+    document.getElementById("timer").textContent =
+        `Time: ${timeLeft}`;
+
+    timerInterval = setInterval(() => {
+
+        timeLeft--;
+
+        document.getElementById("timer").textContent =
+            `Time: ${timeLeft}`;
+
+        if (timeLeft <= 0) {
+
+            stopTimer();
+
+            nextQuestion();
+        }
+
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+
+/* =========================
+   PHONE FORMAT
+========================= */
+let halfFormat = true;
+
+document.getElementById("formatToggle").onchange = () => {
+
+    halfFormat
+        ? document.querySelectorAll(".side")
+            .forEach(el => el.style.width = "100%")
+        : document.querySelectorAll(".side")
+            .forEach(el => el.style.width = "calc(50% - 10px)");
+
+    halfFormat = !halfFormat;
+};
+
+
+let allSelectedStage = true;
+let allSelectedType = true;
+
+document.getElementById("toggleStagesBtn").onclick = function () {
+    const allStages = document.querySelectorAll(".stageCheckboxes");
+
+    allStages.forEach(box => {
+        box.checked = !allSelectedStage;
+        
+    });
+console.log("Hello there");
+    allSelectedStage = !allSelectedStage;
+
+    this.textContent =
+        allSelectedStage ? "Deselect All" : "Select All";
+};
+
+document.getElementById("toggleTypesBtn").onclick = function () {
+    const allTypes = [
+        ...document.querySelectorAll(".typeCheckboxes"),
+        ...document.querySelectorAll(".subtypeCheckboxes")
+    ];
+
+    allTypes.forEach(box => {
+        box.checked = !allSelectedType;
+    });
+
+    allSelectedType = !allSelectedType;
+
+    this.textContent =
+        allSelectedType ? "Deselect All" : "Select All";
+};
+
+/* =========================
+   HELPER
+========================= */
+function cleanAnswer(str) {
+    return str
+        .toLowerCase()
+        .trim()
+        .replace(/[<>?,.\/:";'{}\[\]!@#$%^&*()_+=\-0987654321| ]/g, "");
+}
+function capitalise(str) {
+
+    if (!str) return "";
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
+</script>
+
+</html>

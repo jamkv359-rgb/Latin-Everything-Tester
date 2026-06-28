@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latin Hangman</title>
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --consttext: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #4f46e5;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --bluepop: #2563eb;
+            --bluepopsel:#1d4ed8;
+            --greenpop: #16a34a;
+            --greenpopsel:#15803d;
+            --redpop: #dc2626;
+            --redpopsel:#b91c1c;
+            --yellowpop:rgb(255, 255, 0);
+            --yellowpopsel:rgb(225, 225, 0);
+            --purplepop: #7c3aed;
+            --purplepopsel: #6d28d9;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --consttext: #1f2937;
+            --muted: #94a3b8;
+            --border: #334155;
+            --accent: #818cf8;
+            --bluepop: #38bdf8;
+            --bluepopsel:#0ea5e9;
+            --greenpop: #34d399;
+            --greenpopsel:#34d399;
+            --redpop: #f87171;
+            --redpopsel:#dc2626;
+            --yellowpop: #fbbf24;
+            --yellowpopsel:#d97706;
+            --purplepop: #c084fc;
+            --purplepopsel: #a855f7;
+            
+        }
+
+        .container {
+            width: min(600px, 92vw);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        header {
+            background: var(--card);
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        h1 { margin: 0; font-size: 24px; font-weight: 700; }
+        
+        .sub-header {
+            margin-top: 8px;
+            padding: 6px 12px;
+            font-size: 12px;
+            background: var(--bg);
+            color: var(--accent);
+            border-radius: 999px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .game-card {
+            background: var(--card);
+            padding: 40px 24px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        /* Word Display (The Underscores) */
+        .display {
+            font-size: 2.5rem;
+            letter-spacing: 12px;
+            margin: 20px 0;
+            font-weight: 700;
+            font-family: monospace;
+            color: var(--text);
+        }
+
+        .lives {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--wrong);
+            margin-bottom: 5px;
+        }
+
+        .worongLetters {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 25px;
+            min-height: 1.2em;
+        }
+
+        /* Input Section */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .answerInput {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 160px;
+            text-align: center;
+            outline: none;
+            background-color:var(--bg);
+            color:var(--text);
+            transition: 0.15s ease;
+        }
+
+        .answerInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: opacity 0.15s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            min-height: 3em;
+            line-height: 1.4;
+        }
+        .adContainer {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-align: center;
+        }
+        .ads {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .ad {
+            flex: 1;
+            padding: 10px;
+            background: var(--bg);
+            border-radius: 8px;
+            font-size: 13px;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+        }
+          .ad:hover {
+            background: var(--card);
+            border-color: var(--accent);
+        }
+         #submitBtn:hover {
+            background-color: var(--bluepopsel);
+        }
+    </style>
+    <script src="../interact.js"></script>
+</head>
+<body data-page-type="vocab">
+<img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0;   z-index: 9999;" >
+<div style="margin-top: 15vh;" class="container">
+    <header>
+        <h1>Latin Hangman</h1>
+        <div style="color:var(--muted); margin: 10px 0px 5px 0px">Try and guess a latin word from the description~</div>
+        <div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top:10px;"></div>
+        <div style="padding: 4px 8px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border)">
+            <input type="checkbox" id="darkModeToggle"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+    </header>
+
+    <div class="game-card">
+        <div class="lives"></div>
+        <div class="display"></div>
+        <div class="worongLetters">Wrong Letters: </div>
+        
+        <div class="input-group">
+            <input type="text" id="answerInput" class="answerInput" placeholder="Guess..." autocomplete="off">
+            <button id="submitBtn" style="background-color:var(--bluepop);">Submit Guess</button>
+        </div>
+
+        <div class="message"></div>
+    </div>
+
+      <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+</div>
+
+<script src="vocabData.js"></script> 
+
+<script>
+document.querySelector("body").classList.toggle("dark"); 
+    /* =========================
+       ELEMENTS
+    ========================== */
+
+    const button1 = document.getElementById("submitBtn");
+    const displayDiv = document.querySelector(".display");
+    const livesDiv = document.querySelector(".lives");
+    const wrongDiv = document.querySelector(".worongLetters");
+    const inputDiv = document.querySelector(".answerInput");
+    const messageDiv = document.querySelector(".message");
+
+    /* =========================
+       GAME STATE
+    ========================== */
+
+    let currentWord = null;
+
+    let answer = "";
+    let answerLetters = [];
+
+    let display = [];
+    let wrongLetters = [];
+
+    let lives = 10;
+
+    /* =========================
+       MACRON STANDARDIZER
+    ========================== */
+
+    function normalizeLatin(str) {
+
+        return str
+            .toLowerCase()
+            .trim()
+
+            // convert combining macrons 
+            .replace(/a\u0304/g, "a")
+            .replace(/e\u0304/g, "e")
+            .replace(/i\u0304/g, "i")
+            .replace(/o\u0304/g, "o")
+            .replace(/u\u0304/g, "u")
+            .replace(/y\u0304/g, "y")
+            .replace("ā", "a")
+            .replace("ē", "e")
+            .replace("ī", "i")
+            .replace("ō", "o")
+            .replace("ū", "u")
+            .replace("ȳ", "y")
+            .replace(/ā/g, "a")
+            .replace(/ē/g, "e")
+            .replace(/ī/g, "i")
+            .replace(/ō/g, "o")
+            .replace(/ū/g, "u")
+            .replace(/ȳ/g, "y")
+
+            // normalize unicode
+            .normalize("NFC");
+    }
+
+    function hasSpecialCharacters(str) {
+        return /[!?,.():+]/.test(str);
+    }
+
+    function isSafeWord(word) {
+        let latinForms = word.latin;
+        let englishMeanings = word.english;
+
+        for (let l of latinForms) {
+            if (hasSpecialCharacters(l)) {
+                return false;
+            }
+        }
+
+        for (let e of englishMeanings) {
+            if (hasSpecialCharacters(e)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /* =========================
+       START GAME
+    ========================== */
+
+    function hangMan() {
+
+        let safeVocab = vocabData.filter(isSafeWord);
+
+        if (safeVocab.length === 0) {
+            messageDiv.textContent = "No valid vocab words available.";
+            return;
+        }
+
+        currentWord =
+            safeVocab[Math.floor(Math.random() * safeVocab.length)];
+
+        answer =
+            normalizeLatin(currentWord.latin[0]);
+
+        answerLetters = [...answer];
+
+        display = [];
+        wrongLetters = [];
+        lives = 10;
+
+        for (let char of answerLetters) {
+
+            if (char === " " || char === "-") {
+                display.push(char);
+            } else {
+                display.push("_");
+            }
+        }
+
+        messageDiv.innerHTML = `
+            Guess a letter or the whole word!<br>
+            <strong>${capitalize(currentWord.type)}</strong>
+            ${currentWord.subtype
+                ? ` • ${capitalize(currentWord.subtype)}`
+                : ""}
+            <br>
+            Meaning: ${currentWord.english.join(", ")}
+        `;
+
+        updateUI();
+
+        button1.textContent = "Submit Guess";
+        button1.onclick = process;
+    }
+    /* =========================
+       UPDATE UI
+    ========================== */
+
+    function updateUI() {
+
+        displayDiv.textContent =
+            display.join(" ");
+
+        livesDiv.textContent =
+            `❤️ ${lives} Lives Left`;
+
+        wrongDiv.textContent =
+            `Wrong Letters: ${wrongLetters.join(", ")}`;
+    }
+
+    /* =========================
+       PROCESS INPUT
+    ========================== */
+
+    function process() {
+
+        let guess =
+            normalizeLatin(inputDiv.value);
+
+        inputDiv.value = "";
+
+        if (!guess) return;
+
+        let guessLetters = [...guess];
+
+        /* =====================
+           SINGLE LETTER
+        ====================== */
+
+        if (guessLetters.length === 1) {
+
+            let letter = guessLetters[0];
+
+            // already guessed
+            if (
+                display.includes(letter) ||
+                wrongLetters.includes(letter)
+            ) {
+
+                messageDiv.innerHTML = `
+                    Already guessed '${letter}'!
+                `;
+
+                return;
+            }
+
+            // correct
+            if (answerLetters.includes(letter)) {
+
+                for (let i = 0; i < answerLetters.length; i++) {
+
+                    if (answerLetters[i] === letter) {
+                        display[i] = letter;
+                    }
+                }
+
+            } else {
+
+                lives--;
+                wrongLetters.push(letter);
+            }
+        }
+
+        /* =====================
+           WHOLE WORD
+        ====================== */
+
+        else {
+
+            if (guess === answer) {
+
+                display = [...answerLetters];
+
+            } else {
+
+                for (let letter of guessLetters) {
+
+                    if (
+                        display.includes(letter) ||
+                        wrongLetters.includes(letter)
+                    ) {
+                        continue;
+                    }
+
+                    if (answerLetters.includes(letter)) {
+
+                        for (let i = 0; i < answerLetters.length; i++) {
+
+                            if (answerLetters[i] === letter) {
+                                display[i] = letter;
+                            }
+                        }
+
+                    } else {
+
+                        lives--;
+                        wrongLetters.push(letter);
+                    }
+                }
+            }
+        }
+
+        updateUI();
+        checkGameOver();
+    }
+
+    /* =========================
+       GAME OVER
+    ========================== */
+
+    function checkGameOver() {
+
+        if (!display.includes("_")) {
+
+            messageDiv.innerHTML = `
+                <strong>Optime!</strong><br>
+                You found '<strong>${answer}</strong>'<br>
+                Meaning: ${currentWord.english.join(", ")}<br>
+                Type: ${capitalize(currentWord.type)}
+                ${currentWord.subtype
+                    ? ` (${capitalize(currentWord.subtype)})`
+                    : ""}
+            `;
+
+            resetGameButton();
+        }
+
+        else if (lives <= 0) {
+
+            messageDiv.innerHTML = `
+                <strong>Game Over!</strong><br>
+                The word was '<strong>${answer}</strong>'<br>
+                Meaning: ${currentWord.english.join(", ")}<br>
+                Type: ${capitalize(currentWord.type)}
+                ${currentWord.subtype
+                    ? ` (${capitalize(currentWord.subtype)})`
+                    : ""}
+            `;
+
+            resetGameButton();
+        }
+    }
+
+    /* =========================
+       RESET BUTTON
+    ========================== */
+
+    function resetGameButton() {
+
+        button1.textContent = "New Word";
+        button1.onclick = hangMan;
+    }
+
+    /* =========================
+       HELPERS
+    ========================== */
+
+    function capitalize(str) {
+
+        if (!str) return "";
+
+        return str.charAt(0).toUpperCase()
+            + str.slice(1);
+    }
+
+    /* =========================
+       ENTER KEY
+    ========================== */
+
+    inputDiv.addEventListener("keydown", (e) => {
+
+        if (e.key === "Enter") {
+            process();
+        }
+    });
+
+    /* =========================
+       START
+    ========================== */
+
+    hangMan();
+
+</script>
+
+</body>
+</html>

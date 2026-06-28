@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noun Endings Condensed</title>
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --consttext: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #4f46e5;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --bluepop: #2563eb;
+        --bluepopsel:#1d4ed8;
+            --greenpop: #16a34a;
+            --greenpopsel:#15803d;
+            --redpop: #dc2626;
+            --redpopsel:#b91c1c;
+            --yellowpop:rgb(255, 255, 0);
+            --yellowpopsel:rgb(225, 225, 0);
+            --purplepop: #7c3aed;
+            --purplepopsel: #6d28d9;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --consttext: #1f2937;
+            --muted: #94a3b8;
+            --border: #334155;
+            --accent: #818cf8;
+            --bluepop: #38bdf8;
+            --bluepopsel:#0ea5e9;
+            --greenpop: #34d399;
+            --greenpopsel:#34d399;
+            --redpop: #f87171;
+            --redpopsel:#dc2626;
+            --yellowpop: #fbbf24;
+            --yellowpopsel:#d97706;
+            --purplepop: #c084fc;
+            --purplepopsel: #a855f7;
+        }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: min(1000px, 92vw);
+            margin: 40px 0;
+        }
+
+        /* Header card */
+        header {
+            background: var(--card);
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .stem {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            font-size: 12px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .stem strong {
+            color: var(--bluepop);
+        }
+
+        /* Settings panel */
+        #settingsPanel {
+            background: var(--card);
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        #settingsPanel h2 {
+            margin-bottom: 15px;
+        }
+
+        /* Filter grid */
+        .filterGrid,
+        .settings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        /* Each filter group takes half the card */
+        .filterGroup {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: calc(50% - 10px);
+            box-sizing: border-box;
+        }
+
+        .filterGroup h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .filterGroup label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 0;
+            text-align: left;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .filterGroup input,
+        .check {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        button {
+            padding: 10px 14px;
+            font-size: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        button:hover {
+            opacity: 0.9;
+            background: var(--muted);
+            color: var(--consttext);
+        }
+
+        #submit-btn {
+            background: var(--greenpop);
+            color: var(--consttext);
+            border: none;
+        }
+
+        #submit-btn:hover {
+            background: var(--greenpopsel);
+        }
+
+        #reset-btn {
+            background: var(--redpop);
+            color: var(--consttext);
+            border: none;
+        }
+
+        /* Table wrapper */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--card);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--yellowpop);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--consttext);
+            font-weight: 700;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            padding: 10px;
+            text-align: center;
+            overflow: hidden;
+        }
+        tr:hover td {
+            background: var(--border);
+        }
+        /*
+        .border-right-thick {
+            border-right: 3px solid var(--consttext) !important;
+        }
+
+        .border-bottom-thick {
+            border-bottom: 3px solid var(--consttext) !important;
+        }
+*/
+        /* Inputs */
+        td input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: 0.15s ease;
+            background: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+        }
+
+        td input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+        }
+
+        /* Result text */
+        .correct {
+            font-weight: 600;
+        }
+
+        .incorrect-text {
+            text-decoration: line-through;
+            margin-right: 5px;
+            font-size: 0.9em;
+        }
+
+        .correction-text {
+            color: var(--wrong);
+            font-weight: 600;
+        }
+
+        .blank-text {
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .filterGroup {
+                width: 100%;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+        }
+        .adContainer {
+            margin: 20px 0;
+            font-size: 14px;
+            width: min(1000px, 100%);
+        }
+
+        .ads {
+            display: flex;
+            gap: 10px;
+            //margin-top: 12px;
+        }
+
+        .ad {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            
+            flex: 1;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: calc(20%-10px);
+        }
+        .bottom {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            box-sizing: border-box; 
+            }
+        .ad:hover {
+            background: var(--card);
+            border-color: var(--accent);
+        }
+        .adVocab{
+            color: var(--bluepop);
+        }
+        .adGrammar{
+            color: var(--greenpop);
+        }
+        .adOther{
+            color: var(--redpop);
+        }
+    </style>
+    <script src="../interact.js"></script>
+</head>
+<body data-page-type="noun">
+        <div class="container">
+
+            <header>
+                <h2>Latin Noun Ending Drill</h2>
+                <div style="color:var(--muted); margin: 10px 0px 2px 0px">Select what noun endings you want, then test youself~</div>
+                <div style="display:flex; gap:10px;">
+                    <div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top: 10px;"></div>
+                    <div style="padding: 5px 10px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border); text-align:center; width: fit-content; ">
+                        <input type="checkbox" id="darkModeToggle"></input>
+                        <div class="dark-interact">Dark Mode.</div>
+                    </div>
+                </div>
+                <div class="stem"><strong>Declensions</strong> • Cases • Numbers</div>
+                <div class="stem"><strong>Tab</strong> → Next input in row</div>
+            </header>
+
+            <section id="settingsPanel">
+                <h2>Select Forms To Test</h2>
+
+                <div class="filterGrid">
+                    <div class="filterGroup">
+                        <h3>Declensions</h3>
+                        <label><input type="checkbox" class="check" data-group="declension" value="1st" checked> 1st</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="2ndM" checked> 2nd Masculine</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="2ndN" checked> 2nd Neuter</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="3rdMF" checked> 3rd Masculine/Feminine</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="3rdN" checked> 3rd Neuter</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="4thMF" checked> 4th Masculine/Feminine</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="4thN" checked> 4th Neuter</label>
+                        <label><input type="checkbox" class="check" data-group="declension" value="5th" checked> 5th</label>
+                    </div>
+
+                    <div class="filterGroup">
+                        <h3>Cases</h3>
+                        <label><input type="checkbox" class="check" data-group="case" value="nom" checked> Nominative</label>
+                        <label><input type="checkbox" class="check" data-group="case" value="acc" checked> Accusative</label>
+                        <label><input type="checkbox" class="check" data-group="case" value="gen" checked> Genitive</label>
+                        <label><input type="checkbox" class="check" data-group="case" value="dat" checked> Dative</label>
+                        <label><input type="checkbox" class="check" data-group="case" value="abl" checked> Ablative</label>
+                    </div>
+
+                    <div class="filterGroup">
+                        <h3>Numbers</h3>
+                        <label><input type="checkbox" class="check" data-group="number" value="singular" checked> Singular</label>
+                        <label><input type="checkbox" class="check" data-group="number" value="plural" checked> Plural</label>
+                    </div>
+
+                    <div class="filterGroup">
+                        <h3>Row Order</h3>
+                        <label>
+                            <input type="radio" name="rowOrder" class="check" value="number-first" checked>
+                            Singular then plural
+                        </label>
+                        <label>
+                            <input type="radio" name="rowOrder" class="check" value="case-first">
+                            Case first
+                        </label>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+                    <button id="reset-btn" onclick="resetTable()">Reset</button>
+                </div>
+            </section>
+            <section class="result hidden" style="width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); box-sizing: border-box;margin-bottom:15px;">
+
+                <div><strong>Finished!</strong></div>
+                <div class="results" style="display: flex; flex-wrap: wrap; width: 100%; flex-direction: row;">
+
+                </div>
+                
+                <style>.hidden{display:none;}</style>
+            </section>
+            <div class="table-wrapper">
+                <table id="latinTable">
+                    <thead></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <section class="adContainer bottom">
+                <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our vocab revision techniques!</div>
+                <div class="ads">
+                    <div class="ad adVocab" onclick="window.location.href='../vocab/vocabTest.html'">Type-in Vocab Tester</div>
+                    <div class="ad adVocab" onclick="window.location.href='../vocab/multiChoice.html'">Multi-Choice Vocab Tester</div>
+                    <div class="ad adVocab" onclick="window.location.href='../vocab/hangman.html'">Hangman Game</div>
+                    <div class="ad adVocab" onclick="window.location.href='../vocab/scramble.html'">Anagram Scramble Game</div>
+                    <div class="ad adVocab" onclick="window.location.href='../vocab/vocabData.html'">Vocab Database</div>
+                </div>
+                <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar other revision techniques!</div>
+                <div class="ads">
+                    <div class="ad adGrammar" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+                    <div class="ad adGrammar" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+                    <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+                    <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+                    <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+                </div>
+                <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+                <div class="ads">
+                    <div class="ad adOther" onclick="window.location.href='../index.html'">Back to home page</div>
+                    <div class="ad adOther" onclick="window.location.href='../about.html'">About</div>
+                </div>
+            </section>
+        </div>
+
+    <script>
+        const caseOptions = [
+            { key: "nom", label: "Nom" },
+            { key: "acc", label: "Acc" },
+            { key: "gen", label: "Gen" },
+            { key: "dat", label: "Dat" },
+            { key: "abl", label: "Abl" }
+        ];
+
+        const numberOptions = [
+            { key: "singular", label: "Singular" },
+            { key: "plural", label: "Plural" }
+        ];
+
+        const declensionOptions = [
+            { key: "1st", label: "1st", colIndex: 0, group: "1st" },
+            { key: "2ndM", label: "2nd (M)", colIndex: 1, group: "2nd" },
+            { key: "2ndN", label: "2nd (N)", colIndex: 2, group: "2nd" },
+            { key: "3rdMF", label: "3rd (M/F)", colIndex: 3, group: "3rd" },
+            { key: "3rdN", label: "3rd (N)", colIndex: 4, group: "3rd" },
+            { key: "4thMF", label: "4th (M/F)", colIndex: 5, group: "4th" },
+            { key: "4thN", label: "4th (N)", colIndex: 6, group: "4th" },
+            { key: "5th", label: "5th", colIndex: 7, group: "5th" }
+        ];
+
+        const answers = [
+            ["a", "us", "um", "-", "-", "us", "u", "es"],      
+            ["am", "um", "um", "em", "-", "um", "u", "em"],    
+            ["ae", "i", "i", "is", "is", "us", "us", "ei"],    
+            ["ae", "o", "o", "i", "i", "ui", "u", "ei"],       
+            ["a", "o", "o", "e", "e", "u", "u", "e"],          
+            ["ae", "i", "a", "es", "a", "us", "ua", "es"],     
+            ["as", "os", "a", "es", "a", "us", "ua", "es"],    
+            ["arum", "orum", "orum", "um", "um", "uum", "uum", "erum"],
+            ["is", "is", "is", "ibus", "ibus", "ibus", "ibus", "ebus"],
+            ["is", "is", "is", "ibus", "ibus", "ibus", "ibus", "ebus"]
+        ];
+
+        function getSelectedValues(groupName) {
+            return [
+                ...document.querySelectorAll(`[data-group="${groupName}"]:checked`)
+            ].map(cb => cb.value);
+        }
+
+        function getSelectedRadio(name) {
+            const checked = document.querySelector(`input[name="${name}"]:checked`);
+            return checked ? checked.value : null;
+        }
+
+        function getAnswerRowIndex(numberKey, caseKey) {
+            const caseIndex =
+                caseOptions.findIndex(c => c.key === caseKey);
+
+            const numberIndex =
+                numberOptions.findIndex(n => n.key === numberKey);
+
+            return numberIndex * caseOptions.length + caseIndex;
+        }
+
+        function getVisibleRows() {
+            const selectedCases =
+                getSelectedValues("case");
+
+            const selectedNumbers =
+                getSelectedValues("number");
+
+            const rowOrder =
+                getSelectedRadio("rowOrder");
+
+            const visibleCases =
+                caseOptions.filter(c => selectedCases.includes(c.key));
+
+            const visibleNumbers =
+                numberOptions.filter(n => selectedNumbers.includes(n.key));
+
+            let rows = [];
+
+            if (rowOrder === "case-first") {
+                visibleCases.forEach(caseObj => {
+                    visibleNumbers.forEach(numberObj => {
+                        rows.push({
+                            caseKey: caseObj.key,
+                            caseLabel: caseObj.label,
+                            numberKey: numberObj.key,
+                            numberLabel: numberObj.label,
+                            answerRowIndex: getAnswerRowIndex(numberObj.key, caseObj.key)
+                        });
+                    });
+                });
+            } else {
+                visibleNumbers.forEach(numberObj => {
+                    visibleCases.forEach(caseObj => {
+                        rows.push({
+                            caseKey: caseObj.key,
+                            caseLabel: caseObj.label,
+                            numberKey: numberObj.key,
+                            numberLabel: numberObj.label,
+                            answerRowIndex: getAnswerRowIndex(numberObj.key, caseObj.key)
+                        });
+                    });
+                });
+            }
+
+            return rows;
+        }
+
+        function getVisibleDeclensions() {
+            const selectedDeclensions =
+                getSelectedValues("declension");
+
+            return declensionOptions.filter(d =>
+                selectedDeclensions.includes(d.key)
+            );
+        }
+
+        function isEndOfVisibleDeclensionGroup(visibleDeclensions, index) {
+            const current =
+                visibleDeclensions[index];
+
+            const next =
+                visibleDeclensions[index + 1];
+
+            if (!next) return true;
+
+            return current.group !== next.group;
+        }
+
+        function isEndOfVisibleRowGroup(rows, index) {
+            const rowOrder =
+                getSelectedRadio("rowOrder");
+
+            const current =
+                rows[index];
+
+            const next =
+                rows[index + 1];
+
+            if (!next) return false;
+
+            if (rowOrder === "case-first") {
+                return current.caseKey !== next.caseKey;
+            }
+
+            return current.numberKey !== next.numberKey;
+        }
+
+        function createTable() {
+            const thead =
+                document.querySelector("#latinTable thead");
+
+            const tbody =
+                document.getElementById("tableBody");
+
+            const visibleDeclensions =
+                getVisibleDeclensions();
+
+            const rows =
+                getVisibleRows();
+
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+
+            if (visibleDeclensions.length === 0) {
+                alert("Please select at least one declension.");
+                return;
+            }
+
+            if (rows.length === 0) {
+                alert("Please select at least one case and one number.");
+                return;
+            }
+
+            let headerHtml = `
+                <tr>
+                    <th class="border-right-thick">Num.</th>
+                    <th class="border-right-thick">Case</th>
+            `;
+
+            visibleDeclensions.forEach((declension, index) => {
+                const rightBorder =
+                    isEndOfVisibleDeclensionGroup(visibleDeclensions, index)
+                        ? "border-right-thick"
+                        : "";
+
+                headerHtml += `
+                    <th class="${rightBorder}">
+                        ${declension.label}
+                    </th>
+                `;
+            });
+
+            headerHtml += `</tr>`;
+            thead.innerHTML = headerHtml;
+
+            rows.forEach((rowData, rowIndex) => {
+                const bottomBorder =
+                    isEndOfVisibleRowGroup(rows, rowIndex)
+                        ? "border-bottom-thick"
+                        : "";
+
+                let rowHtml = `<tr>`;
+
+                rowHtml += `
+                    <td class="border-right-thick ${bottomBorder}">
+                        <strong>${rowData.numberLabel}</strong>
+                    </td>
+                `;
+
+                rowHtml += `
+                    <td class="border-right-thick ${bottomBorder}">
+                        <strong>${rowData.caseLabel}</strong>
+                    </td>
+                `;
+
+                visibleDeclensions.forEach((declension, colIndex) => {
+                    const rightBorder =
+                        isEndOfVisibleDeclensionGroup(visibleDeclensions, colIndex)
+                            ? "border-right-thick"
+                            : "";
+
+                    const correctAnswer =
+                        answers[rowData.answerRowIndex][declension.colIndex];
+
+                    rowHtml += `
+                        <td class="${rightBorder} ${bottomBorder}">
+                            <input
+                                type="text"
+                                data-row="${rowData.answerRowIndex}"
+                                data-col="${declension.colIndex}"
+                                data-answer="${correctAnswer}"
+                                autocomplete="off"
+                            >
+                        </td>
+                    `;
+                });
+
+                rowHtml += `</tr>`;
+                tbody.innerHTML += rowHtml;
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let total = 0;
+            document.querySelectorAll("input[data-answer]").forEach(input => {
+                    const val = input.value.trim().toLowerCase();
+
+                    const correctVal = input.dataset.answer.toLowerCase();
+
+                    const td = input.parentElement;
+                    if (correctVal === "-") {
+                        td.innerHTML = `<span class="blank-text" style='color:var(--yellowpop);'>${correctVal}</span>`;
+                    } else if (val === correctVal) {
+                        td.innerHTML = `<span class="correct" style='color:var(--greenpop);'>${val}</span>`;
+                        score+=1;
+                        total+=1;
+                    } else {
+                        td.innerHTML = `<span class="incorrect-text" style='color:var(--redpop);'>${val}</span><span class="correction-text">${correctVal}</span>`;
+                        total+=1;
+                    }
+                });
+            document.getElementById("submit-btn").disabled = true;
+            document.querySelector(".result").classList.remove("hidden");
+            document.querySelector(".results").innerHTML+=`
+                <div style="width: calc(((100% - 40px) * 0.25) - 24px); border: 1px solid var(--border); background-color: var(--bg); border-radius:15px; margin:5px; padding: 10px;">
+                    <div id="score">${score}/${total} => ${Math.floor((score/total)*100)}%<div>
+                    <div id="quotes" style="color: var(--text);">${calcScore(score, total)}</div>
+                </div>`;
+            const result = {
+                date: new Date().toISOString(),
+
+                testType: "Grammar",
+                page: document.title,
+
+                score,
+                total,
+                percent: Math.round(score/total*100),
+
+                quote: calcScore(score,total),
+
+                settings: {
+                    
+                    declensions: ["1st", "2ndM", "2ndN", "3rdMF", "3rdN", "4thMF", "4thN", "5th"],
+                    cases: ["nom", "acc", "gen", "dat", "abl"],
+                    numbers: ["singular", "plural"],
+                }
+            };
+            let history =JSON.parse(localStorage.getItem("latinHistory")) || [];
+                history.unshift(result);
+                localStorage.setItem("latinHistory",JSON.stringify(history));
+            console.log(localStorage.getItem('latinHistory'));     
+        }
+
+        function resetTable() {
+            createTable();
+            document.getElementById("submit-btn").disabled = false;
+        }
+        function enableEnterColumnNavigation() {
+
+            const table =
+                document.getElementById("latinTable");
+
+            table.addEventListener("keydown", function (e) {
+
+                if (e.key !== "Enter") return;
+
+                const currentInput = e.target;
+
+                if (currentInput.tagName !== "INPUT") return;
+
+                e.preventDefault();
+
+                const currentCell =
+                    currentInput.closest("td");
+
+                const currentRow =
+                    currentInput.closest("tr");
+
+                const rows =
+                    [...table.querySelectorAll("tbody tr")];
+
+                const currentRowIndex =
+                    rows.indexOf(currentRow);
+
+                const currentColIndex =
+                    [...currentRow.children].indexOf(currentCell);
+
+                // 1. Move down in the same visible column
+                for (let r = currentRowIndex + 1; r < rows.length; r++) {
+
+                    const nextCell =
+                        rows[r].children[currentColIndex];
+
+                    if (!nextCell) continue;
+
+                    const nextInput =
+                        nextCell.querySelector("input");
+
+                    if (nextInput) {
+                        nextInput.focus();
+                        return;
+                    }
+                }
+
+                // 2. If at bottom, move to top of next visible input column
+                const totalColumns =
+                    currentRow.children.length;
+
+                for (let c = currentColIndex + 1; c < totalColumns; c++) {
+
+                    for (let r = 0; r < rows.length; r++) {
+
+                        const nextCell =
+                            rows[r].children[c];
+
+                        if (!nextCell) continue;
+
+                        const nextInput =
+                            nextCell.querySelector("input");
+
+                        if (nextInput) {
+                            nextInput.focus();
+                            return;
+                        }
+                    }
+                }
+
+                // 3. If at the very end, wrap back to the first input
+                const firstInput =
+                    table.querySelector("tbody input");
+
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            });
+        }
+
+        document
+            .querySelectorAll(
+                '[data-group="declension"], [data-group="case"], [data-group="number"], input[name="rowOrder"]'
+            )
+            .forEach(control => {
+                control.addEventListener("change", resetTable);
+            });
+
+        createTable();
+        enableEnterColumnNavigation();
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Latin Grammar Suite — Dashboard</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: rgb(0,200,255);
+    --bluepopsel:rgb(0, 175, 225);
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  body.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --consttext: #1f2937;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #818cf8;
+    --bluepop: #38bdf8;
+    --bluepopsel:#0ea5e9;
+    --greenpop: #34d399;
+    --greenpopsel:#34d399;
+    --redpop: #f87171;
+    --redpopsel:#dc2626;    
+    --yellowpop: #fbbf24;
+    --yellowpopsel:#d97706;
+    --purplepop: #c084fc;
+    --purplepopsel: #a855f7;
+  }
+  
+  .side, .bottom {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+  } 
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    width: min(1000px, 100%);
+  }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  h1 { margin: 0; font-size: 28px; font-weight: 800; }
+  p { color: var(--muted);}
+
+  /* Grid Layout */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Section Cards */
+  .category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .category-card h2 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+  }
+
+  /* Links List */
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .nav-button:hover {
+    background: var(--card);
+    border-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .nav-button span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+    
+  }
+
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+/* <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed; top: 0; left: 0;   z-index: 9999;" >*/
+</style>
+<script src="./interact.js"></script>
+</head>
+<body data-page-type="base">
+   
+
+<div class="container" >
+  <div class="header">
+    <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+    <h1 style="margin-top: 10vh;">Essential Latin Revision Suite</h1>
+    <p style="color:var(--muted);">Select a module to begin your practice! Good luck studying~</p>
+    <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+    <div style="padding: 2px 8px; background: var(--card); border-radius: 4px; margin: 8px; display: flex; border: 1px solid var(--border);">
+        <input type="checkbox" id="darkModeToggle"></input>
+        <div class="dark-interact">Dark Mode.</div>
+        
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="category-card">
+      <h2 style="color: var(--bluepop);">Vocab</h2>
+      <div class="link-group">
+        <a href="./vocab/vocabTest.html" class="nav-button">Type-in Tester<span>→</span></a>
+        <a href="./vocab/multiChoice.html" class="nav-button">Multi-choice Tester<span>→</span></a>
+        <a href="./vocab/hangman.html" class="nav-button">Hangman Game<span>→</span></a>
+        <a href="./vocab/scramble.html" class="nav-button">Anagram Scramble Game<span>→</span></a>
+        <a href="./vocab/vocabData.html" class="nav-button">Vocab Database<span>→</span></a>
+      </div>
+    </section>
+    <section class="category-card">
+      <h2 style="color: var(--redpop);">Grammar</h2>
+      <div class="link-group">
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 5px;">Nouns</div>
+        <a href="nouns/allNounEnds.html" class="nav-button">Nouns Endings Condensed<span>→</span></a>
+        <a href="pronouns/allPronouns.html" class="nav-button">Pronouns Condensed<span>→</span></a>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 5px;">Verbs</div>
+        <a href="verbs/allVerbEnds.html" class="nav-button">Verb Endings Condensed<span>→</span></a>
+        <a href="verbs/allVerbEndsCustom1D.html" class="nav-button">All Verb Endings, 1D input<span>→</span></a>
+        <a href="verbs/allVerbEndsCustom2D.html" class="nav-button">All Verb Endings, 2D input<span>→</span></a>
+      </div>
+    </section>
+
+    
+
+    
+    <section class="category-card">
+      <h2 style="color: var(--greenpop)">Sample tests</h2>
+      <div class="link-group">
+        <a href="sampleTests/sampleTest1.html" class="nav-button">Sample test 1<span>→</span></a>
+        <div class= "nav-button"><em>Work in progress...</em></div>
+      </div>
+    </section>
+    <section class="category-card">
+      <h2 style="color: var(--greenpop)">Test Database</h2>
+      <div class="link-group">
+        <a href="./testData.html" class="nav-button">View your tests<span>→</span></a>
+      </div>
+    </section>
+    <section class="category-card">
+      <h2 style="color: var(--purplepop)">Beta Archives</h2>
+      <div class="link-group">
+        <a href="./archives/archivesHome.html" class="nav-button">Beta archives homepage<span>→</span></a>
+      </div>
+    </section>
+    
+  </div>
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Information</div>
+        <div class="ads">
+            <div class="ad">1</div>
+            <div class="ad">2</div>
+            <div class="ad">3</div>
+            <div class="ad">4</div>
+            <div class="ad">5</div>
+            
+        </div>
+  </section>
+  
+  <div class="ad" onclick="window.location.href='./about.html'">About</div>
+  
+</div>
+
+
+
+
+</body>
+</html>

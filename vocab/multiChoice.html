@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latin Multi-Choice Tester</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --consttext: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #4f46e5;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --bluepop: #2563eb;
+            --bluepopsel:#1d4ed8;
+            --greenpop: #16a34a;
+            --greenpopsel:#15803d;
+            --redpop: #dc2626;
+            --redpopsel:#b91c1c;
+            --yellowpop:rgb(255, 255, 0);
+            --yellowpopsel:rgb(225, 225, 0);
+            --purplepop: #7c3aed;
+            --purplepopsel: #6d28d9;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            transition: 0.4s ease;
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --consttext: #1f2937;
+            --muted: #94a3b8;
+            --border: #334155;
+            --accent: #818cf8;
+            --bluepop: #38bdf8;
+            --bluepopsel:#0ea5e9;
+            --greenpop: #34d399;
+            --greenpopsel:#34d399;
+            --redpop: #f87171;
+            --redpopsel:#dc2626;
+            --yellowpop: #fbbf24;
+            --yellowpopsel:#d97706;
+            --purplepop: #c084fc;
+            --purplepopsel: #a855f7;
+
+        }
+        .container {
+            //width: min(600px, 92vw);
+            width: min(1000px, 100%);
+            margin: 40px 0;
+        }
+
+        header {
+            background: var(--card);
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            text-align: center;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        h1 { margin: 0; font-size: 20px; font-weight: 700; }
+
+        .game-card {
+            background: var(--card);
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .output {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            min-height: 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .answer {
+            padding: 15px;
+            font-size: 15px;
+            font-weight: 500;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text);
+        }
+
+        .answer:hover {
+            border-color: var(--accent);
+            background: var(--bluepop);
+        }
+
+        .startButton {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* Footer/Ad Style */
+        .adContainer {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .ads {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .ad {
+            flex: 1;
+            padding: 10px;
+            background: var(--bg);
+            border-radius: 8px;
+            font-size: 13px;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .ad:hover {
+            background: var(--card);
+            border-color: var(--accent);
+        }
+    </style>
+    <script src="../interact.js"></script>
+</head>
+<body data-page-type="vocab">
+<img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+
+<div style="margin-top: 15vh;" class="container">
+    <header>
+        <h1>Latin Multi-Choice Tester</h1>
+        <div style="color:var(--muted); margin: 10px 0px 0px 0px">Test your vocab with a simple multi-choice quiz~</div>
+        <div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top:10px;"></div>
+        <div style="padding: 4px 8px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border)">
+            <input type="checkbox" id="darkModeToggle"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+    </header>
+
+    <main class="game-card">
+        <div class="output">Press the button below to begin the quiz!</div>
+        
+        <div class="answers">
+            <button class="answer" id="btn0">-</button>
+            <button class="answer" id="btn1">-</button>
+            <button class="answer" id="btn2">-</button>
+            <button class="answer" id="btn3">-</button>
+        </div>
+
+        <button class="startButton">Press To Start</button>
+    </main>
+
+    <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+</div>
+
+<script src="vocabData.js"></script> 
+<script>
+    //document.querySelector("body").classList.toggle("dark"); 
+    const startBtn = document.querySelector(".startButton");
+    const output = document.querySelector(".output");
+    const answerButtons = [
+        document.getElementById("btn0"),
+        document.getElementById("btn1"),
+        document.getElementById("btn2"),
+        document.getElementById("btn3")
+    ];
+
+    let currentOptions = [];
+    let correctAnswer = null;
+    let canAnswer = false;
+
+    startBtn.onclick = () => {
+        generateQuestion();
+    };
+
+    // Helper functions to safely extract string data from mixed array/string properties
+    function getLatinText(wordObj) {
+        return Array.isArray(wordObj.latin) ? wordObj.latin[0] : wordObj.latin;
+    }
+
+    function getEnglishText(wordObj) {
+        return Array.isArray(wordObj.english) ? wordObj.english.join(", ") : wordObj.english;
+    }
+
+    function generateQuestion() {
+        canAnswer = true;
+        currentOptions = [];
+        
+        // Reset button colors
+        answerButtons.forEach(btn => {
+            btn.style.backgroundColor = "var(--bg)";
+            btn.style.color = "var(--text)";
+            btn.style.borderColor = "var(--border)";
+        });
+
+        // Pick 4 unique random words
+        let pool = [...vocabData];
+        for (let i = 0; i < 4; i++) {
+            const randomIndex = Math.floor(Math.random() * pool.length);
+            currentOptions.push(pool.splice(randomIndex, 1)[0]);
+        }
+
+        // Select one of the four as the target
+        correctAnswer = currentOptions[Math.floor(Math.random() * currentOptions.length)]; 
+        console.log(correctAnswer);
+
+        const targetLatin = getLatinText(correctAnswer);
+        output.innerHTML = `What does '<span style="color:var(--accent)">${targetLatin}</span>' mean?`;
+        
+        answerButtons.forEach((btn, i) => {
+            btn.textContent = getEnglishText(currentOptions[i]);
+            btn.onclick = () => processAnswer(i);
+        });
+
+        startBtn.textContent = 'Next Question';
+    }
+
+    function processAnswer(index) {
+        if (!canAnswer) return;
+        canAnswer = false;
+
+        const selected = currentOptions[index];
+        const btn = answerButtons[index];
+
+        const targetLatin = getLatinText(correctAnswer);
+        const targetEnglish = getEnglishText(correctAnswer);
+
+        // Match the complete object references rather than comparing arrays directly
+        if (selected === correctAnswer) {
+            output.textContent = `Correct; '${targetLatin}' -> '${targetEnglish}'.`;
+            btn.style.backgroundColor = "var(--correct)";
+            btn.style.color = "white";
+        } else {
+            output.textContent = `Incorrect; '${targetLatin}' -> '${targetEnglish}'.`;
+            btn.style.backgroundColor = "var(--wrong)";
+            btn.style.color = "white";
+        }
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener("keydown", e => {
+        if (["1", "2", "3", "4"].includes(e.key)) {
+            const idx = parseInt(e.key) - 1;
+            answerButtons[idx].click();
+        }
+        if (e.key === "Enter") {
+            startBtn.click();
+        }
+    });
+</script>
+
+</body>
+</html>

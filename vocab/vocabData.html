@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latin Vocabulary Database</title>
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --consttext: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #4f46e5;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --bluepop: rgb(0,200,255);
+            --bluepopsel:rgb(0, 175, 225);
+            --greenpop: #16a34a;
+            --greenpopsel:#15803d;
+            --redpop: #dc2626;
+            --redpopsel:#b91c1c;
+            --yellowpop:rgb(255, 255, 0);
+            --yellowpopsel:rgb(225, 225, 0);
+            --purplepop: #7c3aed;
+            --purplepopsel: #6d28d9;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --consttext: #1f2937;
+            --muted: #94a3b8;
+            --border: #334155;
+            --accent: #818cf8;
+            --bluepop: #38bdf8;
+            --bluepopsel:#0ea5e9;
+            --greenpop: #34d399;
+            --greenpopsel:#34d399;
+            --redpop: #f87171;
+            --redpopsel:#dc2626;
+            --yellowpop: #fbbf24;
+            --yellowpopsel:#d97706;
+            --purplepop: #c084fc;
+            --purplepopsel: #a855f7;
+            
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: min(1000px, 100%);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0px 0px 0px 0px;
+        }
+
+        /* Controls Section */
+        .controls {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+            background-color: var(--bg);
+            color: var(--text)
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent);
+        }
+
+        .view-toggles {
+            display: flex;
+            gap: 8px;
+        }
+
+        .toggle-btn {
+            background: var(--bluepop);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: var(--bluepopsel);
+            border-color: var(--accent);
+        }
+
+        /* Vocabulary Tables */
+        .group-section {
+            margin-bottom: 40px;
+        }
+
+        .group-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 15px;
+            padding-left: 5px;
+            border-left: 4px solid var(--accent);
+            line-height: 1;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .table-card {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: var(--card);
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 12px 16px;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .latin-word {
+            font-weight: 700;
+            color: var(--greenpop);
+        }
+
+        .type-tag {
+            font-size: 12px;
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 600px) {
+            .controls { flex-direction: column; align-items: stretch; }
+        }
+        /* =========================
+        COLLAPSIBLE HEADERS
+        ========================= */
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .collapsible:hover {
+            opacity: 0.85;
+        }
+
+        /* =========================
+        SUBTYPE HEADERS
+        ========================= */
+
+        .subgroup-section {
+            margin-top: 20px;
+        }
+
+        .subgroup-title {
+
+            font-size: 15px;
+            font-weight: 700;
+
+            color: var(--text);
+
+            margin-bottom: 12px;
+
+            padding-left: 14px;
+
+            border-left: 3px solid var(--border);
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Ads/Footer */
+        .adContainer {
+            margin: 20px 0;
+            font-size: 14px;
+            width: min(1000px, 100%);
+        }
+
+        .ads {
+            display: flex;
+            gap: 10px;
+            //margin-top: 12px;
+        }
+
+        .ad {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            flex: 1;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: calc(20%-10px);
+        }
+
+        .ad:hover {
+            background: var(--card);
+            border-color: var(--accent);
+        }
+
+    </style>
+    <script src="../interact.js"></script>
+</head>
+<body data-page-type="vocab">
+<img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0;   z-index: 9999;" >
+    <div style="margin-top: 10vh; class="container">
+        <header class="header">
+            <h1 class="title">Latin Vocabulary Database</h1>
+            <p style="color: var(--muted)">Browse, search, and filter the full vocabulary database</p>
+            <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+        <div style="padding: 4px 8px; background: var(--card); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border)">
+            <input type="checkbox" id="darkModeToggle"></input>
+            <div class="dark-interact">Dark Mode.</div>
+        </div>
+        </header>
+    <section class="adContainer bottom">
+        <div class="ads">
+            <div class="ad" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+        <section class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search Latin or English..." autocomplete="off">
+            </div>
+            <div class="view-toggles">
+                <button class="toggle-btn active" onclick="setView('stage')">By Stage</button>
+                <button class="toggle-btn" onclick="setView('type')">By Type</button>
+            </div>
+        </section>
+
+        <div id="displayArea">
+            </div>
+
+        <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>        
+    </div>
+    <script src = "./vocabData.js"></script>
+    <script>
+document.querySelector("body").classList.toggle("dark"); 
+let currentView = "stage";
+
+const displayArea = document.getElementById("displayArea");
+const searchInput = document.getElementById("searchInput");
+
+/* =========================
+   COLLAPSE STATE
+========================= */
+
+let collapsedGroups = {};
+
+/* =========================
+   CAPITALISE
+========================= */
+
+function capitalise(str) {
+
+    if (!str) return "";
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/* =========================
+   NORMALISE SEARCH
+========================= */
+
+function normalizeLatin(str) {
+
+    return str
+        .toLowerCase()
+        .trim()
+
+        .replace(/a\u0304/g, "a")
+        .replace(/e\u0304/g, "e")
+        .replace(/i\u0304/g, "i")
+        .replace(/o\u0304/g, "o")
+        .replace(/u\u0304/g, "u")
+        .replace(/y\u0304/g, "y")
+
+        .replace(/ā/g, "a")
+        .replace(/ē/g, "e")
+        .replace(/ī/g, "i")
+        .replace(/ō/g, "o")
+        .replace(/ū/g, "u")
+        .replace(/ȳ/g, "y")
+
+        .normalize("NFC");
+}
+
+/* =========================
+   SET VIEW
+========================= */
+
+function setView(view) {
+
+    currentView = view;
+
+    document.querySelectorAll(".toggle-btn")
+    .forEach(btn => {
+
+        btn.classList.toggle(
+            "active",
+            btn.innerText.toLowerCase().includes(view)
+        );
+
+    });
+
+    render();
+}
+
+/* =========================
+   TOGGLE COLLAPSE
+========================= */
+
+function toggleGroup(id) {
+
+    collapsedGroups[id] = !collapsedGroups[id];
+
+    render();
+}
+
+/* =========================
+   CREATE TABLE
+========================= */
+
+function createTable(words, showType = false) {
+
+    let colourz=["bluepop","redpop","greenpop","yellowpop","purplepop","bluepop","redpop","greenpop","yellowpop","purplepop"];
+    let typez=["noun", "verb", "adjective", "adverb", "pronoun","preposition","particle","exclamation","deponent verb", "conjunction",]; 
+
+    return `
+        <div class="table-card">
+            <table>
+
+                <thead>
+                    <tr>
+                        <th style="width:5%; background: var(--card);">#</th>
+                        <th style="width:30%; background: var(--card);">LATIN</th>
+                        <th style="width:35%; background: var(--card);">ENGLISH</th>
+
+                        <th style="width:15%; background: var(--card);">
+                            ${(showType ? "TYPE" : "STAGE")}
+                        </th>
+                        <th style="width:15%; background: var(--card);">INFO</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    ${words.map(word => `
+
+                        <tr>
+                        <td style="color:var(--bluepop);">
+                                ${word.index}
+                            </td>
+                            <td class="latin-word">
+                                ${word.latin.join(", ")}
+                            </td>
+
+                            <td style="color:var(--redpop);">
+                                <strong>${word.english.join(", ")}</strong>
+                            </td>
+
+                            <td>
+
+                                ${showType
+
+                                    ? `
+                                        <span class="type-tag" style="border: 1.5px solid var(--${colourz[typez.indexOf(word.type)]});">
+                                            ${word.type}
+                                        </span>
+                                    `
+
+                                    : `
+                                        <span style="
+                                            color:var(--muted);
+                                            font-size:13px;
+                                        ">
+                                            Stage ${word.stage}
+                                        </span>
+                                    `
+                                }
+
+                            </td>
+                            <td>
+                                ${word.info.length>0? word.info:"-"}
+                            </td>
+
+                        </tr>
+
+                    `).join("")}
+
+                </tbody>
+
+            </table>
+        </div>
+    `;
+}
+
+/* =========================
+   MAIN RENDER
+========================= */
+
+function render() {
+
+    const query =
+        normalizeLatin(searchInput.value);
+
+    /* =========================
+       FILTER
+    ========================== */
+
+    const filtered = vocabData.filter(word => {
+
+        if (word.stage === "0") return false;
+
+        const latinText =
+            normalizeLatin(word.latin.join(" "));
+
+        const englishText =
+            word.english.join(" ").toLowerCase();
+
+        return (
+            latinText.includes(query) ||
+            englishText.includes(query)
+        );
+    });
+
+    if (filtered.length === 0) {
+
+        displayArea.innerHTML = `
+            <div class="no-results">
+                No words found.
+            </div>
+        `;
+
+        return;
+    }
+
+    /* =========================
+       STAGE VIEW
+    ========================== */
+
+    if (currentView === "stage") {
+
+        let groups = {};
+
+        filtered.forEach(word => {
+
+            const key = `Stage ${word.stage}`;
+
+            if (!groups[key]) {
+                groups[key] = [];
+            }
+
+            groups[key].push(word);
+        });
+
+        const sortedKeys =
+            Object.keys(groups)
+            .sort((a, b) => {
+
+                return parseInt(a.replace("Stage ", "")) -
+                       parseInt(b.replace("Stage ", ""));
+            });
+
+        let html = "";
+
+        sortedKeys.forEach(key => {
+
+            const collapsed =
+                collapsedGroups[key];
+
+            html += `
+
+                <section class="group-section">
+
+                    <div
+                        class="group-title collapsible"
+                        onclick="toggleGroup('${key}')"
+                    >
+
+                        <span>
+                            ${collapsed ? "▶" : "▼"}
+                        </span>
+
+                        ${key}
+
+                    </div>
+
+                    ${collapsed
+                        ? ""
+                        : createTable(groups[key], true)
+                    }
+
+                </section>
+            `;
+        });
+
+        displayArea.innerHTML = html;
+    }
+
+    /* =========================
+       TYPE VIEW
+    ========================== */
+
+    else {
+
+        let typeGroups = {};
+
+        filtered.forEach(word => {
+
+            const type = word.type;
+
+            const subtype =
+                word.subtype && word.subtype !== ""
+                    ? word.subtype
+                    : "Regular";
+
+            if (!typeGroups[type]) {
+                typeGroups[type] = {};
+            }
+
+            if (!typeGroups[type][subtype]) {
+                typeGroups[type][subtype] = [];
+            }
+
+            typeGroups[type][subtype].push(word);
+        });
+
+        const sortedTypes =
+            Object.keys(typeGroups).sort();
+
+        let html = "";
+
+        sortedTypes.forEach(type => {
+
+            const typeID = `type-${type}`;
+
+            const typeCollapsed =
+                collapsedGroups[typeID];
+
+            html += `
+
+                <section class="group-section">
+
+                    <div
+                        class="group-title collapsible"
+                        onclick="toggleGroup('${typeID}')"
+                    >
+
+                        <span>
+                            ${typeCollapsed ? "▶" : "▼"}
+                        </span>
+
+                        ${capitalise(type)}S
+
+                    </div>
+            `;
+
+            if (!typeCollapsed) {
+
+                const subtypes =
+                    Object.keys(typeGroups[type]).sort();
+
+                subtypes.forEach(subtype => {
+
+                    const subtypeID =
+                        `${typeID}-${subtype}`;
+
+                    const subtypeCollapsed =
+                        collapsedGroups[subtypeID];
+
+                    html += `
+
+                        <div class="subgroup-section">
+
+                            <div
+                                class="subgroup-title collapsible"
+                                onclick="toggleGroup('${subtypeID}')"
+                            >
+
+                                <span>
+                                    ${subtypeCollapsed ? "▶" : "▼"}
+                                </span>
+
+                                ${capitalise(subtype)}
+
+                            </div>
+
+                            ${subtypeCollapsed
+                                ? ""
+                                : createTable(
+                                    typeGroups[type][subtype],
+                                    false
+                                )
+                            }
+
+                        </div>
+                    `;
+                });
+            }
+
+            html += `</section>`;
+        });
+
+        displayArea.innerHTML = html;
+    }
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+/* =========================
+   INITIAL RENDER
+========================= */
+
+render();
+
+</script>
+</body>
+</html>

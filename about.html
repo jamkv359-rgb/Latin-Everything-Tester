@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Latin Grammar Suite — Dashboard</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: #2563eb;
+    --bluepopsel:#1d4ed8;
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  body.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --consttext: #1f2937;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #818cf8;
+    --bluepop: #38bdf8;
+    --bluepopsel:#0ea5e9;
+    --greenpop: #34d399;
+    --greenpopsel:#34d399;
+    --redpop: #f87171;
+    --redpopsel:#dc2626;
+    --yellowpop: #fbbf24;
+    --yellowpopsel:#d97706;
+    --purplepop: #c084fc;
+    --purplepopsel: #a855f7;
+    
+  }
+  
+
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    width: min(1000px, 100%);
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  }
+
+  h1 { margin: 0; font-size: 28px; font-weight: 800; }
+  p { color: var(--muted); margin-top: 8px; }
+
+  /* Grid Layout */
+  .dashboard-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .side{
+    width:50%;
+    display: flex;
+    flex-direction:column;
+    gap: 24px;
+  }
+  /* Section Cards */
+  .category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .category-card h2 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+  }
+  .card h2{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    width: calc(100% - 40px);
+    color: var(--accent);
+    
+  }
+
+  /* Links List */
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .nav-button:hover {
+    background: #eef2ff;
+    border-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .nav-button span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    //width: min(1000px, 100%);
+    width:100%;
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    //margin-top: 12px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    /*color: var(--accent);*/
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+  }
+
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+  .bottom {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+    //width: calc(100% - 40px);
+}
+li{
+    margin: 4px 0px;
+}
+</style>
+<script src="./interact.js"></script>
+</head>
+<body data-page-type="meta">
+<img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0;   z-index: 9999;" >
+<div style="margin-top: 10vh; class="container">
+  <header>
+    <h1>Credits & Context page</h1>
+    <div style="color:var(--muted); margin: 5px 0px 10px 0px">This is us~</div>
+    <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+    <div style="padding: 2px 8px; border: 1px solid var(--border); background: var(--card); border-radius: 4px; margin: 8px; display: flex;">
+        <input type="checkbox" id="darkModeToggle"></input>
+        <div class="dark-interact">Dark Mode.</div>
+    </div>
+  </header>
+   <section class="dashboard-grid card">
+      <h2>This website is for the Cambridge Latin Course (CLC).</h2>
+    </section>
+  <div class="dashboard-grid">
+    <div class="side">
+        <section class="category-card">
+            <h2>James Vo (Class of 2028)</h2>
+            <ul>
+                <li>Home page</li>
+                <li>Vocab tester, Multi-choice vocab tester, Hangman game, Word scramble game 'Vocab Database' page</li>
+                <li>'All Verb Endings: 1D Input' & 'All Verb Endings: 2D Input' pages</li>
+                <li>Database for vocab and verb endings</li>
+                <li>Website code management</li>
+                <li>Beta Archive Homepage, standardisation of all Beta-version pages</li>
+                <li>Code cleanup & improvement for 'Noun endings condensed', 'Pronoun endings condensed', 'Verb endings condensed' pages</li>
+                <li>Inter-page links, styling & standardisation across all pages, dark mode, hour-sensitive motivation quotes</li>
+                <li>Macron Input Interface</li>
+                <li>Troubleshooting & bug-fixing</li>
+            </ul>
+        </section>
+        
+
+        <section class="category-card">
+            <h2>Chris Ran (Class of 2028)</h2>
+            <ul>
+                <li>'Nouns Endings Condensed' Page</li>
+                <li>'Pronouns Condensed' Page</li>
+                <li>'Verb Endings Condensed' Page</li>
+                <li>Beta testing</li>
+            </ul>
+        </section>
+        <section class="category-card">
+        <h2>Eason Y Zhang (Class of 2028)</h2>
+        <ul>
+            <li>Beta testing</li>
+            <li>Troubleshooting & bug-fixing</li>
+        </ul>
+        </section>
+    </div>
+    <div class="side">
+        <section class="category-card">
+            <h2>Mr Samuel Gough</h2>
+            <ul>
+                <li>Beta testing</li>
+                <li>Entrepreneurship</li>
+            </ul>
+            </section>
+        
+            <section class="category-card">
+            <h2>Ned Bolch (Class of 2028)</h2>
+            <ul>
+                <li>Nouns, verbs, and pronoun pages in Beta-version pages</li>
+                <li>Beta testing</li>
+                
+            </ul>
+        </section>
+        <section class="category-card">
+            <h2>Aran Ganesvaran (Class of 2028)</h2>
+            <ul>
+                <li>Website banner design</li>
+            </ul>
+        </section>
+        
+        <section class="category-card">
+        <h2>Rowan Li (Class of 2028)</h2>
+        <ul>
+            <li>Beta testing</li>
+        </ul>
+        </section>
+        <section class="category-card">
+        <h2>Ethan Zhang (Class of 2028)</h2>
+        <ul>
+            <li>Beta testing</li>
+            <li>Troubleshooting & bug-fixing</li>
+        </ul>
+        </section>
+    </div>
+  </div>
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our other vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocab/vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocab/multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocab/hangman.html'">Hangman Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocab/scramble.html'">Anagram Scramble Game</div>
+            <div class="ad" style="color: var(--bluepop);" onclick="window.location.href='./vocab/vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar revision techniques!</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad" style="color: var(--greenpop);" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Latin Grammar Suite — Dashboard</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --consttext: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #4f46e5;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+    --bluepop: rgb(0,200,255);
+    --bluepopsel:rgb(0, 175, 225);
+    --greenpop: #16a34a;
+    --greenpopsel:#15803d;
+    --redpop: #dc2626;
+    --redpopsel:#b91c1c;
+    --yellowpop:rgb(255, 255, 0);
+    --yellowpopsel:rgb(225, 225, 0);
+    --purplepop: #7c3aed;
+    --purplepopsel: #6d28d9;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  body.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --consttext: #1f2937;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #818cf8;
+    --bluepop: #38bdf8;
+    --bluepopsel:#0ea5e9;
+    --greenpop: #34d399;
+    --greenpopsel:#34d399;
+    --redpop: #f87171;
+    --redpopsel:#dc2626;
+    --yellowpop: #fbbf24;
+    --yellowpopsel:#d97706;
+    --purplepop: #c084fc;
+    --purplepopsel: #a855f7;
+  }
+  
+  .side, .bottom {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+  } 
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    width: min(1000px, 100%);
+  }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  h1 { margin: 0; font-size: 28px; font-weight: 800; }
+  p { color: var(--muted);}
+
+  /* Grid Layout */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Section Cards */
+  .category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .category-card h2 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+  }
+
+  /* Links List */
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .nav-button:hover {
+    background: var(--card);
+    border-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .nav-button span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+
+  .adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+    
+  }
+
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+  .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.toolbar input,
+.toolbar select {
+  flex: 1;
+  min-width: 160px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+}
+
+.toolbar button {
+  padding: 11px 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.category-card {
+  position: relative;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.score-big {
+  font-size: 30px;
+  font-weight: 900;
+  margin: 10px 0 2px;
+}
+
+.score-line {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.history-meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.pill {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.delete-btn {
+  border: none;
+  background: var(--redpop);
+  color: white;
+  border-radius: 10px;
+  padding: 7px 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.blue-score {
+  color: var(--bluepop);
+}
+
+.green-score {
+  color: var(--greenpop);
+}
+
+.yellow-score {
+  color: var(--yellowpopsel);
+}
+
+.red-score {
+  color: var(--redpop);
+}
+
+@media (max-width: 700px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.adContainer {
+    margin: 20px 0;
+    font-size: 14px;
+    width: min(1000px, 100%);
+  }
+
+  .ads {
+    display: flex;
+    gap: 10px;
+    
+  }
+
+  .ad {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(20%-10px);
+  }
+  .bottom {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box; 
+    }
+  .ad:hover {
+    background: var(--card);
+    border-color: var(--accent);
+  }
+  .adVocab{
+    color: var(--bluepop);
+  }
+  .adGrammar{
+    color: var(--greenpop);
+  }
+  .adOther{
+    color: var(--redpop);
+  }
+/* <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed; top: 0; left: 0;   z-index: 9999;" >*/
+</style>
+<script src="./interact.js"></script>
+</head>
+<body data-page-type="base">
+   
+
+<div class="container" >
+  <div class="header">
+    <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
+    <h1 style="margin-top: 10vh;">Essential Latin Revision Suite</h1>
+    <p style="color:var(--muted);">Select a module to begin your practice! Good luck studying~</p>
+    <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+    <div style="padding: 2px 8px; background: var(--card); border-radius: 4px; margin: 8px; display: flex; border: 1px solid var(--border);">
+        <input type="checkbox" id="darkModeToggle"></input>
+        <div class="dark-interact">Dark Mode.</div>
+        
+    </div>
+  </div>
+
+ <section class="summary-grid">
+  <div class="stat-card">
+    <div class="stat-label">Tests Completed</div>
+    <div class="stat-value" id="totalTests">0</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-label">Average Score</div>
+    <div class="stat-value" id="averageScore">0%</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-label">Best Score</div>
+    <div class="stat-value" id="bestScore">0%</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-label">Standard Deviation</div>
+    <div class="stat-value" id="latestTest">—</div>
+  </div>
+</section>
+
+<section class="toolbar bottom">
+  <input id="historySearch" type="text" placeholder="Search test history...">
+
+  <select id="typeFilter">
+    <option value="all">All tests</option>
+    <option value="vocab">Vocab</option>
+    <option value="noun">Nouns</option>
+    <option value="pronoun">Pronouns</option>
+    <option value="verb">Verbs</option>
+  </select>
+
+  <select id="sortHistory">
+    <option value="newest">Newest first</option>
+    <option value="oldest">Oldest first</option>
+    <option value="best">Best score</option>
+    <option value="worst">Worst score</option>
+  </select>
+
+  <button id="exportHistoryBtn">Export</button>
+  <button id="clearHistoryBtn" style="background: var(--redpop);">Clear</button>
+</section>
+
+<div class="dashboard-grid" id="dashboardGrid"></div>
+
+<section id="emptyHistory" class="bottom empty-state hidden">
+  No test history yet. Complete a test and it will appear here~
+</section>
+  
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Check out our vocab revision techniques!</div>
+        <div class="ads">
+            <div class="ad adVocab" onclick="window.location.href='../vocab/vocabTest.html'">Type-in Vocab Tester</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/multiChoice.html'">Multi-Choice Vocab Tester</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/hangman.html'">Hangman Game</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/scramble.html'">Anagram Scramble Game</div>
+            <div class="ad adVocab" onclick="window.location.href='../vocab/vocabData.html'">Vocab Database</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Check out our grammar other revision techniques!</div>
+        <div class="ads">
+            <div class="ad adGrammar" onclick="window.location.href='../nouns/allNounEnds.html'">Noun Endings Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../pronouns/allPronouns.html'">Pronouns Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEnds.html'">Verb Endings Condensed</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom1D.html'">All Verb Endings, 1D Input</div>
+            <div class="ad adGrammar" onclick="window.location.href='../verbs/allVerbEndsCustom2D.html'">All Verb Endings, 2D Input</div>
+        </div>
+        <div style="font-size: 14px; color: var(--muted); margin: 10px 0px 10px 0px;">Other</div>
+        <div class="ads">
+            <div class="ad adOther" onclick="window.location.href='../index.html'">Back to home page</div>
+            <div class="ad adOther" onclick="window.location.href='../about.html'">About</div>
+        </div>
+    </section>
+  
+</div>
+<script>
+    const STORAGE_KEY = "latinHistory";
+const OLD_STORAGE_KEY = "testHistory";
+
+const grid =
+  document.getElementById("dashboardGrid");
+
+const emptyHistory =
+  document.getElementById("emptyHistory");
+
+const searchInput =
+  document.getElementById("historySearch");
+
+const typeFilter =
+  document.getElementById("typeFilter");
+
+const sortHistory =
+  document.getElementById("sortHistory");
+
+const clearHistoryBtn =
+  document.getElementById("clearHistoryBtn");
+
+const exportHistoryBtn =
+  document.getElementById("exportHistoryBtn");
+
+let latinHistory =
+  loadHistory();
+
+/* =========================
+   LOAD + MIGRATE HISTORY
+========================= */
+
+function loadHistory() {
+  const currentHistory =
+    safeParse(localStorage.getItem(STORAGE_KEY), []);
+
+  const oldHistory =
+    safeParse(localStorage.getItem(OLD_STORAGE_KEY), []);
+
+  const combined =
+    dedupeHistory([...currentHistory, ...oldHistory]);
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(combined)
+  );
+
+  localStorage.removeItem(OLD_STORAGE_KEY);
+
+  return combined.map(normaliseResult);
+}
+
+function safeParse(value, fallback) {
+  try {
+    return value ? JSON.parse(value) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function dedupeHistory(items) {
+  const seen =
+    new Set();
+
+  return items.filter(item => {
+    const key =
+      item.id ||
+      item.timestamp ||
+      `${item.date}-${item.score}-${item.total}-${item.testName || item.page}`;
+
+    if (seen.has(key)) return false;
+
+    seen.add(key);
+    return true;
+  });
+}
+
+/* =========================
+   NORMALISE DIFFERENT TEST TYPES
+========================= */
+
+function normaliseResult(result, index) {
+  const score =
+    Number(result.score ?? 0);
+
+  const total =
+    Number(result.total ?? 0);
+
+  const percentage =
+    Number(
+      result.percentage ??
+      result.percent ??
+      (total > 0 ? Math.round((score / total) * 100) : 0)
+    );
+
+  const testName =
+    result.testName ||
+    result.page ||
+    result.title ||
+    "Latin Test";
+
+  const pageType =
+    result.pageType ||
+    result.type ||
+    inferPageType(testName);
+
+  const timestamp =
+    result.timestamp ||
+    createTimestampFromId(result.id) ||
+    new Date().toISOString();
+
+  return {
+    id: result.id || `${timestamp}-${index}`,
+    testName,
+    pageType,
+    date: result.date || new Date(timestamp).toLocaleString(),
+    timestamp,
+    score,
+    total,
+    percentage,
+    quote: result.quote || "",
+    settings: result.settings || {},
+    answers: result.answers || []
+  };
+}
+
+function createTimestampFromId(id) {
+  if (!id) return null;
+
+  const asNumber =
+    Number(id);
+
+  if (Number.isNaN(asNumber)) return null;
+
+  return new Date(asNumber).toISOString();
+}
+
+function inferPageType(testName) {
+  const lower =
+    testName.toLowerCase();
+
+  if (lower.includes("vocab")) return "vocab";
+  if (lower.includes("noun") || lower.includes("declension")) return "noun";
+  if (lower.includes("pronoun")) return "pronoun";
+  if (lower.includes("verb")) return "verb";
+
+  return "unknown";
+}
+
+/* =========================
+   RENDER DASHBOARD
+========================= */
+
+function renderDashboard() {
+  renderSummary();
+
+  let visibleHistory =
+    [...latinHistory];
+
+  const searchTerm =
+    searchInput.value.trim().toLowerCase();
+
+  const selectedType =
+    typeFilter.value;
+
+  if (selectedType !== "all") {
+    visibleHistory =
+      visibleHistory.filter(test => test.pageType === selectedType);
+  }
+
+  if (searchTerm !== "") {
+    visibleHistory =
+      visibleHistory.filter(test => {
+        return (
+          test.testName.toLowerCase().includes(searchTerm) ||
+          test.pageType.toLowerCase().includes(searchTerm) ||
+          test.date.toLowerCase().includes(searchTerm) ||
+          formatSettings(test.settings).join(" ").toLowerCase().includes(searchTerm)
+        );
+      });
+  }
+
+  sortResults(visibleHistory);
+
+  grid.innerHTML = "";
+
+  if (visibleHistory.length === 0) {
+    emptyHistory.classList.remove("hidden");
+    return;
+  }
+
+  emptyHistory.classList.add("hidden");
+
+  visibleHistory.forEach((test, index) => {
+    grid.innerHTML += createHistoryCard(test, index);
+  });
+}
+
+function renderSummary() {
+  const totalTests =
+    latinHistory.length;
+
+  const average =
+    totalTests > 0
+      ? Math.round(
+          latinHistory.reduce((sum, test) => sum + test.percentage, 0) /
+          totalTests
+        )
+      : 0;
+
+  const best =
+    totalTests > 0
+      ? Math.max(...latinHistory.map(test => test.percentage))
+      : 0;
+  const standardDeviation =
+  totalTests > 0
+    ? Math.round(
+        Math.sqrt(
+          latinHistory.reduce((sum, test) => {
+            return sum + Math.pow(test.percentage - average, 2);
+          }, 0) / totalTests
+        )
+      )
+    : 0;
+  
+
+  document.getElementById("totalTests").textContent =
+    totalTests;
+
+  document.getElementById("averageScore").textContent =
+    average + "%";
+
+  document.getElementById("bestScore").textContent =
+    best + "%";
+
+  document.getElementById("latestSummary").textContent = standardDeviation + "%";
+}
+
+function sortResults(results) {
+  const sortType =
+    sortHistory.value;
+
+  if (sortType === "newest") {
+    results.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  }
+
+  if (sortType === "oldest") {
+    results.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+  }
+
+  if (sortType === "best") {
+    results.sort((a, b) => b.percentage - a.percentage);
+  }
+
+  if (sortType === "worst") {
+    results.sort((a, b) => a.percentage - b.percentage);
+  }
+}
+
+function createHistoryCard(test, index) {
+  const settings =
+    formatSettings(test.settings);
+console.log(test);
+  const settingsHtml =
+    settings.length > 0
+      ? `
+        <div class="pill-row">
+          ${settings.map(setting => `
+            <span class="pill">${escapeHTML(capitalise(setting))}</span>
+          `).join("")}
+        </div>
+      `
+      : `
+        <div class="history-meta">No settings saved.</div>
+      `;
+
+  const scoreClass =
+    getScoreClass(test.percentage);
+    let newDate = test.date.split("-");
+
+
+  return `
+    <section class="category-card">
+      <div class="card-topline">
+        <h2 style="color: ${getTypeColour(test.pageType)};">
+          ${index + 1}: ${escapeHTML(test.testName)}
+        </h2>
+
+        <button
+          class="delete-btn"
+          data-delete-id="${escapeHTML(test.id)}"
+        >
+          Delete
+        </button>
+      </div>
+      <div style="display:flex; align-items: center;">
+        <div class="score-big ${scoreClass}">
+          ${test.score}/${test.total}
+        </div>
+        <div class="score-big ${scoreClass}" style="margin: 0px 10px 0px 10px;">
+          →
+        </div>
+        <div class="score-big ${scoreClass}">
+          ${test.percentage}%
+        </div>
+      </div>
+      <div class="history-meta">
+        ${escapeHTML(test.date)}
+      </div>
+
+      <div class="link-group">
+        <a class="nav-button">
+          Type: ${capitalise(test.pageType)}
+          <span>→</span>
+        </a>
+
+        
+      </div>
+      ${settingsHtml}
+    </section>
+  `;
+}
+
+function getScoreClass(percentage) {
+  if (percentage >= 85) return "green-score";
+  if (percentage >= 65) return "blue-score";
+  if (percentage >= 45) return "yellow-score";
+  return "red-score";
+}
+
+function getTypeColour(type) {
+  if (type === "vocab") return "var(--bluepop)";
+  if (type === "noun") return "var(--greenpop)";
+  if (type === "pronoun") return "var(--purplepop)";
+  if (type === "verb") return "var(--redpop)";
+
+  return "var(--accent)";
+}
+
+/* =========================
+   SETTINGS FORMATTER
+========================= */
+
+function formatSettings(settings) {
+  if (!settings) return [];
+
+  // 1. If it's already an array of plain strings
+  if (Array.isArray(settings)) {
+    return settings
+      .filter(Boolean)
+      .map(val => capitalise(String(val)));
+  }
+
+  // 2. If it's just a single plain string
+  if (typeof settings === "string") {
+    return [capitalise(settings)];
+  }
+
+  // 3. If it's an object (e.g., { theme: 'dark', permissions: ['admin'] })
+  if (typeof settings === "object") {
+    return Object.entries(settings)
+      .filter(([key, value]) => {
+        if (Array.isArray(value)) return value.length > 0;
+        return value !== "" && value !== null && value !== undefined;
+      })
+      .map(([key, value]) => {
+        const cleanKey = capitalise(key);
+
+        // If the value is an array, capitalise each string individually before joining
+        if (Array.isArray(value)) {
+          const cleanValues = value
+            .filter(Boolean)
+            .map(val => capitalise(String(val)))
+            .join(", ");
+          
+          return `${cleanKey}: ${cleanValues}`;
+        }
+
+        // If the value is a single item, capitalise it directly
+        return `${cleanKey}: ${capitalise(String(value))}`;
+      });
+  }
+
+  return [];
+}
+
+/* =========================
+   DELETE / CLEAR / EXPORT
+========================= */
+
+grid.addEventListener("click", event => {
+  const deleteButton =
+    event.target.closest("[data-delete-id]");
+
+  if (!deleteButton) return;
+
+  const id =
+    deleteButton.dataset.deleteId;
+
+  latinHistory =
+    latinHistory.filter(test => String(test.id) !== String(id));
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(latinHistory)
+  );
+
+  renderDashboard();
+});
+
+clearHistoryBtn.addEventListener("click", () => {
+  const confirmed =
+    confirm("Clear all saved test history?");
+
+  if (!confirmed) return;
+
+  latinHistory = [];
+
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(OLD_STORAGE_KEY);
+
+  renderDashboard();
+});
+
+exportHistoryBtn.addEventListener("click", () => {
+  const blob =
+    new Blob(
+      [JSON.stringify(latinHistory, null, 2)],
+      { type: "application/json" }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href = url;
+  link.download = "latin-test-history.json";
+  link.click();
+
+  URL.revokeObjectURL(url);
+});
+
+/* =========================
+   SEARCH / FILTER EVENTS
+========================= */
+
+searchInput.addEventListener("input", renderDashboard);
+typeFilter.addEventListener("change", renderDashboard);
+sortHistory.addEventListener("change", renderDashboard);
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function capitalise(str) {
+  if (!str) return "";
+
+  return String(str).charAt(0).toUpperCase() + String(str).slice(1);
+}
+
+
+renderDashboard();
+
+</script>
+</body>
+</html>
