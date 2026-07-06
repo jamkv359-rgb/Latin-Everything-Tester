@@ -305,7 +305,6 @@
         .ads {
             display: flex;
             gap: 10px;
-            //margin-top: 12px;
         }
 
         .ad {
@@ -351,7 +350,7 @@
 
             <header>
                 <h2>Latin Noun Ending Drill</h2>
-                <div style="color:var(--muted); margin: 10px 0px 2px 0px">Select what noun endings you want, then test youself~</div>
+                <div style="color:var(--muted); margin: 10px 0px 2px 0px"><span id="username-greet"></span>Select what noun endings you want, then test youself~</div>
                 <div style="display:flex; gap:10px;">
                     <div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top: 10px;"></div>
                     <div style="padding: 5px 10px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border); text-align:center; width: fit-content; ">
@@ -451,7 +450,7 @@
                 </div>
             </section>
         </div>
-
+        <script src="../achievementData.js"></script>
     <script>
         const caseOptions = [
             { key: "nom", label: "Nom" },
@@ -743,6 +742,7 @@
                 history.unshift(result);
                 localStorage.setItem("latinHistory",JSON.stringify(history));
             console.log(localStorage.getItem('latinHistory'));     
+            
         }
 
         function resetTable() {

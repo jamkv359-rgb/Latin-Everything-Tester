@@ -1,961 +1,701 @@
 const grammarData = [
-// INDICATIVE MOOD - PRESENT TENSE 
-    // 1st Conjugation Active [cite: 3, 8]
-    {word: "porto", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "singular", conjugation: "1st"}, // [cite: 17]
-    {"word": "portas", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // [cite: 23]
-    {"word": "portat", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 29]
-    {"word": "portamus", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // [cite: 39]
-    {"word": "portatis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // [cite: 43]
-    {"word": "portant", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 47]
-
-    // 1st Conjugation Passive [cite: 3, 9]
-    {"word": "portor", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // 
-    {"word": "portaris", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // 
-    {"word": "portatur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 31]
-    {"word": "portamur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // 
-    {"word": "portamini", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // 
-    {"word": "portantur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 48]
-
-    // 2nd Conjugation Active [cite: 4, 10]
-    {"word": "doceo", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, // [cite: 18]
-    {"word": "doces", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, // [cite: 24]
-    {"word": "docet", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 32]
-    {"word": "docemus", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, // [cite: 40]
-    {"word": "docetis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, // [cite: 44]
-    {"word": "docent", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 49]
-
-    // 2nd Conjugation Passive [cite: 4, 11]
-    {"word": "doceor", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, // 
-    {"word": "doceris or docere", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, // 
-    {"word": "docetur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 33]
-    {"word": "docemur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, // 
-    {"word": "docemini", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, // 
-    {"word": "docentur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 50]
-
-    // 3rd Conjugation Active [cite: 5, 12]
-    {"word": "duco", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // [cite: 19]
-    {"word": "ducis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // [cite: 25]
-    {"word": "ducit", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 34]
-    {"word": "ducimus", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // [cite: 41]
-    {"word": "ducitis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // [cite: 45]
-    {"word": "ducunt", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 51]
-
-    // 3rd Conjugation Passive [cite: 5, 13]
-    {"word": "ducor", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // 
-    {"word": "duceris", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // 
-    {"word": "ducitur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 35]
-    {"word": "ducimur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // 
-    {"word": "ducimini", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // 
-    {"word": "ducuntur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 52]
-
-    // 4th Conjugation Active [cite: 6, 14]
-    {"word": "audio", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // [cite: 20]
-    {"word": "audis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // [cite: 26]
-    {"word": "audit", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 36]
-    {"word": "audimus", "voice": "active", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // [cite: 42]
-    {"word": "auditis", "voice": "active", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // [cite: 46]
-    {"word": "audiunt", "voice": "active", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 53]
-
-    // 4th Conjugation Passive [cite: 6, 15]
-    {"word": "audior", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // 
-    {"word": "audiris or audire", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // 
-    {"word": "auditur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 37]
-    {"word": "audimur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // 
-    {"word": "audimini", "voice": "passive", "tense": "present", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // 
-    {"word": "audiuntur", "voice": "passive", "tense": "present", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 54]
-// INDICATIVE MOOD - IMPERFECT TENSE [cite: 55]
-    // 1st Conjugation [cite: 3]
-    {"word": "portabam", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // [cite: 56]
-    {"word": "portabas", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // [cite: 62]
-    {"word": "portabat", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 69]
-    {"word": "portabamus", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // [cite: 79]
-    {"word": "portabatis", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // [cite: 84]
-    {"word": "portabant", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 89]
-    
-    {"word": "portabar", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // 
-    {"word": "portabaris", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // 
-    {"word": "portabatur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 70]
-    {"word": "portabamur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // 
-    {"word": "portabamini", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // 
-    {"word": "portabantur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 90]
-
-    // 2nd Conjugation [cite: 4]
-    {"word": "docebam", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, // [cite: 57]
-    {"word": "docebas", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, // [cite: 63]
-    {"word": "docebat", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 71]
-    {"word": "docebamus", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, // [cite: 80]
-    {"word": "docebatis", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, // [cite: 85]
-    {"word": "docebant", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 91]
-
-    {"word": "docebar", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, // 
-    {"word": "docebaris", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, // 
-    {"word": "docebatur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 72]
-    {"word": "docebamur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, // 
-    {"word": "docebamini", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, // 
-    {"word": "docebantur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 92]
-    
-    // 3rd Conjugation Active
-    {"word": "ducebam", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // [cite: 58]
-    {"word": "ducebas", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // [cite: 64]
-    {"word": "ducebat", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 73]
-    {"word": "ducebamus", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // [cite: 81]
-    {"word": "ducebatis", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // [cite: 86]
-    {"word": "ducebant", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 93]
-
-    // 3rd Conjugation Passive
-    {"word": "ducebar", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, 
-    {"word": "ducebaris", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, 
-    {"word": "ducebatur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 74]
-    {"word": "ducebamur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, 
-    {"word": "ducebamini", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, 
-    {"word": "ducebantur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 94]
-
-    // 4th Conjugation Active
-    {"word": "audiebam", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // [cite: 59]
-    {"word": "audiebas", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // [cite: 65]
-    {"word": "audiebat", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 75]
-    {"word": "audiebamus", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // [cite: 82]
-    {"word": "audiebatis", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // [cite: 87]
-    {"word": "audiebant", "voice": "active", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 95]
-
-    // 4th Conjugation Passive
-    {"word": "audiebar", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiebaris", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, 
-    {"word": "audiebatur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 76]
-    {"word": "audiebamur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, 
-    {"word": "audiebamini", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, 
-    {"word": "audiebantur", "voice": "passive", "tense": "imperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 96]
-
-// INDICATIVE MOOD - PERFECT TENSE [cite: 139]
-    // 1st Conjugation [cite: 3]
-    {"word": "portavi", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // [cite: 141]
-    {"word": "portavisti", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // [cite: 151]
-    {"word": "portavit", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 162]
-    {"word": "portavimus", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // [cite: 172]
-    {"word": "portavitis", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // [cite: 181]
-    {"word": "portaverunt", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 189]
-
-    {"word": "portatus sum (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // [cite: 142]
-    {"word": "portatus es (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // [cite: 152]
-    {"word": "portatus est (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 163]
-    {"word": "portati sumus (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // [cite: 173]
-    {"word": "portati estis (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // [cite: 182]
-    {"word": "portati sunt (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 190]
-    // 2nd Conjugation
-    {"word": "docui", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuisti", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuit", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuimus", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuistis", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuerunt", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-    {"word": "doctus sum (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus es (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus est (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti sumus (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti estis (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti sunt (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-    // 3rd Conjugation Active
-    {"word": "duxi", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // [cite: 145]
-    {"word": "duxisti", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // [cite: 155]
-    {"word": "duxit", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 166]
-    {"word": "duximus", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // [cite: 176]
-    {"word": "duxistis", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // [cite: 185]
-    {"word": "duxerunt", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 193]
-
-    // 3rd Conjugation Passive
-    {"word": "ductus sum (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // [cite: 146]
-    {"word": "ductus es (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // [cite: 156]
-    {"word": "ductus est (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 167]
-    {"word": "ducti sumus (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // [cite: 177]
-    {"word": "ducti estis (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // [cite: 186]
-    {"word": "ducti sunt (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 194]
-
-    // 4th Conjugation Active
-    {"word": "audivi", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // [cite: 147]
-    {"word": "audivisti", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // [cite: 157]
-    {"word": "audivit", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 168]
-    {"word": "audivimus", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // [cite: 178]
-    {"word": "audivistis", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // [cite: 187]
-    {"word": "audiverunt", "voice": "active", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 195]
-
-    // 4th Conjugation Passive
-    {"word": "auditus sum (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // [cite: 148]
-    {"word": "auditus es (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // [cite: 158]
-    {"word": "auditus est (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 169]
-    {"word": "auditi sumus (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // [cite: 179]
-    {"word": "auditi estis (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // [cite: 188]
-    {"word": "auditi sunt (decl)", "voice": "passive", "tense": "perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 196]
-
-// INDICATIVE MOOD - FUTURE TENSE
-    // 1st Conjugation Active
-    {"word": "portabo", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, // [cite: 98]
-    {"word": "portabis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, // [cite: 104]
-    {"word": "portabit", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 110]
-    {"word": "portabimus", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, // [cite: 120]
-    {"word": "portabitis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, // [cite: 126]
-    {"word": "portabunt", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 131]
-
-    // 1st Conjugation Passive
-    {"word": "portabor", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"}, 
-    {"word": "portaberis", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"}, 
-    {"word": "portabitur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"}, // [cite: 111]
-    {"word": "portabimur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"}, 
-    {"word": "portabimini", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"}, 
-    {"word": "portabuntur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"}, // [cite: 132]
-
-    // 2nd Conjugation Active
-    {"word": "docebo", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, // [cite: 99]
-    {"word": "docebis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, // [cite: 105]
-    {"word": "docebit", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 112]
-    {"word": "docebimus", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, // [cite: 121]
-    {"word": "docebitis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, // [cite: 127]
-    {"word": "docebunt", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 133]
-
-    // 2nd Conjugation Passive
-    {"word": "docebor", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"}, 
-    {"word": "doceberis", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"}, 
-    {"word": "docebitur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"}, // [cite: 113]
-    {"word": "docebimur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"}, 
-    {"word": "docebimini", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"}, 
-    {"word": "docebuntur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"}, // [cite: 134]
-
-    // 3rd Conjugation Active
-    {"word": "ducam", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, // [cite: 100]
-    {"word": "duces", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, // [cite: 106]
-    {"word": "ducet", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 114]
-    {"word": "ducemus", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, // [cite: 122]
-    {"word": "ducetis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, // [cite: 128]
-    {"word": "ducent", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 135]
-
-    // 3rd Conjugation Passive
-    {"word": "ducar", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"}, 
-    {"word": "duceris", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"}, 
-    {"word": "ducetur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"}, // [cite: 115]
-    {"word": "ducemur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"}, 
-    {"word": "ducemini", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"}, 
-    {"word": "ducentur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"}, // [cite: 136]
-
-    // 4th Conjugation Active
-    {"word": "audiam", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, // [cite: 101]
-    {"word": "audies", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, // [cite: 107]
-    {"word": "audiet", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 116]
-    {"word": "audiemus", "voice": "active", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, // [cite: 123]
-    {"word": "audietis", "voice": "active", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, // [cite: 129]
-    {"word": "audient", "voice": "active", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 137]
-
-    // 4th Conjugation Passive
-    {"word": "audiar", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"}, 
-    {"word": "audieris", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"}, 
-    {"word": "audietur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"}, // [cite: 117]
-    {"word": "audiemur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"}, 
-    {"word": "audiemini", "voice": "passive", "tense": "future", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"}, 
-    {"word": "audientur", "voice": "passive", "tense": "future", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"}, // [cite: 138]
-// INDICATIVE MOOD - PLUPERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portaveram", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portaveras", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverat", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaveramus", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaveratis", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portaverant", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus eram (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus eras (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus erat (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati eramus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati eratis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati erant (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docueram", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docueras", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerat", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docueramus", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docueratis", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuerant", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus eram (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus eras (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus erat (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti eramus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti eratis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti erant (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxeram", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxeras", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerat", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxeramus", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxeratis", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxerant", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus eram (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus eras (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus erat (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti eramus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti eratis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti erant (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audiveram", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiveras", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverat", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiveramus", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiveratis", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiverant", "voice": "active", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus eram (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus eras (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus erat (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi eramus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi eratis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi erant (decl)", "voice": "passive", "tense": "pluperfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// INDICATIVE MOOD - FUTURE PERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portavero", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portaveris", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverit", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverimus", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaveritis", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portaverint", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus ero (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus eris (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus erit (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati erimus (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati eritis (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati erunt (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docuero", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docueris", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerit", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerimus", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docueritis", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuerint", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus ero (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus eris (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus erit (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti erimus (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti eritis (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti erunt (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxero", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxeris", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerit", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerimus", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxeritis", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxerint", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus ero (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus eris (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus erit (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti erimus (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti eritis (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti erunt (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audivero", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiveris", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverit", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverimus", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiveritis", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiverint", "voice": "active", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus ero (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus eris (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus erit (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi erimus (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi eritis (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi erunt (decl)", "voice": "passive", "tense": "future perfect", "mood": "indicative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// SUBJUNCTIVE MOOD - PRESENT TENSE
-    // 1st Conjugation Active
-    {"word": "portem", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portes", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portet", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portemus", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portetis", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portent", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "porter", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "porteris", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portetur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portemur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portemini", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portentur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "doceam", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceas", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceat", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceamus", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceatis", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceant", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "docear", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docearis", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceatur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceamur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceamini", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceantur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "ducam", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducas", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducat", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducamus", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducatis", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducant", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ducar", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducaris", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducatur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducamur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducamini", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducantur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audiam", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audias", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiat", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiamus", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiatis", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiant", "voice": "active", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "audiar", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiaris", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiatur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiamur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiamini", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiantur", "voice": "passive", "tense": "present", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// SUBJUNCTIVE MOOD - IMPERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portarem", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portares", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaret", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaremus", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaretis", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portarent", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portarer", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portareris", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaretur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaremur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaremini", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portarentur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docerem", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceres", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceret", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceremus", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceretis", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docerent", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "docerer", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docereris", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceretur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceremur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "doceremini", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docerentur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "ducerem", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duceres", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duceret", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duceremus", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duceretis", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducerent", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ducerer", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducereris", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duceretur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duceremur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duceremini", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducerentur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audirem", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audires", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiret", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiremus", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiretis", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audirent", "voice": "active", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "audirer", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audireris", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiretur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiremur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiremini", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audirentur", "voice": "passive", "tense": "imperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// SUBJUNCTIVE MOOD - PERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portaverim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portaveris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaveritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portaverint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docuerim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docueris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docueritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuerint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxerim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxeris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxeritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxerint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audiverim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiveris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiveritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiverint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// SUBJUNCTIVE MOOD - PLUPERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portavissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portavisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portavisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portavissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portavissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portavissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docuissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audivissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audivisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audivisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audivissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audivissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audivissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-// SUBJUNCTIVE MOOD - PERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portaverim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portaveris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portaverimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portaveritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portaverint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docuerim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docueris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuerimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docueritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuerint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxerim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxeris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxerimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxeritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxerint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audiverim", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audiveris", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverit", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audiverimus", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audiveritis", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiverint", "voice": "active", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus sim (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus sis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus sit (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi simus (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi sitis (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi sint (decl)", "voice": "passive", "tense": "perfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// SUBJUNCTIVE MOOD - PLUPERFECT TENSE
-    // 1st Conjugation Active
-    {"word": "portavissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portavisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portavisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portavissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portavissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portavissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portatus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portati essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "1st"},
-    {"word": "portati essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portati essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "docuissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docuissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docuissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "doctus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doctus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docti essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docti essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duxissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "duxissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "duxissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ductus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ductus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducti essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducti essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audivissem", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "audivisses", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audivisset", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "audivissemus", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "audivissetis", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audivissent", "voice": "active", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditus essem (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus esses (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditus esset (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditi essemus (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "1st", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi essetis (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "auditi essent (decl)", "voice": "passive", "tense": "pluperfect", "mood": "subjunctive", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-// IMPERATIVE MOOD - PRESENT TENSE
-    // 1st Conjugation Active
-    {"word": "porta", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portate", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portare", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portamini", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "doce", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docete", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "docere", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceamini", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "duce", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducite", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ducere", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducimini", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audi", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audite", "voice": "active", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "audire", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audimini", "voice": "passive", "tense": "present", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-
-// IMPERATIVE MOOD - FUTURE TENSE
-    // 1st Conjugation Active
-    {"word": "portato", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portato", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "portatote", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portanto", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 1st Conjugation Passive
-    {"word": "portator", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "1st"},
-    {"word": "portator", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "1st"},
-    {"word": "-", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "1st"},
-    {"word": "portantor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "1st"},
-
-    // 2nd Conjugation Active
-    {"word": "doceto", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "doceto", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docetote", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docento", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 2nd Conjugation Passive
-    {"word": "docetor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "2nd"},
-    {"word": "docetor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "2nd"},
-    {"word": "-", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "2nd"},
-    {"word": "docentor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "2nd"},
-
-    // 3rd Conjugation Active
-    {"word": "ducito", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducito", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducitote", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducunto", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 3rd Conjugation Passive
-    {"word": "ducitor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "3rd"},
-    {"word": "ducitor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "3rd"},
-    {"word": "-", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "3rd"},
-    {"word": "ducuntor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "3rd"},
-
-    // 4th Conjugation Active
-    {"word": "audito", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "audito", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditote", "voice": "active", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiunto", "voice": "active", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-
-    // 4th Conjugation Passive
-    {"word": "auditor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "singular", "conjugation": "4th"},
-    {"word": "auditor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "singular", "conjugation": "4th"},
-    {"word": "-", "voice": "passive", "tense": "future", "mood": "imperative", "person": "2nd", "number": "plural", "conjugation": "4th"},
-    {"word": "audiuntor", "voice": "passive", "tense": "future", "mood": "imperative", "person": "3rd", "number": "plural", "conjugation": "4th"},
-// INFINITIVE MOOD - PRESENT TENSE [cite: 408, 409]
-  // 1st Conjugation
-  {"word": "portare", "voice": "active", "tense": "present", "mood": "infinitive", "conjugation": "1st"}, // [cite: 415]
-  {"word": "portari", "voice": "passive", "tense": "present", "mood": "infinitive", "conjugation": "1st"}, // [cite: 416]
-
-  // 2nd Conjugation
-  {"word": "docere", "voice": "active", "tense": "present", "mood": "infinitive", "conjugation": "2nd"}, // [cite: 417]
-  {"word": "doceri", "voice": "passive", "tense": "present", "mood": "infinitive", "conjugation": "2nd"},
-
-  // 3rd Conjugation
-  {"word": "ducere", "voice": "active", "tense": "present", "mood": "infinitive", "conjugation": "3rd"}, // [cite: 419]
-  {"word": "duci", "voice": "passive", "tense": "present", "mood": "infinitive", "conjugation": "3rd"}, // [cite: 420]
-
-  // 4th Conjugation
-  {"word": "audire", "voice": "active", "tense": "present", "mood": "infinitive", "conjugation": "4th"}, // [cite: 421]
-  {"word": "audiri", "voice": "passive", "tense": "present", "mood": "infinitive", "conjugation": "4th"}, // [cite: 422]
-
-
-// INFINITIVE MOOD - PERFECT TENSE [cite: 423]
-    // 1st Conjugation
-    {"word": "portavisse", "voice": "active", "tense": "perfect", "mood": "infinitive", "conjugation": "1st"},
-    {"word": "portatus esse (decl)", "voice": "passive", "tense": "perfect", "mood": "infinitive", "conjugation": "1st"},
-
-    // 2nd Conjugation
-    {"word": "docuisse", "voice": "active", "tense": "perfect", "mood": "infinitive", "conjugation": "2nd"},
-    {"word": "doctus esse (decl)", "voice": "passive", "tense": "perfect", "mood": "infinitive", "conjugation": "2nd"},
-
-    // 3rd Conjugation
-    {"word": "duxisse", "voice": "active", "tense": "perfect", "mood": "infinitive", "conjugation": "3rd"},
-    {"word": "ductus esse (decl)", "voice": "passive", "tense": "perfect", "mood": "infinitive", "conjugation": "3rd"},
-
-    // 4th Conjugation
-    {"word": "audi(v)isse", "voice": "active", "tense": "perfect", "mood": "infinitive", "conjugation": "4th"},
-    {"word": "auditus esse (decl)", "voice": "passive", "tense": "perfect", "mood": "infinitive", "conjugation": "4th"},
-
-
-// INFINITIVE MOOD - FUTURE TENSE [cite: 428]
-    // 1st Conjugation
-    {"word": "portaturum esse (decl)", "voice": "active", "tense": "future", "mood": "infinitive", "conjugation": "1st"},
-    {"word": "portatum iri (decl)", "voice": "passive", "tense": "future", "mood": "infinitive", "conjugation": "1st"},
-
-    // 2nd Conjugation
-    {"word": "docturum esse (decl)", "voice": "active", "tense": "future", "mood": "infinitive", "conjugation": "2nd"},
-    {"word": "doctum iri (decl)", "voice": "passive", "tense": "future", "mood": "infinitive", "conjugation": "2nd"},
-
-    // 3rd Conjugation
-    {"word": "ducturum esse (decl)", "voice": "active", "tense": "future", "mood": "infinitive", "conjugation": "3rd"},
-    {"word": "ductum iri (decl)", "voice": "passive", "tense": "future", "mood": "infinitive", "conjugation": "3rd"},
-
-    // 4th Conjugation
-    {"word": "auditurum esse (decl)", "voice": "active", "tense": "future", "mood": "infinitive", "conjugation": "4th"},
-    {"word": "auditum iri (decl)", "voice": "passive", "tense": "future", "mood": "infinitive", "conjugation": "4th"},
-
-
-// PARTICIPLES (VERBAL ADJECTIVES) - PRESENT TENSE [cite: 435, 436]
-    // 1st Conjugation
-    {"word": "portans (decl)", "voice": "active", "tense": "present", "mood": "participle", "conjugation": "1st"}, // [cite: 440]
-    {"word": "-", "voice": "passive", "tense": "present", "mood": "participle", "conjugation": "1st"},
-
-    // 2nd Conjugation
-    {"word": "docens (decl)", "voice": "active", "tense": "present", "mood": "participle", "conjugation": "2nd"}, // [cite: 441]
-    {"word": "-", "voice": "passive", "tense": "present", "mood": "participle", "conjugation": "2nd"},
-
-    // 3rd Conjugation
-    {"word": "ducens (decl)", "voice": "active", "tense": "present", "mood": "participle", "conjugation": "3rd"}, // [cite: 442]
-    {"word": "-", "voice": "passive", "tense": "present", "mood": "participle", "conjugation": "3rd"},
-
-    // 4th Conjugation
-    {"word": "audiens (decl)", "voice": "active", "tense": "present", "mood": "participle", "conjugation": "4th"}, // [cite: 443]
-    {"word": "-", "voice": "passive", "tense": "present", "mood": "participle", "conjugation": "4th"},
-
-
-// PARTICIPLES - PERFECT TENSE [cite: 444]
-    // 1st Conjugation
-    {"word": "-", "voice": "active", "tense": "perfect", "mood": "participle", "conjugation": "1st"},
-    {"word": "portatus (decl)", "voice": "passive", "tense": "perfect", "mood": "participle", "conjugation": "1st"}, // [cite: 449]
-
-    // 2nd Conjugation
-    {"word": "-", "voice": "active", "tense": "perfect", "mood": "participle", "conjugation": "2nd"},
-    {"word": "doctus (decl)", "voice": "passive", "tense": "perfect", "mood": "participle", "conjugation": "2nd"}, // [cite: 451]
-
-    // 3rd Conjugation
-    {"word": "-", "voice": "active", "tense": "perfect", "mood": "participle", "conjugation": "3rd"},
-    {"word": "ductus (decl)", "voice": "passive", "tense": "perfect", "mood": "participle", "conjugation": "3rd"}, // [cite: 452]
-
-    // 4th Conjugation
-    {"word": "-", "voice": "active", "tense": "perfect", "mood": "participle", "conjugation": "4th"},
-    {"word": "auditus (decl)", "voice": "passive", "tense": "perfect", "mood": "participle", "conjugation": "4th"}, // [cite: 454]
-
-// PARTICIPLES - FUTURE / GERUNDIVE [cite: 455]
-    // 1st Conjugation
-    {"word": "portaturus (decl)", "voice": "active", "tense": "future", "mood": "participle", "conjugation": "1st"}, // [cite: 459]
-    {"word": "portandus (decl)", "voice": "passive", "tense": "future", "mood": "participle", "conjugation": "1st"}, // [cite: 459]
-
-    // 2nd Conjugation
-    {"word": "docturus (decl)", "voice": "active", "tense": "future", "mood": "participle", "conjugation": "2nd"}, // [cite: 460]
-    {"word": "docendus (decl)", "voice": "passive", "tense": "future", "mood": "participle", "conjugation": "2nd"}, // [cite: 460]
-
-    // 3rd Conjugation
-    {"word": "ducturus (decl)", "voice": "active", "tense": "future", "mood": "participle", "conjugation": "3rd"}, // [cite: 461]
-    {"word": "ducendus (decl)", "voice": "passive", "tense": "future", "mood": "participle", "conjugation": "3rd"}, // [cite: 462]
-
-    // 4th Conjugation
-    {"word": "auditurus (decl)", "voice": "active", "tense": "future", "mood": "participle", "conjugation": "4th"}, // [cite: 463]
-    {"word": "audiendus (decl)", "voice": "passive", "tense": "future", "mood": "participle", "conjugation": "4th"}  // [cite: 463]
+{word: "porto", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00001", conjugation: "1st"},
+{"word": "portas", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00002", conjugation: "1st"},
+{"word": "portat", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00003", conjugation: "1st"},
+{"word": "portamus", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00004", conjugation: "1st"},
+{"word": "portatis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00005", conjugation: "1st"},
+{"word": "portant", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00006", conjugation: "1st"},
+{"word": "portor", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00007", conjugation: "1st"},
+{"word": "portaris", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00008", conjugation: "1st"},
+{"word": "portatur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00009", conjugation: "1st"},
+{"word": "portamur", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00010", conjugation: "1st"},
+{"word": "portamini", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00011", conjugation: "1st"},
+{"word": "portantur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00012", conjugation: "1st"},
+{"word": "doceo", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00013", conjugation: "2nd"},
+{"word": "doces", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00014", conjugation: "2nd"},
+{"word": "docet", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00015", conjugation: "2nd"},
+{"word": "docemus", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00016", conjugation: "2nd"},
+{"word": "docetis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00017", conjugation: "2nd"},
+{"word": "docent", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00018", conjugation: "2nd"},
+{"word": "doceor", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00019", conjugation: "2nd"},
+{"word": "doceris or docere", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00020", conjugation: "2nd"},
+{"word": "docetur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00021", conjugation: "2nd"},
+{"word": "docemur", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00022", conjugation: "2nd"},
+{"word": "docemini", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00023", conjugation: "2nd"},
+{"word": "docentur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00024", conjugation: "2nd"},
+{"word": "duco", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00025", conjugation: "3rd"},
+{"word": "ducis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00026", conjugation: "3rd"},
+{"word": "ducit", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00027", conjugation: "3rd"},
+{"word": "ducimus", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00028", conjugation: "3rd"},
+{"word": "ducitis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00029", conjugation: "3rd"},
+{"word": "ducunt", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00030", conjugation: "3rd"},
+{"word": "ducor", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00031", conjugation: "3rd"},
+{"word": "duceris", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00032", conjugation: "3rd"},
+{"word": "ducitur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00033", conjugation: "3rd"},
+{"word": "ducimur", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00034", conjugation: "3rd"},
+{"word": "ducimini", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00035", conjugation: "3rd"},
+{"word": "ducuntur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00036", conjugation: "3rd"},
+{"word": "audio", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00037", conjugation: "4th"},
+{"word": "audis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00038", conjugation: "4th"},
+{"word": "audit", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00039", conjugation: "4th"},
+{"word": "audimus", voice: "active", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00040", conjugation: "4th"},
+{"word": "auditis", voice: "active", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00041", conjugation: "4th"},
+{"word": "audiunt", voice: "active", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00042", conjugation: "4th"},
+{"word": "audior", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "singular", index: "00043", conjugation: "4th"},
+{"word": "audiris or audire", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "singular", index: "00044", conjugation: "4th"},
+{"word": "auditur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "singular", index: "00045", conjugation: "4th"},
+{"word": "audimur", voice: "passive", tense: "present", mood: "indicative", person: "1st", number: "plural", index: "00046", conjugation: "4th"},
+{"word": "audimini", voice: "passive", tense: "present", mood: "indicative", person: "2nd", number: "plural", index: "00047", conjugation: "4th"},
+{"word": "audiuntur", voice: "passive", tense: "present", mood: "indicative", person: "3rd", number: "plural", index: "00048", conjugation: "4th"},
+{"word": "portabam", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00049", conjugation: "1st"},
+{"word": "portabas", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00050", conjugation: "1st"},
+{"word": "portabat", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00051", conjugation: "1st"},
+{"word": "portabamus", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00052", conjugation: "1st"},
+{"word": "portabatis", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00053", conjugation: "1st"},
+{"word": "portabant", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00054", conjugation: "1st"},
+{"word": "portabar", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00055", conjugation: "1st"},
+{"word": "portabaris", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00056", conjugation: "1st"},
+{"word": "portabatur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00057", conjugation: "1st"},
+{"word": "portabamur", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00058", conjugation: "1st"},
+{"word": "portabamini", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00059", conjugation: "1st"},
+{"word": "portabantur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00060", conjugation: "1st"},
+{"word": "docebam", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00061", conjugation: "2nd"},
+{"word": "docebas", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00062", conjugation: "2nd"},
+{"word": "docebat", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00063", conjugation: "2nd"},
+{"word": "docebamus", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00064", conjugation: "2nd"},
+{"word": "docebatis", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00065", conjugation: "2nd"},
+{"word": "docebant", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00066", conjugation: "2nd"},
+{"word": "docebar", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00067", conjugation: "2nd"},
+{"word": "docebaris", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00068", conjugation: "2nd"},
+{"word": "docebatur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00069", conjugation: "2nd"},
+{"word": "docebamur", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00070", conjugation: "2nd"},
+{"word": "docebamini", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00071", conjugation: "2nd"},
+{"word": "docebantur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00072", conjugation: "2nd"},
+{"word": "ducebam", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00073", conjugation: "3rd"},
+{"word": "ducebas", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00074", conjugation: "3rd"},
+{"word": "ducebat", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00075", conjugation: "3rd"},
+{"word": "ducebamus", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00076", conjugation: "3rd"},
+{"word": "ducebatis", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00077", conjugation: "3rd"},
+{"word": "ducebant", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00078", conjugation: "3rd"},
+{"word": "ducebar", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00079", conjugation: "3rd"},
+{"word": "ducebaris", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00080", conjugation: "3rd"},
+{"word": "ducebatur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00081", conjugation: "3rd"},
+{"word": "ducebamur", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00082", conjugation: "3rd"},
+{"word": "ducebamini", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00083", conjugation: "3rd"},
+{"word": "ducebantur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00084", conjugation: "3rd"},
+{"word": "audiebam", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00085", conjugation: "4th"},
+{"word": "audiebas", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00086", conjugation: "4th"},
+{"word": "audiebat", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00087", conjugation: "4th"},
+{"word": "audiebamus", voice: "active", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00088", conjugation: "4th"},
+{"word": "audiebatis", voice: "active", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00089", conjugation: "4th"},
+{"word": "audiebant", voice: "active", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00090", conjugation: "4th"},
+{"word": "audiebar", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "singular", index: "00091", conjugation: "4th"},
+{"word": "audiebaris", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "singular", index: "00092", conjugation: "4th"},
+{"word": "audiebatur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "singular", index: "00093", conjugation: "4th"},
+{"word": "audiebamur", voice: "passive", tense: "imperfect", mood: "indicative", person: "1st", number: "plural", index: "00094", conjugation: "4th"},
+{"word": "audiebamini", voice: "passive", tense: "imperfect", mood: "indicative", person: "2nd", number: "plural", index: "00095", conjugation: "4th"},
+{"word": "audiebantur", voice: "passive", tense: "imperfect", mood: "indicative", person: "3rd", number: "plural", index: "00096", conjugation: "4th"},
+{"word": "portavi", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00097", conjugation: "1st"},
+{"word": "portavisti", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00098", conjugation: "1st"},
+{"word": "portavit", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00099", conjugation: "1st"},
+{"word": "portavimus", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00100", conjugation: "1st"},
+{"word": "portavitis", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00101", conjugation: "1st"},
+{"word": "portaverunt", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00102", conjugation: "1st"},
+{"word": "portatus sum (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00103", conjugation: "1st"},
+{"word": "portatus es (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00104", conjugation: "1st"},
+{"word": "portatus est (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00105", conjugation: "1st"},
+{"word": "portati sumus (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00106", conjugation: "1st"},
+{"word": "portati estis (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00107", conjugation: "1st"},
+{"word": "portati sunt (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00108", conjugation: "1st"},
+{"word": "docui", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00109", conjugation: "2nd"},
+{"word": "docuisti", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00110", conjugation: "2nd"},
+{"word": "docuit", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00111", conjugation: "2nd"},
+{"word": "docuimus", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00112", conjugation: "2nd"},
+{"word": "docuistis", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00113", conjugation: "2nd"},
+{"word": "docuerunt", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00114", conjugation: "2nd"},
+{"word": "doctus sum (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00115", conjugation: "2nd"},
+{"word": "doctus es (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00116", conjugation: "2nd"},
+{"word": "doctus est (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00117", conjugation: "2nd"},
+{"word": "docti sumus (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00118", conjugation: "2nd"},
+{"word": "docti estis (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00119", conjugation: "2nd"},
+{"word": "docti sunt (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00120", conjugation: "2nd"},
+{"word": "duxi", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00121", conjugation: "3rd"},
+{"word": "duxisti", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00122", conjugation: "3rd"},
+{"word": "duxit", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00123", conjugation: "3rd"},
+{"word": "duximus", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00124", conjugation: "3rd"},
+{"word": "duxistis", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00125", conjugation: "3rd"},
+{"word": "duxerunt", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00126", conjugation: "3rd"},
+{"word": "ductus sum (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00127", conjugation: "3rd"},
+{"word": "ductus es (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00128", conjugation: "3rd"},
+{"word": "ductus est (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00129", conjugation: "3rd"},
+{"word": "ducti sumus (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00130", conjugation: "3rd"},
+{"word": "ducti estis (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00131", conjugation: "3rd"},
+{"word": "ducti sunt (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00132", conjugation: "3rd"},
+{"word": "audivi", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00133", conjugation: "4th"},
+{"word": "audivisti", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00134", conjugation: "4th"},
+{"word": "audivit", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00135", conjugation: "4th"},
+{"word": "audivimus", voice: "active", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00136", conjugation: "4th"},
+{"word": "audivistis", voice: "active", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00137", conjugation: "4th"},
+{"word": "audiverunt", voice: "active", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00138", conjugation: "4th"},
+{"word": "auditus sum (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "singular", index: "00139", conjugation: "4th"},
+{"word": "auditus es (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "singular", index: "00140", conjugation: "4th"},
+{"word": "auditus est (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "singular", index: "00141", conjugation: "4th"},
+{"word": "auditi sumus (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "1st", number: "plural", index: "00142", conjugation: "4th"},
+{"word": "auditi estis (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "2nd", number: "plural", index: "00143", conjugation: "4th"},
+{"word": "auditi sunt (decl)", voice: "passive", tense: "perfect", mood: "indicative", person: "3rd", number: "plural", index: "00144", conjugation: "4th"},
+{"word": "portabo", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00145", conjugation: "1st"},
+{"word": "portabis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00146", conjugation: "1st"},
+{"word": "portabit", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00147", conjugation: "1st"},
+{"word": "portabimus", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00148", conjugation: "1st"},
+{"word": "portabitis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00149", conjugation: "1st"},
+{"word": "portabunt", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00150", conjugation: "1st"},
+{"word": "portabor", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00151", conjugation: "1st"},
+{"word": "portaberis", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00152", conjugation: "1st"},
+{"word": "portabitur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00153", conjugation: "1st"},
+{"word": "portabimur", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00154", conjugation: "1st"},
+{"word": "portabimini", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00155", conjugation: "1st"},
+{"word": "portabuntur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00156", conjugation: "1st"},
+{"word": "docebo", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00157", conjugation: "2nd"},
+{"word": "docebis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00158", conjugation: "2nd"},
+{"word": "docebit", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00159", conjugation: "2nd"},
+{"word": "docebimus", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00160", conjugation: "2nd"},
+{"word": "docebitis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00161", conjugation: "2nd"},
+{"word": "docebunt", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00162", conjugation: "2nd"},
+{"word": "docebor", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00163", conjugation: "2nd"},
+{"word": "doceberis", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00164", conjugation: "2nd"},
+{"word": "docebitur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00165", conjugation: "2nd"},
+{"word": "docebimur", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00166", conjugation: "2nd"},
+{"word": "docebimini", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00167", conjugation: "2nd"},
+{"word": "docebuntur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00168", conjugation: "2nd"},
+{"word": "ducam", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00169", conjugation: "3rd"},
+{"word": "duces", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00170", conjugation: "3rd"},
+{"word": "ducet", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00171", conjugation: "3rd"},
+{"word": "ducemus", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00172", conjugation: "3rd"},
+{"word": "ducetis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00173", conjugation: "3rd"},
+{"word": "ducent", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00174", conjugation: "3rd"},
+{"word": "ducar", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00175", conjugation: "3rd"},
+{"word": "duceris", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00176", conjugation: "3rd"},
+{"word": "ducetur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00177", conjugation: "3rd"},
+{"word": "ducemur", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00178", conjugation: "3rd"},
+{"word": "ducemini", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00179", conjugation: "3rd"},
+{"word": "ducentur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00180", conjugation: "3rd"},
+{"word": "audiam", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00181", conjugation: "4th"},
+{"word": "audies", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00182", conjugation: "4th"},
+{"word": "audiet", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00183", conjugation: "4th"},
+{"word": "audiemus", voice: "active", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00184", conjugation: "4th"},
+{"word": "audietis", voice: "active", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00185", conjugation: "4th"},
+{"word": "audient", voice: "active", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00186", conjugation: "4th"},
+{"word": "audiar", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "singular", index: "00187", conjugation: "4th"},
+{"word": "audieris", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "singular", index: "00188", conjugation: "4th"},
+{"word": "audietur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "singular", index: "00189", conjugation: "4th"},
+{"word": "audiemur", voice: "passive", tense: "future", mood: "indicative", person: "1st", number: "plural", index: "00190", conjugation: "4th"},
+{"word": "audiemini", voice: "passive", tense: "future", mood: "indicative", person: "2nd", number: "plural", index: "00191", conjugation: "4th"},
+{"word": "audientur", voice: "passive", tense: "future", mood: "indicative", person: "3rd", number: "plural", index: "00192", conjugation: "4th"},
+{"word": "portaveram", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00193", conjugation: "1st"},
+{"word": "portaveras", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00194", conjugation: "1st"},
+{"word": "portaverat", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00195", conjugation: "1st"},
+{"word": "portaveramus", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00196", conjugation: "1st"},
+{"word": "portaveratis", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00197", conjugation: "1st"},
+{"word": "portaverant", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00198", conjugation: "1st"},
+{"word": "portatus eram (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00199", conjugation: "1st"},
+{"word": "portatus eras (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00200", conjugation: "1st"},
+{"word": "portatus erat (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00201", conjugation: "1st"},
+{"word": "portati eramus (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00202", conjugation: "1st"},
+{"word": "portati eratis (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00203", conjugation: "1st"},
+{"word": "portati erant (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00204", conjugation: "1st"},
+{"word": "docueram", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00205", conjugation: "2nd"},
+{"word": "docueras", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00206", conjugation: "2nd"},
+{"word": "docuerat", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00207", conjugation: "2nd"},
+{"word": "docueramus", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00208", conjugation: "2nd"},
+{"word": "docueratis", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00209", conjugation: "2nd"},
+{"word": "docuerant", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00210", conjugation: "2nd"},
+{"word": "doctus eram (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00211", conjugation: "2nd"},
+{"word": "doctus eras (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00212", conjugation: "2nd"},
+{"word": "doctus erat (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00213", conjugation: "2nd"},
+{"word": "docti eramus (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00214", conjugation: "2nd"},
+{"word": "docti eratis (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00215", conjugation: "2nd"},
+{"word": "docti erant (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00216", conjugation: "2nd"},
+{"word": "duxeram", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00217", conjugation: "3rd"},
+{"word": "duxeras", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00218", conjugation: "3rd"},
+{"word": "duxerat", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00219", conjugation: "3rd"},
+{"word": "duxeramus", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00220", conjugation: "3rd"},
+{"word": "duxeratis", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00221", conjugation: "3rd"},
+{"word": "duxerant", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00222", conjugation: "3rd"},
+{"word": "ductus eram (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00223", conjugation: "3rd"},
+{"word": "ductus eras (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00224", conjugation: "3rd"},
+{"word": "ductus erat (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00225", conjugation: "3rd"},
+{"word": "ducti eramus (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00226", conjugation: "3rd"},
+{"word": "ducti eratis (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00227", conjugation: "3rd"},
+{"word": "ducti erant (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00228", conjugation: "3rd"},
+{"word": "audiveram", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00229", conjugation: "4th"},
+{"word": "audiveras", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00230", conjugation: "4th"},
+{"word": "audiverat", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00231", conjugation: "4th"},
+{"word": "audiveramus", voice: "active", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00232", conjugation: "4th"},
+{"word": "audiveratis", voice: "active", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00233", conjugation: "4th"},
+{"word": "audiverant", voice: "active", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00234", conjugation: "4th"},
+{"word": "auditus eram (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "singular", index: "00235", conjugation: "4th"},
+{"word": "auditus eras (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "singular", index: "00236", conjugation: "4th"},
+{"word": "auditus erat (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "singular", index: "00237", conjugation: "4th"},
+{"word": "auditi eramus (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "1st", number: "plural", index: "00238", conjugation: "4th"},
+{"word": "auditi eratis (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "2nd", number: "plural", index: "00239", conjugation: "4th"},
+{"word": "auditi erant (decl)", voice: "passive", tense: "pluperfect", mood: "indicative", person: "3rd", number: "plural", index: "00240", conjugation: "4th"},
+{"word": "portavero", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00241", conjugation: "1st"},
+{"word": "portaveris", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00242", conjugation: "1st"},
+{"word": "portaverit", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00243", conjugation: "1st"},
+{"word": "portaverimus", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00244", conjugation: "1st"},
+{"word": "portaveritis", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00245", conjugation: "1st"},
+{"word": "portaverint", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00246", conjugation: "1st"},
+{"word": "portatus ero (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00247", conjugation: "1st"},
+{"word": "portatus eris (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00248", conjugation: "1st"},
+{"word": "portatus erit (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00249", conjugation: "1st"},
+{"word": "portati erimus (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00250", conjugation: "1st"},
+{"word": "portati eritis (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00251", conjugation: "1st"},
+{"word": "portati erunt (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00252", conjugation: "1st"},
+{"word": "docuero", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00253", conjugation: "2nd"},
+{"word": "docueris", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00254", conjugation: "2nd"},
+{"word": "docuerit", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00255", conjugation: "2nd"},
+{"word": "docuerimus", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00256", conjugation: "2nd"},
+{"word": "docueritis", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00257", conjugation: "2nd"},
+{"word": "docuerint", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00258", conjugation: "2nd"},
+{"word": "doctus ero (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00259", conjugation: "2nd"},
+{"word": "doctus eris (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00260", conjugation: "2nd"},
+{"word": "doctus erit (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00261", conjugation: "2nd"},
+{"word": "docti erimus (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00262", conjugation: "2nd"},
+{"word": "docti eritis (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00263", conjugation: "2nd"},
+{"word": "docti erunt (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00264", conjugation: "2nd"},
+{"word": "duxero", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00265", conjugation: "3rd"},
+{"word": "duxeris", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00266", conjugation: "3rd"},
+{"word": "duxerit", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00267", conjugation: "3rd"},
+{"word": "duxerimus", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00268", conjugation: "3rd"},
+{"word": "duxeritis", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00269", conjugation: "3rd"},
+{"word": "duxerint", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00270", conjugation: "3rd"},
+{"word": "ductus ero (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00271", conjugation: "3rd"},
+{"word": "ductus eris (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00272", conjugation: "3rd"},
+{"word": "ductus erit (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00273", conjugation: "3rd"},
+{"word": "ducti erimus (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00274", conjugation: "3rd"},
+{"word": "ducti eritis (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00275", conjugation: "3rd"},
+{"word": "ducti erunt (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00276", conjugation: "3rd"},
+{"word": "audivero", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00277", conjugation: "4th"},
+{"word": "audiveris", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00278", conjugation: "4th"},
+{"word": "audiverit", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00279", conjugation: "4th"},
+{"word": "audiverimus", voice: "active", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00280", conjugation: "4th"},
+{"word": "audiveritis", voice: "active", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00281", conjugation: "4th"},
+{"word": "audiverint", voice: "active", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00282", conjugation: "4th"},
+{"word": "auditus ero (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "singular", index: "00283", conjugation: "4th"},
+{"word": "auditus eris (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "singular", index: "00284", conjugation: "4th"},
+{"word": "auditus erit (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "singular", index: "00285", conjugation: "4th"},
+{"word": "auditi erimus (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "1st", number: "plural", index: "00286", conjugation: "4th"},
+{"word": "auditi eritis (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "2nd", number: "plural", index: "00287", conjugation: "4th"},
+{"word": "auditi erunt (decl)", voice: "passive", tense: "future perfect", mood: "indicative", person: "3rd", number: "plural", index: "00288", conjugation: "4th"},
+{"word": "portem", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00289", conjugation: "1st"},
+{"word": "portes", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00290", conjugation: "1st"},
+{"word": "portet", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00291", conjugation: "1st"},
+{"word": "portemus", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00292", conjugation: "1st"},
+{"word": "portetis", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00293", conjugation: "1st"},
+{"word": "portent", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00294", conjugation: "1st"},
+{"word": "porter", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00295", conjugation: "1st"},
+{"word": "porteris", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00296", conjugation: "1st"},
+{"word": "portetur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00297", conjugation: "1st"},
+{"word": "portemur", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00298", conjugation: "1st"},
+{"word": "portemini", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00299", conjugation: "1st"},
+{"word": "portentur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00300", conjugation: "1st"},
+{"word": "doceam", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00301", conjugation: "2nd"},
+{"word": "doceas", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00302", conjugation: "2nd"},
+{"word": "doceat", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00303", conjugation: "2nd"},
+{"word": "doceamus", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00304", conjugation: "2nd"},
+{"word": "doceatis", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00305", conjugation: "2nd"},
+{"word": "doceant", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00306", conjugation: "2nd"},
+{"word": "docear", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00307", conjugation: "2nd"},
+{"word": "docearis", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00308", conjugation: "2nd"},
+{"word": "doceatur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00309", conjugation: "2nd"},
+{"word": "doceamur", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00310", conjugation: "2nd"},
+{"word": "doceamini", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00311", conjugation: "2nd"},
+{"word": "doceantur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00312", conjugation: "2nd"},
+{"word": "ducam", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00313", conjugation: "3rd"},
+{"word": "ducas", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00314", conjugation: "3rd"},
+{"word": "ducat", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00315", conjugation: "3rd"},
+{"word": "ducamus", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00316", conjugation: "3rd"},
+{"word": "ducatis", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00317", conjugation: "3rd"},
+{"word": "ducant", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00318", conjugation: "3rd"},
+{"word": "ducar", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00319", conjugation: "3rd"},
+{"word": "ducaris", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00320", conjugation: "3rd"},
+{"word": "ducatur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00321", conjugation: "3rd"},
+{"word": "ducamur", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00322", conjugation: "3rd"},
+{"word": "ducamini", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00323", conjugation: "3rd"},
+{"word": "ducantur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00324", conjugation: "3rd"},
+{"word": "audiam", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00325", conjugation: "4th"},
+{"word": "audias", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00326", conjugation: "4th"},
+{"word": "audiat", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00327", conjugation: "4th"},
+{"word": "audiamus", voice: "active", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00328", conjugation: "4th"},
+{"word": "audiatis", voice: "active", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00329", conjugation: "4th"},
+{"word": "audiant", voice: "active", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00330", conjugation: "4th"},
+{"word": "audiar", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "singular", index: "00331", conjugation: "4th"},
+{"word": "audiaris", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "singular", index: "00332", conjugation: "4th"},
+{"word": "audiatur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "singular", index: "00333", conjugation: "4th"},
+{"word": "audiamur", voice: "passive", tense: "present", mood: "subjunctive", person: "1st", number: "plural", index: "00334", conjugation: "4th"},
+{"word": "audiamini", voice: "passive", tense: "present", mood: "subjunctive", person: "2nd", number: "plural", index: "00335", conjugation: "4th"},
+{"word": "audiantur", voice: "passive", tense: "present", mood: "subjunctive", person: "3rd", number: "plural", index: "00336", conjugation: "4th"},
+{"word": "portarem", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00337", conjugation: "1st"},
+{"word": "portares", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00338", conjugation: "1st"},
+{"word": "portaret", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00339", conjugation: "1st"},
+{"word": "portaremus", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00340", conjugation: "1st"},
+{"word": "portaretis", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00341", conjugation: "1st"},
+{"word": "portarent", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00342", conjugation: "1st"},
+{"word": "portarer", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00343", conjugation: "1st"},
+{"word": "portareris", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00344", conjugation: "1st"},
+{"word": "portaretur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00345", conjugation: "1st"},
+{"word": "portaremur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00346", conjugation: "1st"},
+{"word": "portaremini", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00347", conjugation: "1st"},
+{"word": "portarentur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00348", conjugation: "1st"},
+{"word": "docerem", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00349", conjugation: "2nd"},
+{"word": "doceres", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00350", conjugation: "2nd"},
+{"word": "doceret", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00351", conjugation: "2nd"},
+{"word": "doceremus", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00352", conjugation: "2nd"},
+{"word": "doceretis", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00353", conjugation: "2nd"},
+{"word": "docerent", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00354", conjugation: "2nd"},
+{"word": "docerer", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00355", conjugation: "2nd"},
+{"word": "docereris", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00356", conjugation: "2nd"},
+{"word": "doceretur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00357", conjugation: "2nd"},
+{"word": "doceremur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00358", conjugation: "2nd"},
+{"word": "doceremini", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00359", conjugation: "2nd"},
+{"word": "docerentur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00360", conjugation: "2nd"},
+{"word": "ducerem", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00361", conjugation: "3rd"},
+{"word": "duceres", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00362", conjugation: "3rd"},
+{"word": "duceret", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00363", conjugation: "3rd"},
+{"word": "duceremus", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00364", conjugation: "3rd"},
+{"word": "duceretis", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00365", conjugation: "3rd"},
+{"word": "ducerent", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00366", conjugation: "3rd"},
+{"word": "ducerer", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00367", conjugation: "3rd"},
+{"word": "ducereris", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00368", conjugation: "3rd"},
+{"word": "duceretur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00369", conjugation: "3rd"},
+{"word": "duceremur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00370", conjugation: "3rd"},
+{"word": "duceremini", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00371", conjugation: "3rd"},
+{"word": "ducerentur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00372", conjugation: "3rd"},
+{"word": "audirem", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00373", conjugation: "4th"},
+{"word": "audires", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00374", conjugation: "4th"},
+{"word": "audiret", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00375", conjugation: "4th"},
+{"word": "audiremus", voice: "active", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00376", conjugation: "4th"},
+{"word": "audiretis", voice: "active", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00377", conjugation: "4th"},
+{"word": "audirent", voice: "active", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00378", conjugation: "4th"},
+{"word": "audirer", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00379", conjugation: "4th"},
+{"word": "audireris", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00380", conjugation: "4th"},
+{"word": "audiretur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00381", conjugation: "4th"},
+{"word": "audiremur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00382", conjugation: "4th"},
+{"word": "audiremini", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00383", conjugation: "4th"},
+{"word": "audirentur", voice: "passive", tense: "imperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00384", conjugation: "4th"},
+{"word": "portaverim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00385", conjugation: "1st"},
+{"word": "portaveris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00386", conjugation: "1st"},
+{"word": "portaverit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00387", conjugation: "1st"},
+{"word": "portaverimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00388", conjugation: "1st"},
+{"word": "portaveritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00389", conjugation: "1st"},
+{"word": "portaverint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00390", conjugation: "1st"},
+{"word": "portatus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00391", conjugation: "1st"},
+{"word": "portatus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00392", conjugation: "1st"},
+{"word": "portatus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00393", conjugation: "1st"},
+{"word": "portati simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00394", conjugation: "1st"},
+{"word": "portati sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00395", conjugation: "1st"},
+{"word": "portati sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00396", conjugation: "1st"},
+{"word": "docuerim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00397", conjugation: "2nd"},
+{"word": "docueris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00398", conjugation: "2nd"},
+{"word": "docuerit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00399", conjugation: "2nd"},
+{"word": "docuerimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00400", conjugation: "2nd"},
+{"word": "docueritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00401", conjugation: "2nd"},
+{"word": "docuerint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00402", conjugation: "2nd"},
+{"word": "doctus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00403", conjugation: "2nd"},
+{"word": "doctus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00404", conjugation: "2nd"},
+{"word": "doctus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00405", conjugation: "2nd"},
+{"word": "docti simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00406", conjugation: "2nd"},
+{"word": "docti sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00407", conjugation: "2nd"},
+{"word": "docti sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00408", conjugation: "2nd"},
+{"word": "duxerim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00409", conjugation: "3rd"},
+{"word": "duxeris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00410", conjugation: "3rd"},
+{"word": "duxerit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00411", conjugation: "3rd"},
+{"word": "duxerimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00412", conjugation: "3rd"},
+{"word": "duxeritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00413", conjugation: "3rd"},
+{"word": "duxerint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00414", conjugation: "3rd"},
+{"word": "ductus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00415", conjugation: "3rd"},
+{"word": "ductus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00416", conjugation: "3rd"},
+{"word": "ductus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00417", conjugation: "3rd"},
+{"word": "ducti simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00418", conjugation: "3rd"},
+{"word": "ducti sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00419", conjugation: "3rd"},
+{"word": "ducti sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00420", conjugation: "3rd"},
+{"word": "audiverim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00421", conjugation: "4th"},
+{"word": "audiveris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00422", conjugation: "4th"},
+{"word": "audiverit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00423", conjugation: "4th"},
+{"word": "audiverimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00424", conjugation: "4th"},
+{"word": "audiveritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00425", conjugation: "4th"},
+{"word": "audiverint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00426", conjugation: "4th"},
+{"word": "auditus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00427", conjugation: "4th"},
+{"word": "auditus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00428", conjugation: "4th"},
+{"word": "auditus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00429", conjugation: "4th"},
+{"word": "auditi simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00430", conjugation: "4th"},
+{"word": "auditi sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00431", conjugation: "4th"},
+{"word": "auditi sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00432", conjugation: "4th"},
+{"word": "portavissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00433", conjugation: "1st"},
+{"word": "portavisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00434", conjugation: "1st"},
+{"word": "portavisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00435", conjugation: "1st"},
+{"word": "portavissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00436", conjugation: "1st"},
+{"word": "portavissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00437", conjugation: "1st"},
+{"word": "portavissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00438", conjugation: "1st"},
+{"word": "portatus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00439", conjugation: "1st"},
+{"word": "portatus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00440", conjugation: "1st"},
+{"word": "portatus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00441", conjugation: "1st"},
+{"word": "portati essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00442", conjugation: "1st"},
+{"word": "portati essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00443", conjugation: "1st"},
+{"word": "portati essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00444", conjugation: "1st"},
+{"word": "docuissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00445", conjugation: "2nd"},
+{"word": "docuisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00446", conjugation: "2nd"},
+{"word": "docuisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00447", conjugation: "2nd"},
+{"word": "docuissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00448", conjugation: "2nd"},
+{"word": "docuissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00449", conjugation: "2nd"},
+{"word": "docuissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00450", conjugation: "2nd"},
+{"word": "doctus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00451", conjugation: "2nd"},
+{"word": "doctus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00452", conjugation: "2nd"},
+{"word": "doctus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00453", conjugation: "2nd"},
+{"word": "docti essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00454", conjugation: "2nd"},
+{"word": "docti essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00455", conjugation: "2nd"},
+{"word": "docti essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00456", conjugation: "2nd"},
+{"word": "duxissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00457", conjugation: "3rd"},
+{"word": "duxisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00458", conjugation: "3rd"},
+{"word": "duxisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00459", conjugation: "3rd"},
+{"word": "duxissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00460", conjugation: "3rd"},
+{"word": "duxissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00461", conjugation: "3rd"},
+{"word": "duxissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00462", conjugation: "3rd"},
+{"word": "ductus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00463", conjugation: "3rd"},
+{"word": "ductus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00464", conjugation: "3rd"},
+{"word": "ductus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00465", conjugation: "3rd"},
+{"word": "ducti essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00466", conjugation: "3rd"},
+{"word": "ducti essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00467", conjugation: "3rd"},
+{"word": "ducti essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00468", conjugation: "3rd"},
+{"word": "audivissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00469", conjugation: "4th"},
+{"word": "audivisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00470", conjugation: "4th"},
+{"word": "audivisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00471", conjugation: "4th"},
+{"word": "audivissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00472", conjugation: "4th"},
+{"word": "audivissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00473", conjugation: "4th"},
+{"word": "audivissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00474", conjugation: "4th"},
+{"word": "auditus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00475", conjugation: "4th"},
+{"word": "auditus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00476", conjugation: "4th"},
+{"word": "auditus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00477", conjugation: "4th"},
+{"word": "auditi essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00478", conjugation: "4th"},
+{"word": "auditi essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00479", conjugation: "4th"},
+{"word": "auditi essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00480", conjugation: "4th"},
+{"word": "portaverim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00481", conjugation: "1st"},
+{"word": "portaveris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00482", conjugation: "1st"},
+{"word": "portaverit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00483", conjugation: "1st"},
+{"word": "portaverimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00484", conjugation: "1st"},
+{"word": "portaveritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00485", conjugation: "1st"},
+{"word": "portaverint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00486", conjugation: "1st"},
+{"word": "portatus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00487", conjugation: "1st"},
+{"word": "portatus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00488", conjugation: "1st"},
+{"word": "portatus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00489", conjugation: "1st"},
+{"word": "portati simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00490", conjugation: "1st"},
+{"word": "portati sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00491", conjugation: "1st"},
+{"word": "portati sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00492", conjugation: "1st"},
+{"word": "docuerim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00493", conjugation: "2nd"},
+{"word": "docueris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00494", conjugation: "2nd"},
+{"word": "docuerit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00495", conjugation: "2nd"},
+{"word": "docuerimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00496", conjugation: "2nd"},
+{"word": "docueritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00497", conjugation: "2nd"},
+{"word": "docuerint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00498", conjugation: "2nd"},
+{"word": "doctus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00499", conjugation: "2nd"},
+{"word": "doctus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00500", conjugation: "2nd"},
+{"word": "doctus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00501", conjugation: "2nd"},
+{"word": "docti simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00502", conjugation: "2nd"},
+{"word": "docti sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00503", conjugation: "2nd"},
+{"word": "docti sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00504", conjugation: "2nd"},
+{"word": "duxerim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00505", conjugation: "3rd"},
+{"word": "duxeris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00506", conjugation: "3rd"},
+{"word": "duxerit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00507", conjugation: "3rd"},
+{"word": "duxerimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00508", conjugation: "3rd"},
+{"word": "duxeritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00509", conjugation: "3rd"},
+{"word": "duxerint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00510", conjugation: "3rd"},
+{"word": "ductus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00511", conjugation: "3rd"},
+{"word": "ductus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00512", conjugation: "3rd"},
+{"word": "ductus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00513", conjugation: "3rd"},
+{"word": "ducti simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00514", conjugation: "3rd"},
+{"word": "ducti sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00515", conjugation: "3rd"},
+{"word": "ducti sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00516", conjugation: "3rd"},
+{"word": "audiverim", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00517", conjugation: "4th"},
+{"word": "audiveris", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00518", conjugation: "4th"},
+{"word": "audiverit", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00519", conjugation: "4th"},
+{"word": "audiverimus", voice: "active", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00520", conjugation: "4th"},
+{"word": "audiveritis", voice: "active", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00521", conjugation: "4th"},
+{"word": "audiverint", voice: "active", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00522", conjugation: "4th"},
+{"word": "auditus sim (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "singular", index: "00523", conjugation: "4th"},
+{"word": "auditus sis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00524", conjugation: "4th"},
+{"word": "auditus sit (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00525", conjugation: "4th"},
+{"word": "auditi simus (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "1st", number: "plural", index: "00526", conjugation: "4th"},
+{"word": "auditi sitis (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00527", conjugation: "4th"},
+{"word": "auditi sint (decl)", voice: "passive", tense: "perfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00528", conjugation: "4th"},
+{"word": "portavissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00529", conjugation: "1st"},
+{"word": "portavisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00530", conjugation: "1st"},
+{"word": "portavisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00531", conjugation: "1st"},
+{"word": "portavissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00532", conjugation: "1st"},
+{"word": "portavissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00533", conjugation: "1st"},
+{"word": "portavissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00534", conjugation: "1st"},
+{"word": "portatus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00535", conjugation: "1st"},
+{"word": "portatus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00536", conjugation: "1st"},
+{"word": "portatus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00537", conjugation: "1st"},
+{"word": "portati essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00538", conjugation: "1st"},
+{"word": "portati essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00539", conjugation: "1st"},
+{"word": "portati essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00540", conjugation: "1st"},
+{"word": "docuissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00541", conjugation: "2nd"},
+{"word": "docuisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00542", conjugation: "2nd"},
+{"word": "docuisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00543", conjugation: "2nd"},
+{"word": "docuissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00544", conjugation: "2nd"},
+{"word": "docuissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00545", conjugation: "2nd"},
+{"word": "docuissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00546", conjugation: "2nd"},
+{"word": "doctus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00547", conjugation: "2nd"},
+{"word": "doctus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00548", conjugation: "2nd"},
+{"word": "doctus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00549", conjugation: "2nd"},
+{"word": "docti essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00550", conjugation: "2nd"},
+{"word": "docti essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00551", conjugation: "2nd"},
+{"word": "docti essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00552", conjugation: "2nd"},
+{"word": "duxissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00553", conjugation: "3rd"},
+{"word": "duxisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00554", conjugation: "3rd"},
+{"word": "duxisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00555", conjugation: "3rd"},
+{"word": "duxissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00556", conjugation: "3rd"},
+{"word": "duxissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00557", conjugation: "3rd"},
+{"word": "duxissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00558", conjugation: "3rd"},
+{"word": "ductus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00559", conjugation: "3rd"},
+{"word": "ductus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00560", conjugation: "3rd"},
+{"word": "ductus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00561", conjugation: "3rd"},
+{"word": "ducti essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00562", conjugation: "3rd"},
+{"word": "ducti essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00563", conjugation: "3rd"},
+{"word": "ducti essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00564", conjugation: "3rd"},
+{"word": "audivissem", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00565", conjugation: "4th"},
+{"word": "audivisses", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00566", conjugation: "4th"},
+{"word": "audivisset", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00567", conjugation: "4th"},
+{"word": "audivissemus", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00568", conjugation: "4th"},
+{"word": "audivissetis", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00569", conjugation: "4th"},
+{"word": "audivissent", voice: "active", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00570", conjugation: "4th"},
+{"word": "auditus essem (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "singular", index: "00571", conjugation: "4th"},
+{"word": "auditus esses (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "singular", index: "00572", conjugation: "4th"},
+{"word": "auditus esset (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "singular", index: "00573", conjugation: "4th"},
+{"word": "auditi essemus (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "1st", number: "plural", index: "00574", conjugation: "4th"},
+{"word": "auditi essetis (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "2nd", number: "plural", index: "00575", conjugation: "4th"},
+{"word": "auditi essent (decl)", voice: "passive", tense: "pluperfect", mood: "subjunctive", person: "3rd", number: "plural", index: "00576", conjugation: "4th"},
+{"word": "porta", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00577", conjugation: "1st"},
+{"word": "portate", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00578", conjugation: "1st"},
+{"word": "portare", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00579", conjugation: "1st"},
+{"word": "portamini", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00580", conjugation: "1st"},
+{"word": "doce", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00581", conjugation: "2nd"},
+{"word": "docete", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00582", conjugation: "2nd"},
+{"word": "docere", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00583", conjugation: "2nd"},
+{"word": "doceamini", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00584", conjugation: "2nd"},
+{"word": "duce", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00585", conjugation: "3rd"},
+{"word": "ducite", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00586", conjugation: "3rd"},
+{"word": "ducere", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00587", conjugation: "3rd"},
+{"word": "ducimini", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00588", conjugation: "3rd"},
+{"word": "audi", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00589", conjugation: "4th"},
+{"word": "audite", voice: "active", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00590", conjugation: "4th"},
+{"word": "audire", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "singular", index: "00591", conjugation: "4th"},
+{"word": "audimini", voice: "passive", tense: "present", mood: "imperative", person: "2nd", number: "plural", index: "00592", conjugation: "4th"},
+{"word": "portato", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00593", conjugation: "1st"},
+{"word": "portato", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00594", conjugation: "1st"},
+{"word": "portatote", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00595", conjugation: "1st"},
+{"word": "portanto", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00596", conjugation: "1st"},
+{"word": "portator", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00597", conjugation: "1st"},
+{"word": "portator", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00598", conjugation: "1st"},
+{"word": "-", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00599", conjugation: "1st"},
+{"word": "portantor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00600", conjugation: "1st"},
+{"word": "doceto", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00601", conjugation: "2nd"},
+{"word": "doceto", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00602", conjugation: "2nd"},
+{"word": "docetote", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00603", conjugation: "2nd"},
+{"word": "docento", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00604", conjugation: "2nd"},
+{"word": "docetor", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00605", conjugation: "2nd"},
+{"word": "docetor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00606", conjugation: "2nd"},
+{"word": "-", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00607", conjugation: "2nd"},
+{"word": "docentor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00608", conjugation: "2nd"},
+{"word": "ducito", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00609", conjugation: "3rd"},
+{"word": "ducito", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00610", conjugation: "3rd"},
+{"word": "ducitote", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00611", conjugation: "3rd"},
+{"word": "ducunto", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00612", conjugation: "3rd"},
+{"word": "ducitor", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00613", conjugation: "3rd"},
+{"word": "ducitor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00614", conjugation: "3rd"},
+{"word": "-", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00615", conjugation: "3rd"},
+{"word": "ducuntor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00616", conjugation: "3rd"},
+{"word": "audito", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00617", conjugation: "4th"},
+{"word": "audito", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00618", conjugation: "4th"},
+{"word": "auditote", voice: "active", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00619", conjugation: "4th"},
+{"word": "audiunto", voice: "active", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00620", conjugation: "4th"},
+{"word": "auditor", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "singular", index: "00621", conjugation: "4th"},
+{"word": "auditor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "singular", index: "00622", conjugation: "4th"},
+{"word": "-", voice: "passive", tense: "future", mood: "imperative", person: "2nd", number: "plural", index: "00623", conjugation: "4th"},
+{"word": "audiuntor", voice: "passive", tense: "future", mood: "imperative", person: "3rd", number: "plural", index: "00624", conjugation: "4th"},
+{ word: "portare", voice: "active", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00625", conjugation: "1st" },
+{ word: "portari", voice: "passive", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00626", conjugation: "1st" },
+{ word: "docere", voice: "active", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00627", conjugation: "2nd" },
+{ word: "doceri", voice: "passive", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00628", conjugation: "2nd" },
+{ word: "ducere", voice: "active", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00629", conjugation: "3rd" },
+{ word: "duci", voice: "passive", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00630", conjugation: "3rd" },
+{ word: "audire", voice: "active", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00631", conjugation: "4th" },
+{ word: "audiri", voice: "passive", tense: "present", mood: "infinitive", person: "-", number: "-", index: "00632", conjugation: "4th" },
+{ word: "portavisse", voice: "active", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00633", conjugation: "1st" },
+{ word: "portatus esse", voice: "passive", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00634", conjugation: "1st" },
+{ word: "docuisse", voice: "active", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00635", conjugation: "2nd" },
+{ word: "doctus esse", voice: "passive", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00636", conjugation: "2nd" },
+{ word: "duxisse", voice: "active", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00637", conjugation: "3rd" },
+{ word: "ductus esse", voice: "passive", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00638", conjugation: "3rd" },
+{ word: "audivisse", voice: "active", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00639", conjugation: "4th" },
+{ word: "auditus esse", voice: "passive", tense: "perfect", mood: "infinitive", person: "-", number: "-", index: "00640", conjugation: "4th" },
+{ word: "portaturum esse", voice: "active", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00641", conjugation: "1st" },
+{ word: "portatum iri", voice: "passive", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00642", conjugation: "1st" },
+{ word: "docturum esse", voice: "active", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00643", conjugation: "2nd" },
+{ word: "doctum iri", voice: "passive", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00644", conjugation: "2nd" },
+{ word: "ducturum esse", voice: "active", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00645", conjugation: "3rd" },
+{ word: "ductum iri", voice: "passive", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00646", conjugation: "3rd" },
+{ word: "auditurum esse", voice: "active", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00647", conjugation: "4th" },
+{ word: "auditum iri", voice: "passive", tense: "future", mood: "infinitive", person: "-", number: "-", index: "00648", conjugation: "4th" },
+{ word: "portans", voice: "active", tense: "present", mood: "participle", person: "-", number: "-", index: "00649", conjugation: "1st" },
+{ word: "-", voice: "passive", tense: "present", mood: "participle", person: "-", number: "-", index: "00650", conjugation: "1st" },
+{ word: "docens", voice: "active", tense: "present", mood: "participle", person: "-", number: "-", index: "00651", conjugation: "2nd" },
+{ word: "-", voice: "passive", tense: "present", mood: "participle", person: "-", number: "-", index: "00652", conjugation: "2nd" },
+{ word: "ducens", voice: "active", tense: "present", mood: "participle", person: "-", number: "-", index: "00653", conjugation: "3rd" },
+{ word: "-", voice: "passive", tense: "present", mood: "participle", person: "-", number: "-", index: "00654", conjugation: "3rd" },
+{ word: "audiens", voice: "active", tense: "present", mood: "participle", person: "-", number: "-", index: "00655", conjugation: "4th" },
+{ word: "-", voice: "passive", tense: "present", mood: "participle", person: "-", number: "-", index: "00656", conjugation: "4th" },
+{ word: "-", voice: "active", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00657", conjugation: "1st" },
+{ word: "portatus", voice: "passive", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00658", conjugation: "1st" },
+{ word: "-", voice: "active", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00659", conjugation: "2nd" },
+{ word: "doctus", voice: "passive", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00660", conjugation: "2nd" },
+{ word: "-", voice: "active", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00661", conjugation: "3rd" },
+{ word: "ductus", voice: "passive", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00662", conjugation: "3rd" },
+{ word: "-", voice: "active", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00663", conjugation: "4th" },
+{ word: "auditus", voice: "passive", tense: "perfect", mood: "participle", person: "-", number: "-", index: "00664", conjugation: "4th" },
+{ word: "portaturus", voice: "active", tense: "future", mood: "participle", person: "-", number: "-", index: "00665", conjugation: "1st" },
+{ word: "portandus", voice: "passive", tense: "future", mood: "participle", person: "-", number: "-", index: "00666", conjugation: "1st" },
+{ word: "docturus", voice: "active", tense: "future", mood: "participle", person: "-", number: "-", index: "00667", conjugation: "2nd" },
+{ word: "docendus", voice: "passive", tense: "future", mood: "participle", person: "-", number: "-", index: "00668", conjugation: "2nd" },
+{ word: "ducturus", voice: "active", tense: "future", mood: "participle", person: "-", number: "-", index: "00669", conjugation: "3rd" },
+{ word: "ducendus", voice: "passive", tense: "future", mood: "participle", person: "-", number: "-", index: "00670", conjugation: "3rd" },
+{ word: "auditurus", voice: "active", tense: "future", mood: "participle", person: "-", number: "-", index: "00671", conjugation: "4th" },
+{ word: "audiendus", voice: "passive", tense: "future", mood: "participle", person: "-", number: "-", index: "00672", conjugation: "4th" },
 
 //
 ];
-console.log(grammarData[0].word);
+let grammarProgress = {};
+function buildGrammar(){
+    let savedGrammarProgress = localStorage.getItem("latinGrammarProgress");
+    if (savedGrammarProgress) {
+        grammarProgress = JSON.parse(savedGrammarProgress);
+    } else {
+        grammarProgress = {}; 
+    }
+
+    grammarData.forEach(word => {
+        const key = "i" + word.index;
+        
+        // If this word isn't tracked yet, set it to false
+        if (grammarProgress[key] === undefined) {
+            grammarProgress[key] = false;
+        }
+        
+        // Dynamically update the runtime grammar object's completed status
+        //word.completed = grammarProgress[key];
+    });
+
+    // Save it back to local storage just to keep it clean
+    localStorage.setItem("latinGrammarProgress", JSON.stringify(grammarProgress));
+}
+buildGrammar();

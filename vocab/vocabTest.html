@@ -333,7 +333,7 @@
 <body data-page-type="vocab">
     <img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
   <div style="margin-top: 10vh;" class = "title">Latin Vocabulary Tester</div>
-  <div style="color:var(--muted); margin: 0px 0px 10px 0px">Compose a word pool by selecting the stages and wordtypes you want; then, start testing you vocab~</div>
+  <div style="color:var(--muted); margin: 0px 0px 10px 0px"><span id="username-greet"></span>Compose a word pool by selecting the stages and wordtypes you want; then, start testing you vocab~</div>
   <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
         <div style="padding: 4px 8px; background: var(--card); border-radius: 15px; margin: 8px; display: flex; border: 1px solid var(--border); margin: 15px;">
             <input type="checkbox" id="darkModeToggle"></input>
@@ -434,6 +434,7 @@
 
 </body>
 <script src="vocabData.js"></script>
+<script src="../achievementData.js"></script>
 <script>
     let vocab = [];
 let pool = [];
@@ -447,6 +448,20 @@ let timeLeft = 0;
 
 /* LOAD VOCAB */
 vocab = vocabData;
+vocab.forEach(word => {
+    const key = "i" + word.index;
+    
+    // If this word isn't tracked yet, set it to false
+    if (vocabProgress[key] === undefined) {
+        vocabProgress[key] = false;
+    }
+    
+    // Dynamically update the runtime vocab object's completed status
+    word.completed = vocabProgress[key];
+});
+
+// Save it back to local storage just to keep it clean
+localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
 
 buildCheckboxes();
 
@@ -739,6 +754,7 @@ function nextQuestion() {
                 history.unshift(result);
                 localStorage.setItem("latinHistory",JSON.stringify(history));
                 console.log(localStorage.getItem('latinHistory'));
+            
         return;
     }
 
@@ -788,14 +804,9 @@ function nextQuestion() {
 let cooldown = false;
 document.getElementById("submitBtn").onclick = () => {
     if(cooldown === false){
-        const rawInput =
-            document.getElementById("answerInput")
-            .value;
-
+        const rawInput = document.getElementById("answerInput").value;
         const input = cleanAnswer(rawInput);
-
-        const englishToLatin =
-            document.getElementById("directionToggle").checked;
+        const englishToLatin = document.getElementById("directionToggle").checked;
 
         const correctAnswers = (
             englishToLatin
@@ -803,36 +814,37 @@ document.getElementById("submitBtn").onclick = () => {
                 : current.english
         );
 
-        const cleanedCorrectAnswers =
-            correctAnswers.map(answer => cleanAnswer(answer));
-
+        const cleanedCorrectAnswers = correctAnswers.map(answer => cleanAnswer(answer));
         const isCorrect = cleanedCorrectAnswers.includes(input);
+        
         if(input != ""){
             if (isCorrect) {
-
                 score++;
+                document.getElementById("feedback").textContent = "✅ Correct!";
 
-                document.getElementById("feedback").textContent =
-                    "✅ Correct!";
+                // 🌟 MARK AS COMPLETED IN STORAGE
+                updateWordCompletion(current, true);
 
-                if (document.getElementById("noRepeatToggle").checked) {
-
+                if (document.getElementById("noRepeatToggle").checked){
                     pool = pool.filter(w => w !== current);
                 }
                 setTimeout(nextQuestion, 700);
             } else {
-
                 document.getElementById("feedback").textContent =
                         `❌ Correct answer: ${correctAnswers.join(", ")}`;
-                    document.getElementById("submitBtn").addEventListener("click", function nextQ(){
+                updateWordCompletion(current, false);
+
+                // Note: I swapped this back to use standard .onclick to prevent your old event listener stacking bug!
+                /*document.getElementById("submitBtn").onclick = () => {
+                    nextQuestion();
+                };*/
+                document.getElementById("submitBtn").addEventListener("click", function nextQ(){
                         nextQuestion();
                         document.getElementById("submitBtn").removeEventListener("click", nextQ);
                     });
             }
 
-            document.getElementById("score").textContent =
-                `Score: ${score} / ${total}`;
-
+            document.getElementById("score").textContent = `Score: ${score} / ${total}`;
             stopTimer();
             cooldown = true;
         }
@@ -954,6 +966,16 @@ function capitalise(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+function updateWordCompletion(wordObj, isComplete) {
+    const key = "i" + wordObj.index;
+    
+    // Update the runtime objects
+    vocabProgress[key] = isComplete;
+    wordObj.completed = isComplete;
+    
+    // Save to localStorage
+    localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
+}
 
 </script>
 

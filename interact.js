@@ -1,5 +1,16 @@
 const savedTheme = localStorage.getItem('theme');
-const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: light)').matches;
+let sessionStart = new Date();
+let logins = JSON.parse(localStorage.getItem("savedLogins")) || [];
+if (!logins.includes(sessionStart.toLocaleDateString())){
+    logins.unshift(sessionStart.toLocaleDateString());
+}
+let loginTimes = JSON.parse(localStorage.getItem("savedLoginTimes")) || [];
+loginTimes.unshift(sessionStart.toLocaleTimeString());
+localStorage.setItem('savedLogins', JSON.stringify(logins));
+localStorage.setItem('savedLoginTimes', JSON.stringify(loginTimes));
+
+
 
 const friendlyInteractions = [
     { maxHour: 1,  text: "Midnight revision? The best memory hack is sleep!" },
@@ -233,7 +244,6 @@ window.onload = function() {
     const cozyInteraction = cozyInteractions.find(slot => hour < slot.maxHour) || cozyInteractions[0];
     const wittyInteraction = wittyInteractions.find(slot => hour < slot.maxHour) || wittyInteractions[0];
     const scholarInteraction = scholarInteractions.find(slot => hour < slot.maxHour) || scholarInteractions[0];
-  
   switch (document.body.dataset.pageType){
     case "base":
         darkModeInteract = timeQuote.text;
@@ -271,6 +281,12 @@ window.onload = function() {
     
   }
   console.log("Page type is: " + document.body.dataset.pageType);
+  console.log("Page is: " + window.location.pathname.split('/').pop());
+  let currentPage = window.location.pathname.split('/').pop()
+  let pagesLoaded=JSON.parse(localStorage.getItem('savedPagesLoaded')) || [];
+  pagesLoaded.push(currentPage);
+  localStorage.setItem('savedPagesLoaded', JSON.stringify(pagesLoaded));
+
   interact.innerHTML = `"${interaction}"`;
   darkInteract.innerHTML = `${darkModeInteract}`;
     shrinkTextToOneLine(".interact");
@@ -287,10 +303,30 @@ document.getElementById("darkModeToggle").onchange = e => {
     
     // Save the correct state to localStorage
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('achievementDarkMode', 'true');
+
+    
 };
 
 
+rerenderUsername();
 } 
+
+window.addEventListener("beforeunload", () => {
+
+    const seconds =
+        Math.floor((Date.now() - sessionStart) / 1000);
+
+    let total =
+        Number(localStorage.getItem("studySeconds")) || 0;
+
+    total += seconds;
+
+    localStorage.setItem("studySeconds", total);
+
+});
+
+
 function getElement(elementOrSelector) {
   if (typeof elementOrSelector === "string") {
     return document.querySelector(elementOrSelector);
@@ -356,14 +392,16 @@ function addMacraInputter() {
   if (document.getElementById("macraInputter")) return;
 
   document.body.insertAdjacentHTML("beforeend", `
-    <div id="macraInputter" style="width: 50%; position: fixed; height: 5vh; object-fit: cover; top: 93%; left: 25%; z-index: 9999; border: 2px solid var(--bluepop); border-radius: 50px; background-color: var(--card); padding: 2px 20px; display: flex; justify-content: center; align-items: center;">
-      <div class="macra-msg">Click to input macra → </div>
+    <div id="macraInputter" style="width: 25%; position: fixed; height: 10vh; object-fit: cover; top: 10%; left: 0%; z-index: 9999; border: 2px solid var(--bluepop); border-radius: 25px; background-color: var(--card); padding: 2px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div class="macra-msg">Click to input macra</div>
+      <div style="width: 100%; display: flex;">
       <div class="macra" type="button" data-macron="ā">ā</div>
       <div class="macra" type="button" data-macron="ē">ē</div>
       <div class="macra" type="button" data-macron="ī">ī</div>
       <div class="macra" type="button" data-macron="ō">ō</div>
       <div class="macra" type="button" data-macron="ū">ū</div>
-      <div class="macra-msg"> ← Optional, not needed </div>
+      </div>
+      
     </div>
 
     <style>
@@ -376,7 +414,7 @@ function addMacraInputter() {
         font-weight: 700;
         cursor: pointer;
         transition: background-color 0.15s ease;
-        width: 10%;
+        width: 20%;
         height: 90%;
         font-size: 2vh;
         display: flex;
@@ -390,9 +428,10 @@ function addMacraInputter() {
       }
 
       .macra-msg {
-        width: 25%;
+        width: 100%;
         text-align: center;
         font-size: 2cqh;
+        margin-bottom: 1vh;
       }
     </style>
   `);
@@ -428,7 +467,7 @@ function addMacraInputter() {
         );
 
         button.textContent = "Inputted";
-
+        localStorage.setItem('achievementMacronKeyboard', 'true');
         setTimeout(() => {
           button.innerHTML = macron;
         }, 800);
@@ -477,3 +516,730 @@ function calcScore(score, total){
     console.log(quote);
     return `<em>'${quote.latin}'</em><br><em>'${quote.english}'</em>`;
 }
+
+function rerenderUsername(){
+    let username = localStorage.getItem("username");
+    if (username ===""){
+      document.getElementById("username-greet").innerHTML = ``;
+      console.log("No username to load");
+    }else{
+      document.getElementById("username-greet").innerHTML = `Hi, <strong>${username}</strong>!.  `;
+      console.log("Username is: "+username);
+    }
+}
+
+/* =========================
+   UNIVERSAL MUSIC PLAYER
+========================= */
+
+(function () {
+    const MUSIC_STATE_KEY = "latinMusicState";
+
+    /*
+        Assumes:
+        /interact.js
+        /music/musicData.js
+        /music/song-file.mp3
+    */
+    const interactScript = [...document.scripts].find(script =>
+        script.src && script.src.includes("interact.js")
+    );
+
+    const siteRoot = interactScript
+        ? new URL("./", interactScript.src).href
+        : new URL("./", window.location.href).href;
+
+    const musicDataUrl = new URL("music/musicData.js", siteRoot).href;
+    const musicFolderUrl = new URL("music/", siteRoot).href;
+
+    let audio = new Audio();
+    let tracks = [];
+    let state = readMusicState();
+
+    let playerEls = {};
+    let lastSaveTime = 0;
+
+    function readMusicState() {
+        const saved = localStorage.getItem(MUSIC_STATE_KEY);
+
+        if (!saved) {
+            return {
+                currentIndex: null,
+                currentTime: 0,
+                isPlaying: false,
+                repeatSong: false,
+                loopPlaylist: true,
+                volume: 0.7
+            };
+        }
+
+        try {
+            return {
+                currentIndex: null,
+                currentTime: 0,
+                isPlaying: false,
+                repeatSong: false,
+                loopPlaylist: true,
+                volume: 0.7,
+                ...JSON.parse(saved)
+            };
+        } catch {
+            return {
+                currentIndex: null,
+                currentTime: 0,
+                isPlaying: false,
+                repeatSong: false,
+                loopPlaylist: true,
+                volume: 0.7
+            };
+        }
+    }
+
+    function saveMusicState(updates = {}) {
+        state = {
+            ...state,
+            ...updates
+        };
+
+        localStorage.setItem(MUSIC_STATE_KEY, JSON.stringify(state));
+    }
+
+    function loadMusicData() {
+        return new Promise((resolve, reject) => {
+            if (Array.isArray(window.musicData)) {
+                resolve();
+                return;
+            }
+
+            const script = document.createElement("script");
+            script.src = musicDataUrl;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    function prepareTracks() {
+        tracks = [...window.musicData].sort((a, b) =>
+            String(a.index).localeCompare(String(b.index))
+        );
+    }
+
+    function getTrackByIndex(index) {
+        return tracks.find(track => String(track.index) === String(index));
+    }
+
+    function getCurrentTrack() {
+        return getTrackByIndex(state.currentIndex) || tracks[0];
+    }
+
+    function getCurrentTrackPosition() {
+        return tracks.findIndex(track => String(track.index) === String(state.currentIndex));
+    }
+
+    function getTrackSrc(track) {
+        return new URL(track.fileName, musicFolderUrl).href;
+    }
+
+    function escapeHTML(value) {
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function formatTime(seconds) {
+        if (!seconds || Number.isNaN(seconds)) return "0:00";
+
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+
+        return `${mins}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function injectMusicStyles() {
+        if (document.getElementById("musicPlayerStyles")) return;
+
+        const style = document.createElement("style");
+        style.id = "musicPlayerStyles";
+
+        style.textContent = `
+            body.has-music-player {
+                padding-bottom: 120px !important;
+            }
+
+            .music-player {
+                position: fixed;
+                left: 50%;
+                bottom: 16px;
+                transform: translateX(-50%);
+                z-index: 10000;
+                width: min(950px, calc(100vw - 32px));
+                background: var(--card, #ffffff);
+                color: var(--text, #1f2937);
+                border: 1px solid var(--border, #e5e7eb);
+                border-radius: 18px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+                padding: 12px;
+                box-sizing: border-box;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .music-player-main {
+                min-width: 0;
+            }
+
+            .music-player-title {
+                font-weight: 800;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .music-player-subtitle {
+                font-size: 12px;
+                color: var(--muted, #6b7280);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-top: 2px;
+            }
+
+            .music-player-controls {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .music-player button {
+                border: 1px solid var(--border, #e5e7eb);
+                background: var(--bg, #f6f7fb);
+                color: var(--text, #1f2937);
+                border-radius: 10px;
+                padding: 8px 10px;
+                cursor: pointer;
+                font-weight: 700;
+            }
+
+            .music-player button.active {
+                background: var(--accent, #4f46e5);
+                color: white;
+                border-color: var(--accent, #4f46e5);
+            }
+
+            .music-progress-row {
+                display: grid;
+                grid-template-columns: 42px 1fr 42px;
+                gap: 8px;
+                align-items: center;
+                margin-top: 8px;
+                font-size: 12px;
+                color: var(--muted, #6b7280);
+            }
+
+            .music-progress,
+            .music-volume {
+                width: 100%;
+            }
+
+            .music-volume-wrap {
+                width: 90px;
+            }
+
+            .music-library-section {
+                margin-bottom: 24px;
+            }
+
+            .music-track-card {
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                border: 1px solid transparent;
+            }
+
+            .music-track-card.is-current {
+                border-color: var(--accent, #4f46e5);
+            }
+
+            .music-track-name {
+                font-weight: 800;
+            }
+
+            .music-track-meta {
+                font-size: 12px;
+                color: var(--muted, #6b7280);
+                margin-top: 3px;
+            }
+
+            .music-track-source {
+                font-size: 12px;
+                color: var(--accent, #4f46e5);
+                text-decoration: none;
+            }
+
+            @media (max-width: 700px) {
+                .music-player {
+                    grid-template-columns: 1fr;
+                }
+
+                .music-player-controls {
+                    justify-content: flex-start;
+                }
+
+                .music-volume-wrap {
+                    width: 100%;
+                }
+            }
+        `;
+
+        document.head.appendChild(style);
+    }
+
+    function buildMiniPlayer() {
+        if (document.getElementById("musicMiniPlayer")) return;
+
+        document.body.classList.add("has-music-player");
+
+        const player = document.createElement("div");
+        player.id = "musicMiniPlayer";
+        player.className = "music-player";
+
+        player.innerHTML = `
+            <div class="music-player-main">
+                <div class="music-player-title" id="musicPlayerTitle">No song selected</div>
+                <div class="music-player-subtitle" id="musicPlayerSubtitle">Choose a track from the music library</div>
+
+                <div class="music-progress-row">
+                    <span id="musicCurrentTime">0:00</span>
+                    <input id="musicProgress" class="music-progress" type="range" min="0" max="100" value="0">
+                    <span id="musicDuration">0:00</span>
+                </div>
+            </div>
+
+            <div class="music-player-controls">
+                <button type="button" id="musicPrevBtn">⏮</button>
+                <button type="button" id="musicPlayBtn">▶</button>
+                <button type="button" id="musicNextBtn">⏭</button>
+                <button type="button" id="musicRepeatBtn" title="Repeat current song">🔂</button>
+                <button type="button" id="musicLoopBtn" title="Loop playlist">🔁</button>
+                <div class="music-volume-wrap">
+                    <input id="musicVolume" class="music-volume" type="range" min="0" max="1" step="0.01">
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(player);
+
+        playerEls = {
+            title: document.getElementById("musicPlayerTitle"),
+            subtitle: document.getElementById("musicPlayerSubtitle"),
+            currentTime: document.getElementById("musicCurrentTime"),
+            duration: document.getElementById("musicDuration"),
+            progress: document.getElementById("musicProgress"),
+            volume: document.getElementById("musicVolume"),
+            prevBtn: document.getElementById("musicPrevBtn"),
+            playBtn: document.getElementById("musicPlayBtn"),
+            nextBtn: document.getElementById("musicNextBtn"),
+            repeatBtn: document.getElementById("musicRepeatBtn"),
+            loopBtn: document.getElementById("musicLoopBtn")
+        };
+
+        playerEls.volume.value = state.volume;
+        audio.volume = state.volume;
+
+        playerEls.prevBtn.addEventListener("click", playPreviousTrack);
+        playerEls.playBtn.addEventListener("click", togglePlay);
+        playerEls.nextBtn.addEventListener("click", playNextTrack);
+
+        playerEls.repeatBtn.addEventListener("click", () => {
+            saveMusicState({ repeatSong: !state.repeatSong });
+            updatePlayerDisplay();
+        });
+
+        playerEls.loopBtn.addEventListener("click", () => {
+            saveMusicState({ loopPlaylist: !state.loopPlaylist });
+            updatePlayerDisplay();
+        });
+
+        playerEls.progress.addEventListener("input", () => {
+            if (!audio.duration) return;
+
+            audio.currentTime = (Number(playerEls.progress.value) / 100) * audio.duration;
+
+            saveMusicState({
+                currentTime: audio.currentTime
+            });
+        });
+
+        playerEls.volume.addEventListener("input", () => {
+            audio.volume = Number(playerEls.volume.value);
+
+            saveMusicState({
+                volume: audio.volume
+            });
+        });
+    }
+
+    function updatePlayerDisplay() {
+        const track = getCurrentTrack();
+
+        if (!track) return;
+
+        playerEls.title.textContent = track.name;
+        playerEls.subtitle.textContent = `${track.type} • ${track.author}`;
+
+        playerEls.playBtn.textContent = audio.paused ? "▶" : "⏸";
+
+        playerEls.repeatBtn.classList.toggle("active", state.repeatSong);
+        playerEls.loopBtn.classList.toggle("active", state.loopPlaylist);
+
+        playerEls.currentTime.textContent = formatTime(audio.currentTime);
+        playerEls.duration.textContent = formatTime(audio.duration);
+
+        if (audio.duration) {
+            playerEls.progress.value = (audio.currentTime / audio.duration) * 100;
+        } else {
+            playerEls.progress.value = 0;
+        }
+
+        document.querySelectorAll("[data-music-track]").forEach(button => {
+            button.classList.toggle(
+                "is-current",
+                button.dataset.musicTrack === String(state.currentIndex)
+            );
+        });
+    }
+
+    function loadTrack(trackIndex, options = {}) {
+        const track = getTrackByIndex(trackIndex) || tracks[0];
+
+        if (!track) return;
+
+        const shouldPlay = options.play || false;
+        const startTime = options.startTime || 0;
+
+        saveMusicState({
+            currentIndex: track.index,
+            currentTime: startTime
+        });
+
+        audio.src = getTrackSrc(track);
+        audio.load();
+
+        audio.addEventListener(
+            "loadedmetadata",
+            () => {
+                if (startTime > 0 && audio.duration) {
+                    audio.currentTime = Math.min(startTime, Math.max(audio.duration - 0.25, 0));
+                }
+
+                updatePlayerDisplay();
+
+                if (shouldPlay) {
+                    playCurrentTrack();
+                }
+            },
+            { once: true }
+        );
+
+        updatePlayerDisplay();
+    }
+
+    function playCurrentTrack() {
+        const track = getCurrentTrack();
+
+        if (!track) return;
+
+        if (!audio.src) {
+            loadTrack(track.index, {
+                play: true,
+                startTime: state.currentTime || 0
+            });
+
+            return;
+        }
+
+        audio.play()
+            .then(() => {
+                saveMusicState({ isPlaying: true });
+                updatePlayerDisplay();
+            })
+            .catch(() => {
+                saveMusicState({ isPlaying: false });
+                updatePlayerDisplay();
+            });
+    }
+
+    function pauseCurrentTrack() {
+        audio.pause();
+
+        saveMusicState({
+            isPlaying: false,
+            currentTime: audio.currentTime || 0
+        });
+
+        updatePlayerDisplay();
+    }
+
+    function togglePlay() {
+        if (audio.paused) {
+            playCurrentTrack();
+        } else {
+            pauseCurrentTrack();
+        }
+    }
+
+    function playTrackByIndex(trackIndex) {
+        loadTrack(trackIndex, {
+            play: true,
+            startTime: 0
+        });
+    }
+
+    function playNextTrack() {
+        if (tracks.length === 0) return;
+
+        let currentPosition = getCurrentTrackPosition();
+
+        if (currentPosition === -1) {
+            currentPosition = 0;
+        }
+
+        let nextPosition = currentPosition + 1;
+
+        if (nextPosition >= tracks.length) {
+            nextPosition = 0;
+        }
+
+        loadTrack(tracks[nextPosition].index, {
+            play: true,
+            startTime: 0
+        });
+    }
+
+    function playPreviousTrack() {
+        if (tracks.length === 0) return;
+
+        let currentPosition = getCurrentTrackPosition();
+
+        if (currentPosition === -1) {
+            currentPosition = 0;
+        }
+
+        let previousPosition = currentPosition - 1;
+
+        if (previousPosition < 0) {
+            previousPosition = tracks.length - 1;
+        }
+
+        loadTrack(tracks[previousPosition].index, {
+            play: true,
+            startTime: 0
+        });
+    }
+
+    function handleTrackEnded() {
+        if (state.repeatSong) {
+            loadTrack(state.currentIndex, {
+                play: true,
+                startTime: 0
+            });
+
+            return;
+        }
+
+        const currentPosition = getCurrentTrackPosition();
+        const isLastTrack = currentPosition === tracks.length - 1;
+
+        if (!isLastTrack) {
+            playNextTrack();
+            return;
+        }
+
+        if (state.loopPlaylist) {
+            loadTrack(tracks[0].index, {
+                play: true,
+                startTime: 0
+            });
+
+            return;
+        }
+
+        saveMusicState({
+            isPlaying: false,
+            currentTime: 0
+        });
+
+        updatePlayerDisplay();
+    }
+
+    function connectAudioEvents() {
+        audio.addEventListener("play", () => {
+            saveMusicState({ isPlaying: true });
+            updatePlayerDisplay();
+        });
+
+        audio.addEventListener("pause", () => {
+            saveMusicState({
+                isPlaying: false,
+                currentTime: audio.currentTime || 0
+            });
+
+            updatePlayerDisplay();
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            updatePlayerDisplay();
+
+            const now = Date.now();
+
+            if (now - lastSaveTime > 1000) {
+                lastSaveTime = now;
+
+                saveMusicState({
+                    currentTime: audio.currentTime || 0,
+                    isPlaying: !audio.paused
+                });
+            }
+        });
+
+        audio.addEventListener("ended", handleTrackEnded);
+
+        window.addEventListener("beforeunload", () => {
+            saveMusicState({
+                currentTime: audio.currentTime || 0,
+                isPlaying: !audio.paused
+            });
+        });
+    }
+
+    function buildMusicHomepage() {
+        const library = document.getElementById("musicLibrary");
+
+        if (!library) return;
+
+        library.innerHTML = "";
+
+        const groupedTracks = {};
+
+        for (let track of tracks) {
+            if (!groupedTracks[track.type]) {
+                groupedTracks[track.type] = [];
+            }
+
+            groupedTracks[track.type].push(track);
+        }
+
+        const sortedTypes = Object.keys(groupedTracks).sort((typeA, typeB) => {
+            const aFirstIndex = groupedTracks[typeA][0].index.slice(0, 2);
+            const bFirstIndex = groupedTracks[typeB][0].index.slice(0, 2);
+
+            return aFirstIndex.localeCompare(bFirstIndex);
+        });
+
+        for (let type of sortedTypes) {
+            const section = document.createElement("div");
+            section.className = "category-card music-library-section";
+
+            const heading = document.createElement("h2");
+            heading.textContent = type;
+            section.appendChild(heading);
+
+            const trackList = document.createElement("div");
+            trackList.className = "link-group";
+
+            groupedTracks[type]
+                .sort((a, b) => String(a.index).localeCompare(String(b.index)))
+                .forEach(track => {
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.className = "nav-button music-track-card";
+                    button.dataset.musicTrack = track.index;
+
+                    button.innerHTML = `
+                        <div>
+                            <div class="music-track-name">${escapeHTML(track.name)}</div>
+                            <div class="music-track-meta">
+                                ${escapeHTML(track.author)} • Track ${escapeHTML(track.index)} • <a href="${track.link}" style="margin: 0 0 0px 0px;" class="music-track-source" rel="noopener noreferrer" target="_blank"><u>Source</u></a>
+                            </div>
+                        </div>
+                        <span>Play</span>
+                    `;
+
+                    button.addEventListener("click", () => {
+                        playTrackByIndex(track.index);
+                    });
+
+                    trackList.appendChild(button);
+
+                    /*if (track.link) {
+                        const source = document.createElement("a");
+                        source.href = track.link;
+                        source.target = "_blank";
+                        source.rel = "noopener noreferrer";
+                        source.className = "music-track-source";
+                        source.textContent = "Source / credit";
+                        source.style.margin = "0 0 8px 16px";
+                        trackList.appendChild(source);
+                    }*/
+                });
+
+            section.appendChild(trackList);
+            library.appendChild(section);
+        }
+
+        updatePlayerDisplay();
+    }
+
+    async function initMusicSystem() {
+        try {
+            await loadMusicData();
+        } catch {
+            console.warn("Music data could not be loaded.");
+            return;
+        }
+
+        if (!Array.isArray(window.musicData) || window.musicData.length === 0) {
+            return;
+        }
+
+        prepareTracks();
+        injectMusicStyles();
+        buildMiniPlayer();
+        connectAudioEvents();
+        buildMusicHomepage();
+
+        const startingTrack = getCurrentTrack();
+
+        if (!state.currentIndex && startingTrack) {
+            saveMusicState({
+                currentIndex: startingTrack.index,
+                currentTime: 0,
+                isPlaying: false
+            });
+        }
+
+        loadTrack(state.currentIndex, {
+            play: state.isPlaying,
+            startTime: state.currentTime || 0
+        });
+
+        window.MusicPlayer = {
+            playTrack: playTrackByIndex,
+            play: playCurrentTrack,
+            pause: pauseCurrentTrack,
+            next: playNextTrack,
+            previous: playPreviousTrack,
+            getState: () => state
+        };
+    }
+
+    window.addEventListener("load", initMusicSystem);
+})();

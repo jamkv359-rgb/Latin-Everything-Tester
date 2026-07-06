@@ -376,7 +376,7 @@
 <div class="container">
     <header>
         <h2>Latin Verb Drill</h2>
-        <div style="color:var(--muted); margin: 5px 0px 0px 0px">Select what verb endings you want, then start testing~</div>
+        <div style="color:var(--muted); margin: 5px 0px 0px 0px"><span id="username-greet"></span>Select what verb endings you want, then start testing~</div>
         <div style="display:flex; gap:10px;">
             <div class="interact" style="background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px; margin-top: 10px;"></div>
 
@@ -473,7 +473,7 @@
         </div>
     </section>
 </div>
-
+<script src="../achievementData.js"></script>
 <script>
     const verbBank = {
         "1": [["amo", "amare", "amavi", "amatus"], ["laudo", "laudare", "laudavi", "laudatus"], ["voco", "vocare", "vocavi", "vocatus"], ["paro", "parare", "paravi", "paratus"], ["specto", "spectare", "spectavi", "spectatus"], ["narro", "narrare", "narravi", "narratus"], ["navigo", "navigare", "navigavi", "navigatus"], ["porto", "portare", "portavi", "portatus"], ["pugno", "pugnare", "pugnavi", "pugnatus"], ["supero", "superare", "superavi", "superatus"]],
@@ -638,6 +638,7 @@
                 history.unshift(result);
                 localStorage.setItem("latinHistory",JSON.stringify(history));
             console.log(localStorage.getItem('latinHistory'));
+            
     }
 
     function resetTable() {

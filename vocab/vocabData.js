@@ -1,4 +1,4 @@
-const vocabData = [
+let vocabData = [
     /*
   { stage: "0", type: "Noun", latin: ["canis"], english: ["dog"] },
   { stage: "0", type: "Verb", latin: "laboro", english: "work" },
@@ -914,3 +914,28 @@ const vocabData = [
 { stage: "40", type: "adverb", subtype: "temporal", index: "40039", info: "", latin: ["dēmum"], english: ["at last"] },
 { stage: "40", type: "adverb", subtype: "regular", index: "40040", info: "", latin: ["tum dēmum"], english: ["then at last", "only then"] },
 ];
+
+
+let vocabProgress = {};
+
+const savedProgress = localStorage.getItem("latinVocabProgress");
+if (savedProgress) {
+    vocabProgress = JSON.parse(savedProgress);
+} else {
+    vocabProgress = {}; 
+}
+
+vocabData.forEach(word => {
+    const key = "i" + word.index;
+    
+    // If this word isn't tracked yet, set it to false
+    if (vocabProgress[key] === undefined) {
+        vocabProgress[key] = false;
+    }
+    
+    // Dynamically update the runtime vocab object's completed status
+    word.completed = vocabProgress[key];
+});
+
+// Save it back to local storage just to keep it clean
+localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));

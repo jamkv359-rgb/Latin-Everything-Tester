@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Latin Grammar Suite — Dashboard</title>
+<title>Homepage</title>
 <style>
   :root {
     --bg: #f6f7fb;
@@ -61,7 +61,7 @@
     background: var(--bg);
     color: var(--text);
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     padding: 40px 20px;
   }
 
@@ -158,17 +158,20 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--accent);
-    flex: 1;
+    
     cursor: pointer;
     transition: all 0.2s;
-    width: calc(20%-10px);
-    
+    /*width: 25%;flex: 1;*/
+    display: flex;
+    flex-direction: column;
   }
 
-  .ad:hover {
-    background: var(--card);
-    border-color: var(--accent);
+  .score{
+    color: var(--greenpop);
+    font-size: 20px;
   }
+  .xp-factor {width: calc(25% - 30px);}
+  .adz {width: 50%}
 /* <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed; top: 0; left: 0;   z-index: 9999;" >*/
 </style>
 <script src="./interact.js"></script>
@@ -179,16 +182,58 @@
 <div class="container" >
   <div class="header">
     <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
-    <h1 style="margin-top: 10vh;">Essential Latin Revision Suite</h1>
-    <p style="color:var(--muted);">Select a module to begin your practice! Good luck studying~</p>
+    <h1 style="margin-top: 10vh;">Latin Study Aid</h1>
+    <p style="color:var(--muted);"><span id="username-greet"></span>Select a module to begin your practice! Good luck studying~</p>
     <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
     <div style="padding: 2px 8px; background: var(--card); border-radius: 4px; margin: 8px; display: flex; border: 1px solid var(--border);">
         <input type="checkbox" id="darkModeToggle"></input>
         <div class="dark-interact">Dark Mode.</div>
-        
     </div>
   </div>
-
+  <section class="adContainer bottom" style="justify-content: center; align-items: center;">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Username Input</div>
+        <div class='username-interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+        <input type="text" class="username-input" placeholder="Enter your username;" style="background-color: var(--bg); color: var(--text); padding: 10px 14px;border-radius: 10px; border: 1px solid var(--border);"></input>
+        <button onclick="usernameUpdate()" style="padding: 10px 14px; font-size: 14px; border-radius: 10px; cursor: pointer; transition: 0.25s ease; background: var(--bg); color: var(--text); border: 1px solid var(--border);">Input Username</button>
+        
+  </section>
+  <section class="adContainer bottom">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Level</div>
+        <div class="levelDisplay"></div>
+        <div class="ads"> 
+            <div class="ad adz">Current Level: <div class='score' id="level">Calculate XP to find out your stats!</div></div>
+            <div class="ad adz">Total XP: <div class='score' id="xp">-</div></div>
+        </div>
+        <div class="xp-bar" style="height: fit-content; width: 100%; border: 1px solid var(--border); border-radius: 10px; background-color: var(--bg); margin: 10px 0px 10px 0px;">
+          <strong><div class="xp-bar-fill" style="height:30px; color: var(--text); background-color:var(--greenpop);border-radius: 10px; width: 0%;"></div></strong>
+        </div>
+        <button onclick="calculateXP()" style="padding: 10px 14px; font-size: 14px; border: none; border-radius: 10px; cursor: pointer; transition: 0.25s ease; background: var(--bg); color: var(--text); border: 1px solid var(--border);">Calculate XP</button>
+        <div class="ads xp-factors" style="flex-wrap: wrap;">
+            <div class="ad xp-factor">Tests: <div class='score' id="xp-tests">-</div></div>
+            <div class="ad xp-factor">Vocab Completion: <div class='score' id="xp-vocab">-</div></div>
+            <div class="ad xp-factor">Grammar Completion: <div class='score' id="xp-grammar">-</div></div>
+            <div class="ad xp-factor">Study Hours: <div class='score' id="xp-hours">-</div></div>
+            <div class="ad xp-factor">Daily Logins: <div class='score' id="xp-daily">-</div></div>
+            <div class="ad xp-factor">Current Login Streak: <div class='score' id="xp-streak">-</div></div>
+            <div class="ad xp-factor">Achievements: <div class='score' id="xp-achievements">-</div></div>
+        </div>
+  </section>
+<section class="adContainer bottom" style="flex-wrap: wrap;">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Dashboard</div>
+        <div class="ads xp-factors" style="flex-wrap: wrap;">
+            <div class="ad xp-factor">Vocab Progress: <div class='score' id="div-vocab-completed"></div></div>
+            <div class="ad xp-factor">Grammar Progress: <div class='score' id="div-grammar-completed"></div></div>
+            <div class="ad xp-factor">Achievement Progress: <div class='score' id="div-achievement-completed"></div></div>
+            <div class="ad xp-factor">Questions Completed: <div class='score' id="div-questions-completed"></div></div>
+            <div class="ad xp-factor">Average Score: <div class='score' id="div-average-score"></div></div>
+            <div class="ad xp-factor">Tests Completed: <div class='score' id="div-tests-completed"></div></div>
+            <div class="ad xp-factor">Total Hours Studied: <div class='score' id="div-hours-studied"></div></div>
+            <div class="ad xp-factor">Total Login Days: <div class='score' id="div-login-days"></div></div>
+            <div class="ad xp-factor">Current Login Streak: <div class='score' id="div-login-streak"></div></div>
+            <div class="ad xp-factor">Longest Login Streak: <div class='score' id="div-longest-streak"></div></div>
+            
+        </div>
+  </section>
   <div class="dashboard-grid">
     <section class="category-card">
       <h2 style="color: var(--bluepop);">Vocab</h2>
@@ -224,37 +269,792 @@
       </div>
     </section>
     <section class="category-card">
-      <h2 style="color: var(--greenpop)">Test Database</h2>
+      <h2 style="color: var(--greenpop)">Personalised Info</h2>
       <div class="link-group">
         <a href="./testData.html" class="nav-button">View your tests<span>→</span></a>
+        <a href="./achievements.html" class="nav-button">Achievements homepage<span>→</span></a>
       </div>
-    </section>
-    <section class="category-card">
-      <h2 style="color: var(--purplepop)">Beta Archives</h2>
-      <div class="link-group">
-        <a href="./archives/archivesHome.html" class="nav-button">Beta archives homepage<span>→</span></a>
-      </div>
-    </section>
     
-  </div>
-  <section class="adContainer bottom">
-        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Information</div>
-        <div class="ads">
-            <div class="ad">1</div>
-            <div class="ad">2</div>
-            <div class="ad">3</div>
-            <div class="ad">4</div>
-            <div class="ad">5</div>
-            
-        </div>
-  </section>
-  
-  <div class="ad" onclick="window.location.href='./about.html'">About</div>
-  
+    </section>
+
+    <section class="category-card">
+      <h2 style="color: var(--purplepop)">Other</h2>
+      <div class="link-group">
+        <a href="./music/music.html" class="nav-button">Music Track Library<span>→</span></a>
+        <a href="./archives/archivesHome.html" class="nav-button">Beta Archives homepage<span>→</span></a>
+        <a href="./about.html" class="nav-button">Credits & Info<span>→</span></a>
+      </div>
+    </section>
+
+  </div>  
 </div>
 
+<script src="./vocab/vocabData.js"></script>
+<script src="./verbs/grammarData.js"></script>
+<script src="../achievementData.js"></script>
+<script>
+  let divVocabCompleted = document.getElementById("div-vocab-completed");
+  let divGrammarCompleted = document.getElementById("div-grammar-completed");
+  let divAchievementCompleted = document.getElementById("div-achievement-completed");
+  let divTestsCompleted = document.getElementById("div-tests-completed");
+  let divQuestionsCompleted = document.getElementById("div-questions-completed");
+  let divBestLoginStreak = document.getElementById("div-longest-streak");
+  let divAverageScore = document.getElementById("div-average-score");
+  let divHoursStudied = document.getElementById("div-hours-studied");
+  let divLoginDays = document.getElementById("div-login-days");
+  let divLoginStreak = document.getElementById("div-login-streak");
+  let divUsernameInput = document.querySelector(".username-input");
+  let divUsernameInteract = document.querySelector(".username-interact");
+  let username = localStorage.getItem("username") || ""; //username is a single string value
+
+  function update(){
+    let vocabCount = 0;
+    let vocabTotal = 0;
+      for (let prop in vocabProgress){
+        if (vocabProgress[prop]===true){
+          vocabCount+=1;
+        }
+        vocabTotal+=1;
+      }
+      divVocabCompleted.textContent=`${vocabCount}/${vocabTotal} => ${Math.round((vocabCount/vocabTotal)*100)}%`;
+
+    let grammarCount = 0;
+    let grammarTotal = 0;
+    let grammarProgress = JSON.parse(localStorage.getItem("latinGrammarProgress"));
+      for (let prop in grammarProgress){
+        if (grammarProgress[prop]===true){
+          grammarCount+=1;
+        }
+        grammarTotal+=1;
+      }
+      divGrammarCompleted.textContent=`${grammarCount}/${grammarTotal} => ${Math.round((grammarCount/grammarTotal)*100)}%`;
+      let achievementCount=0;
+      let achievementTotal=0;
+      for (let prop in achievementProgress){
+        if (achievementProgress[prop]===true){
+          achievementCount+=1;
+        }
+        achievementTotal+=1;
+      }
+      divAchievementCompleted.textContent=`${achievementCount}/${achievementTotal} => ${Math.round((achievementCount/achievementTotal)*100)}%`;
+      
+      let testHistory = JSON.parse(localStorage.getItem("latinHistory")) ||[];
+
+      divTestsCompleted.textContent = testHistory.length; 
+
+    let questionTotal=0;
+    let scoreTotal=0;
+    let highestScore = 0;
+      for (let test of testHistory){
+        questionTotal+=test.total;
+        scoreTotal+=test.score;
+        if (highestScore < test.percent){
+          highestScore = test.percent;
+        }
+      }
+      let averageScore = (scoreTotal/questionTotal)*100;
+      divQuestionsCompleted.textContent = questionTotal;
+      divAverageScore.textContent = scoreTotal +"/"+questionTotal + " => "+Math.floor(averageScore)+"%";
+      //divHighestScore.textContent = highestScore;
+      
+
+    let studySeconds = Number(localStorage.getItem("studySeconds")) || 0;
+      let studyHours = (studySeconds / 3600).toFixed(1);
+      divHoursStudied.textContent = studyHours;
+
+
+    if (username ===""){
+      divUsernameInput.placeHolder = "Input username here...";
+      divUsernameInteract.textContent = "Type in your username; I'll remember it!";
+    }else{
+      divUsernameInput.placeHolder = "Change username here...";
+      divUsernameInteract.textContent = "Current username: '"+username+"'. Type here to change it.";
+    }
+    
+  }
+  divLoginStreak.textContent = getLoginStreaks().current;
+  divBestLoginStreak.textContent = getLoginStreaks().longest;
+  divLoginDays.textContent = JSON.parse(localStorage.getItem('savedLogins')).length;
+  function usernameUpdate(){
+    
+    username=divUsernameInput.value;
+    localStorage.setItem("username", username);
+    update();
+    rerenderUsername();
+    console.log("New username is: " + username);
+  }
+  update();
+  
+/*
+Notes:
+- Everything is saved as a String
+
+Lines:
+  localStorage.setItem(key, value);
+  localStorage.setItem("darkMode", "true");
+
+  let dark = localStorage.getItem("darkMode");
+  //Now, dark = "true"; (Still string)
+
+  let dark = if(localStorage.getItem("darkMode")=="true");
+  let dark = localStorage.getItem("dark") === "true";
+  //Now, dark = true; (Actual boolean) 
+
+  localStorage.removeItem("darkMode");
+
+  localStorage.clear();
+
+  localStorage.setItem("history",JSON.stringify(history));
+    //setItem() can be used to first define a key & value, or cnage the value
+
+Arrays:
+  //Assume: let stages=[1,2,3,4];
+  localStorage.setItem("stages", JSON.stringify(stages));
+  //This saves "[1,2,3,4]" instead of "1,2,3,4"
+  JSON.parse(localStorage.getItem("history"))
+  //This retrievies localStorage and parses it  
+Objects:
+  //Assume: let player={
+    score:25,
+    darkMode:true
+    };
+  localStorage.setItem("player", JSON.stringify(player));
+  //This saves: "let player={ score:25, darkMode:true };"
+
+  If nothing is stored, use:
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+Use this everywhere:
+  function saveData(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function loadData(key, defaultValue) {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : defaultValue;
+  }
+
+
+Dates:
+  const now = new Date(); 
+  const thisDate = new Date("2026-06-20");
+  if(today>testDate){}      //Checks if 1st value is "later" than second
+  now.getFullYear()	        //2026
+  now.getMonth()	          //5 (June, start at 0 (January = 0))
+  now.getDate()	            //29 (29th of June)
+  now.getDay()	            //1 (Monday, start at 0 (January = 0))
+  now.getHours()	          //Hour (24hr)	17
+  now.getMinutes()	        //42 (Min)
+  now.getSeconds()	        //31 (Sec) 
+  now.toLocaleDateString()  //Australia: 29/06/2026, America: 06/29/2026
+  now.toLocaleTimeString()  //5:42:31 PM
+  now.toISOString();        //2026-06-29T07:42:31.112Z
+
+
+BETA: 
+  Hey everyone! First devlog: I started making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language. It contains: 
+  - A vocab type-in tester, with all the words from stage 1-40 (about 888 words). The user can filter the wordpool, and thus what they test themselves on, by 2 clasifications: stage, and type. This means that they can choose specifically what words to revise. There is also a 'remove words once correct' option, so the user doesn't encounter the same word twice.
+  - A vocab dictionary/database, displaying the entire database in an organised and sortable table. The user can search specific words, or sort by stage or word type.
+  - A noun endings tester, where the user can test themselves on the numberous quantities of noun endings, formatted into a table. They can filter out what declentions or cases they want, as well.
+  - A pronoun ending tester, where the user can  revise the varies endings for the various pronouns in Latin. They can choose what pronoun they test themselves on, with all its endings formatted in a table.
+  - Verb ending testers. The number of endings that latin verbs can take is gargantuan (about 672), so I made tests with different table layouts. Either way, they can filter the verb table by: person, number, tense, mood, conjugation, and voice.- A vocab multi-choice tester, where the user is given a latin word, and must choose the correct english meaning out of 4 options.
+  - A vocab Hangman game. essentially, it's 'latin Hangman';where the user is given only the length of a latin word, its english meaning, its gramatical type/classification, and must guess it, either by letters or the full word.
+  - A vocab anagram scramble - where user is given a scrambled latin word, its english meaning, and must unscramble it.
+  Recently, I've added a few neat features to make the website more interactive.
+  - 'Previous tests' - The user can see the results of previous tests they've done on this website, saved to localStorage. The average percentage, standard deviation, highest test score, and total quesitons answered can be seen. Note that this function works only for the vocab type in, noun endings, pronoun, and verb endings tests
+  - Website colour themes - 2 different colour themes are available for all pages - light and dark mode, changeable by tickbox. The user preference is saved to localStorage, so they don't have to change it each time.
+  - Achievements - the user can see what achievements they have and haven't completed. The achievements are saved to loacalStorage, sorted by difficulty, and most definitely never end.
+  - Vocab and Verb grammar completion progress - the user can see what words/verb endings they have and haven't answered correctly to in their history on this website, saved to localStorage.
+  - XP and level feature - the user can accumilate experience points and increase their level, by acing tests, ticking off more vocab words/verb endings, logging in daily, or unlocking achievements.
+  - Time-sensitive quotes - at the top of each page, the user can read a quote. Its attitude may be inspirational, friendly, witty, or reference ancient Roman scholars, depending on what page the user is on. Their comment also depends on what time of day it is, either chastising you to sleep or praising you as an early bird.
+  - Post-test Latin quotes - the user also gets a quote in Latin (from famous Roman history), and its english translation every time they finish a test, depending on how well they did. It's randomly generated, so the same score won't yield the same quote. it can be inspirational, encouraging of your failure, or pleased with your performance.
+  - Beta version archives - The user can access a multitude of scrapped pages that were either replaced or not needed as this project developed.  They're unpolished; no dark mode, no localStorage.
+  - Sample tests - the user can access past test papers from my school, now digitalised. Currently there's only one, but there might be more.
+  In the existing fronted, I used AI to help me with: composing the quotes, giving me some ideas, debugging or formatting, and make the colour scheme. But in the beta-version website pages, AI was used a lot more.
+  I also used excel to help make the huge databases; for vocab, grammar, and achievements.
+  In the future, I'm planning on adding:
+  - Translation; the third, final, pillar of academic Latin, available to be tested 
+  - Playlist for public-domain, lofi beats music, playable anywhere on the website
+  - More practice tests (I'll probs ask my school)
+  - Login streaks, maybe a health bar that renews every day that the user logs in
+  - Username input
+  - 'Notes pages'; the user can view notes on latin - prammar points, how to translate phrases/clauses, etc
+  -  Multiple different themes & colours
+  Obviously, I might not complete ALL of these, but let's see how I run. Thanks for your time!
+
+
+DESC:
+  Hey everyone! I'm making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language. It contains: 
+  - A vocab type-in tester, with all the words from stage 1-40 (about 888 words).
+  - A vocab dictionary/database, displaying the entire database in an organised and sortable table. The user can search specific words, or sort by stage or word type.
+  - Various grammar testers - one for noun endings, another for pronouns, and a few for the 672 verb endings. The frontends and table formatting for these can be altered by the user. 
+  - Different vocab games; for example, a Hangman or Unscramble game, multi-choice quizzes, etc.
+  - Achievements, test performance, Experience Points and Level system, multiple website themes. 
+  I've  also included a multitude of other frontend, interactive, and personalised features, making this website more like a duolingo than a static app.
+
+FIRST DEVLOG:
+  Hey everyone! First devlog: I started making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language.
+  Recently, I’ve added a few neat features to make the website more interactive.
+  - ‘Previous tests’ - The user can see the results of previous tests they’ve done on this website, saved to localStorage. The average percentage, standard deviation, highest test score, and total quesitons answered can be seen. Note that this function works only for the vocab type in, noun endings, pronoun, and verb endings tests
+  - Website colour themes - 2 different colour themes are available for all pages - light and dark mode, changeable by tickbox. The user preference is saved to localStorage, so they don’t have to change it each time.
+  - Achievements - the user can see what achievements they have and haven’t completed. The achievements are saved to loacalStorage, sorted by difficulty, and most definitely never end.
+  - Vocab and Verb grammar completion progress - the user can see what words/verb endings they have and haven’t answered correctly to in their history on this website, saved to localStorage.
+  - XP and level feature - the user can accumilate experience points and increase their level, by acing tests, ticking off more vocab words/verb endings, logging in daily, or unlocking achievements.
+  - Time-sensitive quotes - at the top of each page, the user can read a quote. Its attitude may be inspirational, friendly, witty, or reference ancient Roman scholars, depending on what page the user is on. Their comment also depends on what time of day it is, either chastising you to sleep or praising you as an early bird.
+  - Post-test Latin quotes - the user also gets a quote in Latin (from famous Roman history), and its english translation every time they finish a test, depending on how well they did. It’s randomly generated, so the same score won’t yield the same quote. it can be inspirational, encouraging of your failure, or pleased with your performance.
+  - Beta version archives - The user can access a multitude of scrapped pages that were either replaced or not needed as this project developed.  They’re unpolished; no dark mode, no localStorage.
+  - Sample tests - the user can access past test papers from my school, now digitalised. Currently there’s only one, but there might be more.
+  In the existing fronted, I used AI to help me with: composing the quotes, giving me some ideas, debugging or formatting, and make the colour scheme. I also used excel to help make the huge databases; for vocab, grammar, and achievements.
+  Overall, I’m happy with how this project is going! Next, I’m planning on imkplementing a lofi-beats playlist, where the user can listen to music running from the website itself.
+
+SECOND DEVLOG:
+Hey everyone! Recently, I added a universal feature to my Latin Study Aid website: the music playlist function.
+- Users can listen to music while they study
+- They can select music from a large 'music library homepage', referencing a database that consists of the genres lofi, lofi pop, and pop (no lyrics).
+- Like Spotify, users can access and change the music at the very bottom of their viewport, from any page in the website.
+- The music is public domain, selected from Pixabay, each referenced to the original creator by hyperlink from the music library homepage. 
 
 
 
+
+
+
+
+
+
+Firstly, I just want to say: this has grown *far* beyond what I expected when we first started talking about your Latin website.
+
+From what you've described, you've essentially built a **complete learning platform**, not just a collection of quizzes.
+
+At this point, if I were grading it as a school software project, I'd already consider it an A/A+ level project. It has:
+
+* ✓ Multiple testing modes
+* ✓ Persistent user settings
+* ✓ Test history
+* ✓ Responsive UI
+* ✓ Dark mode
+* ✓ Searchable database
+* ✓ Interactive games
+* ✓ Grammar generators
+* ✓ Accessibility feature (macron keyboard)
+* ✓ Beta/archive pages
+* ✓ Personality (quotes)
+
+That's considerably more polished than many educational websites.
+
+//average score
+//rolling average
+best streak
+weakest game
+strongest game
+activity by weekday
+activity by month
+improvement graph
+questions answered
+tests per day
+//study time estimate
+
+# My biggest suggestion: Progress
+
+Right now, the website sounds like a collection of excellent tools.
+
+The next step is making it feel like **one application**.
+
+For example:
+
+```
+Overall Progress
+
+██████████░░░░░░░░ 54%
+
+Vocabulary mastered
+Grammar mastered
+Total tests taken
+Hours studied
+Longest streak
+```
+
+People LOVE seeing numbers go up.
+
+---
+
+# Statistics page
+
+Since you're already saving tests to localStorage...
+
+You could automatically calculate things like
+
+```
+Tests completed:
+183
+
+Questions answered:
+4,285
+
+Average score:
+84%
+
+Highest score:
+100%
+
+Favourite activity:
+Hangman
+
+Most difficult stage:
+Stage 7
+
+Strongest grammar:
+Indicative Active
+
+Weakest grammar:
+Subjunctive Passive
+```
+
+All of this can be computed from the saved history.
+
+---
+
+# Streak system
+
+Nothing over-the-top.
+
+Just
+
+```
+🔥 5-day streak
+
+Last studied:
+Today
+```
+
+Use
+
+```
+localStorage.lastStudyDate
+```
+
+and compare dates.
+
+Very motivating.
+
+---
+
+# XP / Levels
+
+Instead of only scores:
+
+```
+Level 12
+
+XP
+███████████░░░ 1240 / 1500
+```
+
+Gain XP for
+
+* correct answers
+* games
+* daily streak
+* completing stages
+
+---
+
+# Achievement system
+
+People adore achievements.
+
+For example
+
+🥉 First Test
+
+📖 100 Vocabulary Questions
+
+⚔ Conquer Stage 5
+
+🔥 7 Day Streak
+
+🏛 Roman Scholar
+Complete every conjugation
+
+👑 Perfect Score
+
+🤯 1000 Correct Answers
+
+They're surprisingly motivating.
+
+---
+
+# Daily Challenge
+
+Every day:
+
+```
+Today's Challenge
+
+10 random words
+5 random nouns
+5 random verbs
+
+Score:
+8/10
+```
+
+Date can be used as a random seed.
+
+Then everyone gets the same challenge each day.
+
+---
+
+# Mistake Review
+
+Since you're already saving answers...
+
+Imagine this page:
+
+```
+Review Mistakes
+
+You missed:
+
+portaveritis
+
+Practice Again
+```
+
+Only questions previously answered incorrectly.
+
+This is probably the biggest educational improvement you could add.
+
+---
+
+# Flashcard Mode
+
+Very simple.
+
+Latin
+
+↓
+
+click
+
+↓
+
+English
+
+↓
+
+Next
+
+People love Anki-style studying.
+
+---
+
+# Favourite Words
+
+Little ⭐ button.
+
+```
+⭐ intellego
+
+⭐ fero
+
+⭐ possum
+```
+
+Then
+
+```
+Study favourites
+```
+
+---
+
+# Smart Revision
+
+This is my favourite idea.
+
+Suppose
+
+```
+porto
+✓
+✓
+✓
+✓
+✓
+```
+
+The website learns you know it.
+
+But
+
+```
+fero
+
+✗
+✗
+✓
+✗
+```
+
+It appears much more often.
+
+Basically a simplified spaced repetition algorithm.
+
+---
+
+# Confetti
+
+No joke.
+
+On 100%
+
+```
+🎉
+```
+
+Little burst.
+
+People smile.
+
+---
+
+# Sound effects
+
+Tiny click.
+
+Correct
+
+Wrong
+
+Button
+
+Very subtle.
+
+Makes it feel alive.
+
+---
+
+# Latin of the Day
+
+Top banner
+
+```
+Verbum Hodiernum
+
+intellego
+
+to understand
+
+Example:
+Intellego quid dicas.
+```
+
+Random each day.
+
+---
+
+# Roman Fact of the Day
+
+```
+Did you know?
+
+Romans wrote in all capitals.
+
+```
+
+or
+
+```
+The Romans had no letter J.
+```
+
+---
+
+# Search by English
+
+Your vocab database probably already has this.
+
+But maybe also
+
+```
+Search:
+
+love
+
+↓
+
+amo
+diligo
+caritas
+```
+
+---
+
+# Colour themes
+
+Besides dark mode
+
+Roman
+
+Forest
+
+Ocean
+
+Sunset
+
+Classic
+
+People enjoy personalising websites.
+
+---
+
+# Lo-fi Player
+
+I actually think this is a fantastic idea.
+
+Instead of opening Spotify in another tab, they stay on your site.
+
+I'd put it exactly where you suggested:
+
+```
+──────────────────────────
+
+ā ē ī ō ū ȳ
+
+♫ Lofi
+
+▶ ▌▌
+Next
+
+Volume
+
+──────────────────────────
+```
+
+Very unobtrusive.
+
+---
+
+## Public-domain music
+
+Some excellent places:
+
+* **Musopen** (classical recordings and scores in the public domain)
+* **Free Music Archive** (check the specific license for each track)
+* **Pixabay Music** (free to use, including many lo-fi tracks)
+* **OpenGameArt** (ambient loops and music)
+* **ccMixter** (Creative Commons tracks—check attribution requirements)
+
+For completely hassle-free use, I'd lean toward **Pixabay Music**. It has a lot of relaxing instrumental tracks that are free to use under its license.
+
+---
+
+## Implementation
+
+Honestly?
+
+It's surprisingly easy.
+
+```html
+<audio id="music" loop>
+    <source src="./music/track1.mp3">
+</audio>
+```
+
+```javascript
+const music =
+document.getElementById("music");
+
+play.onclick = () => music.play();
+
+pause.onclick = () => music.pause();
+
+volume.oninput = e =>
+music.volume = e.target.value;
+```
+
+Random track:
+
+```javascript
+const tracks=[
+"track1.mp3",
+"track2.mp3",
+"track3.mp3",
+"track4.mp3"
+];
+
+music.src="./music/"+tracks[
+Math.floor(Math.random()*tracks.length)
+];
+```
+
+Store volume:
+
+```javascript
+localStorage.musicVolume
+```
+
+Store whether it was playing:
+
+```javascript
+localStorage.musicPlaying
+```
+
+---
+
+# One feature I'd save for last...
+
+If I could add **one** thing to your site before calling it "finished," it would be this:
+
+## "Your Latin Journey"
+
+A dashboard.
+
+```
+═══════════════════════════
+
+Salve, Jam!
+
+Level 18
+
+🔥 6 Day Streak
+
+Overall Progress
+█████████░░░░░ 61%
+
+Vocabulary
+87%
+
+Grammar
+52%
+
+Tests Completed
+214
+
+Questions Answered
+6,742
+
+Average Score
+86%
+
+Recent Activity
+Yesterday:
+Hangman 10/10
+
+Today:
+Verb Tables 24/30
+
+Word of the Day
+
+intellego
+
+═══════════════════════════
+```
+
+Right now, you've built a fantastic toolkit. A dashboard would tie everything together into a cohesive experience and make it feel like a platform that users return to, rather than a set of separate pages. It also builds naturally on the localStorage system you've already implemented, making good use of the data you're collecting.
+
+*/
+</script>
 </body>
 </html>

@@ -75,7 +75,7 @@
     }
 
     .hidden {
-    //display: none;
+    display: none;
     }
 
     #question {
@@ -288,7 +288,9 @@ function nextQuestion() {
 
   const englishToLatin = document.getElementById("directionToggle").checked;
   document.getElementById("question").textContent =
-    englishToLatin ? current.english : current.latin;
+  englishToLatin
+    ? current.english ?? current.English
+    : current.latin ?? current.Latin;
 
   document.getElementById("answerInput").value = "";
   document.getElementById("feedback").textContent = " - ";
@@ -300,26 +302,54 @@ function nextQuestion() {
 
 /* 🔹 SUBMIT ANSWER */
 document.getElementById("submitBtn").onclick = () => {
-  const input = document.getElementById("answerInput").value.trim().toLowerCase();
-  const englishToLatin = document.getElementById("directionToggle").checked;
-  const correct = (englishToLatin ? current.latin : current.english).toLowerCase();
+  const input =
+    document.getElementById("answerInput").value.trim().toLowerCase();
 
-  if (input === correct) {
+  const englishToLatin =
+    document.getElementById("directionToggle").checked;
+
+  const latinAnswer =
+    current.latin ?? current.Latin;
+
+  const englishAnswer =
+    current.english ?? current.English;
+
+  const correctAnswer =
+    englishToLatin ? latinAnswer : englishAnswer;
+
+  const correctAnswers =
+    Array.isArray(correctAnswer)
+      ? correctAnswer
+      : [correctAnswer];
+
+  const cleanedCorrectAnswers =
+    correctAnswers.map(answer =>
+      String(answer).trim().toLowerCase()
+    );
+
+  if (cleanedCorrectAnswers.includes(input)) {
     score++;
-    document.getElementById("feedback").textContent = "✅ Correct!";
+
+    document.getElementById("feedback").textContent =
+      "✅ Correct!";
+
     if (document.getElementById("noRepeatToggle").checked) {
       pool = pool.filter(w => w !== current);
     }
+
   } else {
-    document.getElementById("feedback").textContent = `❌ Correct answer: ${correct}`;
+    document.getElementById("feedback").textContent =
+      `❌ Correct answer: ${correctAnswers.join(", ")}`;
   }
 
-  document.getElementById("score").textContent = `Score: ${score} / ${total}`;
+  document.getElementById("score").textContent =
+    `Score: ${score} / ${total}`;
 
   stopTimer();
+
   setTimeout(nextQuestion, 700);
-  
 };
+
 /* 🔹 ENTER KEY SUBMIT */
 document.getElementById("answerInput").addEventListener("keydown", e => {
   if (e.key === "Enter") {

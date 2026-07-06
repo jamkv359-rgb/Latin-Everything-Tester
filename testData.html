@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Latin Grammar Suite — Dashboard</title>
+<title>Test Results</title>
 <style>
   :root {
     --bg: #f6f7fb;
@@ -260,7 +260,7 @@
 .history-meta {
   color: var(--muted);
   font-size: 13px;
-  margin-bottom: 12px;
+  margin: 12px;
 }
 
 .pill-row {
@@ -379,8 +379,8 @@
 <div class="container" >
   <div class="header">
     <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0; z-index: 9999;" >
-    <h1 style="margin-top: 10vh;">Essential Latin Revision Suite</h1>
-    <p style="color:var(--muted);">Select a module to begin your practice! Good luck studying~</p>
+    <h1 style="margin-top: 10vh;">Saved Test Results</h1>
+    <p style="color:var(--muted);"><span id="username-greet"></span>Select a module to begin your practice! Good luck studying~</p>
     <div class='interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
     <div style="padding: 2px 8px; background: var(--card); border-radius: 4px; margin: 8px; display: flex; border: 1px solid var(--border);">
         <input type="checkbox" id="darkModeToggle"></input>
@@ -464,6 +464,7 @@
     </section>
   
 </div>
+<script src="../achievementData.js"></script>
 <script>
     const STORAGE_KEY = "latinHistory";
 const OLD_STORAGE_KEY = "testHistory";
@@ -489,8 +490,7 @@ const clearHistoryBtn =
 const exportHistoryBtn =
   document.getElementById("exportHistoryBtn");
 
-let latinHistory =
-  loadHistory();
+let latinHistory = loadHistory();
 
 /* =========================
    LOAD + MIGRATE HISTORY
@@ -566,6 +566,7 @@ function normaliseResult(result, index) {
     "Latin Test";
 
   const pageType =
+    result.testType ||  
     result.pageType ||
     result.type ||
     inferPageType(testName);
@@ -699,7 +700,7 @@ function renderSummary() {
   document.getElementById("bestScore").textContent =
     best + "%";
 
-  document.getElementById("latestSummary").textContent = standardDeviation + "%";
+  document.getElementById("latestTest").textContent = standardDeviation + "%";
 }
 
 function sortResults(results) {

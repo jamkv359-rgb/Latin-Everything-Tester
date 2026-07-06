@@ -283,7 +283,7 @@
 <div style="margin-top: 15vh;" class="container">
     <header>
         <h2>Latin Verb Tables: 2D Input</h2>
-        <div style="color:var(--muted); margin: 5px 0px 0px 0px">Select what verb endings you want, then start testing~</div>
+        <div style="color:var(--muted); margin: 5px 0px 0px 0px"><span id="username-greet"></span>Select what verb endings you want, then start testing~</div>
         <div style="display:flex; gap:10px;"><div class='interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px; margin-top:10px;"></div>
         <div style="padding: 6px 10px; background: var(--bg); border-radius: 15px; margin-top: 8px; display: flex; border: 1px solid var(--border); text-align:center; width:fit-content;">
             <input type="checkbox" id="darkModeToggle" style="width:12px;border:1px solid var(--border); margin-right:6px;"></input>
@@ -393,7 +393,7 @@
         </div>
     </section>
 </div>
-
+<script src="../achievementData.js"></script>
 <script src="./grammarData.js"></script>
 
 <script>
@@ -592,7 +592,7 @@ function buildTable() {
                         cell.innerHTML = `<span style="color: var(--text);">-</span>`;
                     } else {
                         cell.innerHTML = `
-                            <input type="text" data-answer="${form.word}" autocomplete="off" style="background-color: var(--bg); color: var(--text);">
+                            <input type="text" data-answer="${form.word}" data-index="${form.index}" autocomplete="off" style="background-color: var(--bg); color: var(--text);">
                             <div class="feedback"></div>
                         `;
                     }
@@ -617,25 +617,51 @@ function buildTable() {
    SHOW ANSWERS
 ========================= */
 function showAnswers() {
-    let score=0;
-    let total=0;
+    let score = 0;
+    let total = 0;
+
+    // Get saved progress from localStorage
+    let savedGrammarProgress = localStorage.getItem("latinGrammarProgress");
+
+    if (savedGrammarProgress) {
+        savedGrammarProgress = JSON.parse(savedGrammarProgress);
+    } else {
+        savedGrammarProgress = {};
+    }
+
     document.querySelectorAll("input[data-answer]").forEach(input => {
         const correct = input.dataset.answer;
+        const grammarIndex = input.dataset.index;
+        const progressKey = "i" + grammarIndex;
+
+        const userAnswer = input.value.trim().toLowerCase();
         const feedback = input.parentElement.querySelector(".feedback");
 
-        if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
+        total += 1;
+
+        if (userAnswer === correct.toLowerCase()) {
             feedback.textContent = "✓ Correct";
             feedback.className = "feedback correct";
-            score+=1;
-            total+=1;
-        }else if(correct.toLowerCase() ==="-"){
-            
+
+            score += 1;
+
+            // Mark this grammar form as completed
+            savedGrammarProgress[progressKey] = true;
+
         } else {
             feedback.textContent = "✗ " + correct;
             feedback.className = "feedback wrong";
-            total+=1;
+
+            // Mark this grammar form as not completed
+            
         }
     });
+
+    // Save updated progress back to localStorage
+    localStorage.setItem(
+        "latinGrammarProgress",
+        JSON.stringify(savedGrammarProgress)
+    );
     document.querySelector(".result").classList.remove("hidden");
         document.querySelector(".results").innerHTML+=`
             <div style="width: calc(((100% - 40px) * 0.25) - 24px); border: 1px solid var(--border); background-color: var(--bg); border-radius:15px; margin:5px; padding: 10px;">
@@ -668,6 +694,7 @@ function showAnswers() {
         history.unshift(result);
         localStorage.setItem("latinHistory",JSON.stringify(history));
     console.log(localStorage.getItem('latinHistory'));
+    
 }
 
 /* =========================

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Latin Anagram Scramble</title>
+  <title>Anagram Scramble</title>
   <style>
     :root {
         --bg: #f6f7fb;
@@ -195,6 +195,7 @@
   }
   </style>
   <script src="../interact.js"></script>
+  
 </head>
 <body data-page-type="vocab">
 <img class="banner" src="../banner2.png" alt="" style="width: 100%; position: fixed;  height: 10vh; object-fit: cover; top: 0; left: 0;   z-index: 9999;" >
@@ -204,7 +205,7 @@
     
     <h1 class="title">
       Anagram Scramble
-      <span>Unscramble the Latin vocab word</span>
+      <span><span id="username-greet"></span>Unscramble the Latin vocab word</span>
     </h1>
 
     <div class="scrambled-word">???</div>
@@ -241,7 +242,8 @@
             <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../index.html'">Back to home page</div>
             <div class="ad" style="color: var(--redpop);" onclick="window.location.href='../about.html'">About</div>
         </div>
-    </section>_
+    </section>
+    <script src="../achievementData.js"></script>
   <script src="./vocabData.js"></script>
   <script>
     //document.querySelector("body").classList.toggle("dark"); 

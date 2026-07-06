@@ -372,7 +372,7 @@
 
     <header>
         <h2>Latin Pronoun Drill</h2>
-        <div style="color:var(--muted); margin: 5px 0px 0px 0px">Select what word you want, then start testing~</div>
+        <div style="color:var(--muted); margin: 5px 0px 0px 0px"><span id="username-greet"></span>Select what word you want, then start testing~</div>
         <div class="stem">
             <strong>Pronouns</strong> • Masculine • Feminine • Neuter
         </div>
@@ -470,7 +470,7 @@
         </div>
     </section>
 </div>
-
+<script src="../achievementData.js"></script>
     <script>
         const cases = ["Nom", "Acc", "Gen", "Dat", "Abl"];
         
@@ -584,6 +584,8 @@
                 history.unshift(result);
                 localStorage.setItem("latinHistory",JSON.stringify(history));
             console.log(localStorage.getItem('latinHistory'));
+            localStorage.setItem('achievementVocabDatabaseLoaded', 'true');
+            
         }
 
         function resetTable() {
