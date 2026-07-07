@@ -239,6 +239,7 @@
       <h2 style="color: var(--bluepop);">Vocab</h2>
       <div class="link-group">
         <a href="./vocab/vocabTest.html" class="nav-button">Type-in Tester<span>→</span></a>
+        <a href="./flashcards.html" class="nav-button">Vocab Flashcards<span>→</span></a>
         <a href="./vocab/multiChoice.html" class="nav-button">Multi-choice Tester<span>→</span></a>
         <a href="./vocab/hangman.html" class="nav-button">Hangman Game<span>→</span></a>
         <a href="./vocab/scramble.html" class="nav-button">Anagram Scramble Game<span>→</span></a>
@@ -264,6 +265,7 @@
     <section class="category-card">
       <h2 style="color: var(--greenpop)">Sample tests</h2>
       <div class="link-group">
+        
         <a href="sampleTests/sampleTest1.html" class="nav-button">Sample test 1<span>→</span></a>
         <div class= "nav-button"><em>Work in progress...</em></div>
       </div>
@@ -504,15 +506,16 @@ FIRST DEVLOG:
   - Post-test Latin quotes - the user also gets a quote in Latin (from famous Roman history), and its english translation every time they finish a test, depending on how well they did. It’s randomly generated, so the same score won’t yield the same quote. it can be inspirational, encouraging of your failure, or pleased with your performance.
   - Beta version archives - The user can access a multitude of scrapped pages that were either replaced or not needed as this project developed.  They’re unpolished; no dark mode, no localStorage.
   - Sample tests - the user can access past test papers from my school, now digitalised. Currently there’s only one, but there might be more.
-  In the existing fronted, I used AI to help me with: composing the quotes, giving me some ideas, debugging or formatting, and make the colour scheme. I also used excel to help make the huge databases; for vocab, grammar, and achievements.
+  In the existing frontend, I used AI to help me with: composing the quotes, giving me some ideas, debugging or formatting, and make the colour scheme. I also used excel to help make the huge databases; for vocab, grammar, and achievements.
   Overall, I’m happy with how this project is going! Next, I’m planning on imkplementing a lofi-beats playlist, where the user can listen to music running from the website itself.
 
 SECOND DEVLOG:
-Hey everyone! Recently, I added a universal feature to my Latin Study Aid website: the music playlist function.
+Hey everyone! Second devlog: Recently, I added a universal feature to my Latin Study Aid website: the music playlist function.
 - Users can listen to music while they study
 - They can select music from a large 'music library homepage', referencing a database that consists of the genres lofi, lofi pop, and pop (no lyrics).
 - Like Spotify, users can access and change the music at the very bottom of their viewport, from any page in the website.
-- The music is public domain, selected from Pixabay, each referenced to the original creator by hyperlink from the music library homepage. 
+- The music is public domain, selected from Pixabay, each referenced to the original creator by hyperlink from the music library homepage.
+Overall, I'm really happy about the direction of this project - and am currently running out of ideas, heh. I might ship this project soon, if I find nothing else to add. 
 
 
 
@@ -520,171 +523,10 @@ Hey everyone! Recently, I added a universal feature to my Latin Study Aid websit
 
 
 
-
-
-Firstly, I just want to say: this has grown *far* beyond what I expected when we first started talking about your Latin website.
-
-From what you've described, you've essentially built a **complete learning platform**, not just a collection of quizzes.
-
-At this point, if I were grading it as a school software project, I'd already consider it an A/A+ level project. It has:
-
-* ✓ Multiple testing modes
-* ✓ Persistent user settings
-* ✓ Test history
-* ✓ Responsive UI
-* ✓ Dark mode
-* ✓ Searchable database
-* ✓ Interactive games
-* ✓ Grammar generators
-* ✓ Accessibility feature (macron keyboard)
-* ✓ Beta/archive pages
-* ✓ Personality (quotes)
-
-That's considerably more polished than many educational websites.
-
-//average score
-//rolling average
-best streak
-weakest game
-strongest game
-activity by weekday
-activity by month
-improvement graph
-questions answered
-tests per day
-//study time estimate
-
-# My biggest suggestion: Progress
-
-Right now, the website sounds like a collection of excellent tools.
-
-The next step is making it feel like **one application**.
-
-For example:
-
-```
-Overall Progress
-
-██████████░░░░░░░░ 54%
-
-Vocabulary mastered
-Grammar mastered
-Total tests taken
-Hours studied
-Longest streak
-```
-
-People LOVE seeing numbers go up.
 
 ---
 
-# Statistics page
-
-Since you're already saving tests to localStorage...
-
-You could automatically calculate things like
-
-```
-Tests completed:
-183
-
-Questions answered:
-4,285
-
-Average score:
-84%
-
-Highest score:
-100%
-
-Favourite activity:
-Hangman
-
-Most difficult stage:
-Stage 7
-
-Strongest grammar:
-Indicative Active
-
-Weakest grammar:
-Subjunctive Passive
-```
-
-All of this can be computed from the saved history.
-
----
-
-# Streak system
-
-Nothing over-the-top.
-
-Just
-
-```
-🔥 5-day streak
-
-Last studied:
-Today
-```
-
-Use
-
-```
-localStorage.lastStudyDate
-```
-
-and compare dates.
-
-Very motivating.
-
----
-
-# XP / Levels
-
-Instead of only scores:
-
-```
-Level 12
-
-XP
-███████████░░░ 1240 / 1500
-```
-
-Gain XP for
-
-* correct answers
-* games
-* daily streak
-* completing stages
-
----
-
-# Achievement system
-
-People adore achievements.
-
-For example
-
-🥉 First Test
-
-📖 100 Vocabulary Questions
-
-⚔ Conquer Stage 5
-
-🔥 7 Day Streak
-
-🏛 Roman Scholar
-Complete every conjugation
-
-👑 Perfect Score
-
-🤯 1000 Correct Answers
-
-They're surprisingly motivating.
-
----
-
-# Daily Challenge
+          # Daily Challenge
 
 Every day:
 
@@ -705,7 +547,7 @@ Then everyone gets the same challenge each day.
 
 ---
 
-# Mistake Review
+          # Mistake Review
 
 Since you're already saving answers...
 
@@ -727,7 +569,7 @@ This is probably the biggest educational improvement you could add.
 
 ---
 
-# Flashcard Mode
+          # Flashcard Mode
 
 Very simple.
 
@@ -749,7 +591,7 @@ People love Anki-style studying.
 
 ---
 
-# Favourite Words
+          # Favourite Words
 
 Little ⭐ button.
 
@@ -769,7 +611,7 @@ Study favourites
 
 ---
 
-# Smart Revision
+          # Smart Revision
 
 This is my favourite idea.
 
@@ -835,7 +677,7 @@ Makes it feel alive.
 
 ---
 
-# Latin of the Day
+          # Latin of the Day
 
 Top banner
 
@@ -854,7 +696,7 @@ Random each day.
 
 ---
 
-# Roman Fact of the Day
+          # Roman Fact of the Day
 
 ```
 Did you know?
@@ -871,27 +713,7 @@ The Romans had no letter J.
 
 ---
 
-# Search by English
-
-Your vocab database probably already has this.
-
-But maybe also
-
-```
-Search:
-
-love
-
-↓
-
-amo
-diligo
-caritas
-```
-
----
-
-# Colour themes
+          # Colour themes
 
 Besides dark mode
 
@@ -909,150 +731,6 @@ People enjoy personalising websites.
 
 ---
 
-# Lo-fi Player
-
-I actually think this is a fantastic idea.
-
-Instead of opening Spotify in another tab, they stay on your site.
-
-I'd put it exactly where you suggested:
-
-```
-──────────────────────────
-
-ā ē ī ō ū ȳ
-
-♫ Lofi
-
-▶ ▌▌
-Next
-
-Volume
-
-──────────────────────────
-```
-
-Very unobtrusive.
-
----
-
-## Public-domain music
-
-Some excellent places:
-
-* **Musopen** (classical recordings and scores in the public domain)
-* **Free Music Archive** (check the specific license for each track)
-* **Pixabay Music** (free to use, including many lo-fi tracks)
-* **OpenGameArt** (ambient loops and music)
-* **ccMixter** (Creative Commons tracks—check attribution requirements)
-
-For completely hassle-free use, I'd lean toward **Pixabay Music**. It has a lot of relaxing instrumental tracks that are free to use under its license.
-
----
-
-## Implementation
-
-Honestly?
-
-It's surprisingly easy.
-
-```html
-<audio id="music" loop>
-    <source src="./music/track1.mp3">
-</audio>
-```
-
-```javascript
-const music =
-document.getElementById("music");
-
-play.onclick = () => music.play();
-
-pause.onclick = () => music.pause();
-
-volume.oninput = e =>
-music.volume = e.target.value;
-```
-
-Random track:
-
-```javascript
-const tracks=[
-"track1.mp3",
-"track2.mp3",
-"track3.mp3",
-"track4.mp3"
-];
-
-music.src="./music/"+tracks[
-Math.floor(Math.random()*tracks.length)
-];
-```
-
-Store volume:
-
-```javascript
-localStorage.musicVolume
-```
-
-Store whether it was playing:
-
-```javascript
-localStorage.musicPlaying
-```
-
----
-
-# One feature I'd save for last...
-
-If I could add **one** thing to your site before calling it "finished," it would be this:
-
-## "Your Latin Journey"
-
-A dashboard.
-
-```
-═══════════════════════════
-
-Salve, Jam!
-
-Level 18
-
-🔥 6 Day Streak
-
-Overall Progress
-█████████░░░░░ 61%
-
-Vocabulary
-87%
-
-Grammar
-52%
-
-Tests Completed
-214
-
-Questions Answered
-6,742
-
-Average Score
-86%
-
-Recent Activity
-Yesterday:
-Hangman 10/10
-
-Today:
-Verb Tables 24/30
-
-Word of the Day
-
-intellego
-
-═══════════════════════════
-```
-
-Right now, you've built a fantastic toolkit. A dashboard would tie everything together into a cohesive experience and make it feel like a platform that users return to, rather than a set of separate pages. It also builds naturally on the localStorage system you've already implemented, making good use of the data you're collecting.
 
 */
 </script>
