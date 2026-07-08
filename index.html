@@ -170,7 +170,7 @@
     color: var(--greenpop);
     font-size: 20px;
   }
-  .xp-factor {width: calc(25% - 30px);}
+  .xp-factor {width: calc(25% - 35px);}
   .adz {width: 50%}
 /* <img class="banner" src="banner2.png" alt="" style="width: 100%; position: fixed; top: 0; left: 0;   z-index: 9999;" >*/
 </style>
@@ -190,13 +190,23 @@
         <div class="dark-interact">Dark Mode.</div>
     </div>
   </div>
-  <section class="adContainer bottom" style="justify-content: center; align-items: center;">
+  <div style="display: flex; width: 100%; gap: 10px;">
+  <section class="adContainer bottom" style="justify-content: center; align-items: center; width: 50%;">
         <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Username Input</div>
-        <div class='username-interact' style= "background: var(--card); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
+        <div class='username-interact' style= "background: var(--bg); border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;"></div>
         <input type="text" class="username-input" placeholder="Enter your username;" style="background-color: var(--bg); color: var(--text); padding: 10px 14px;border-radius: 10px; border: 1px solid var(--border);"></input>
         <button onclick="usernameUpdate()" style="padding: 10px 14px; font-size: 14px; border-radius: 10px; cursor: pointer; transition: 0.25s ease; background: var(--bg); color: var(--text); border: 1px solid var(--border);">Input Username</button>
         
   </section>
+  <section class="adContainer bottom" style="justify-content: center; align-items: center; width: 50%;">
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Current Latin Course</div>
+        <div class='course-interact' style= "background-color: var(--bg);border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;">Select your current course</div>
+        <div style="display: flex; flex-direction:column; align-items: left; justify-content: center;">
+          <div><input type="checkbox" onchange="changeCourse('clc')" class="clc-course-input" style="background-color: var(--bg); color: var(--text);border-radius: 10px; border: 1px solid var(--border);"></input>Cambridge Latin Course (CLC)</div>
+          <div><input type="checkbox" onchange="changeCourse('dr')" class="dr-course-input" style="background-color: var(--bg); color: var(--text); border-radius: 10px; border: 1px solid var(--border);"></input>De Romanis Course (DR)</div>
+        </div>  
+  </section>
+  </div>
   <section class="adContainer bottom">
         <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Level</div>
         <div class="levelDisplay"></div>
@@ -207,11 +217,11 @@
         <div class="xp-bar" style="height: fit-content; width: 100%; border: 1px solid var(--border); border-radius: 10px; background-color: var(--bg); margin: 10px 0px 10px 0px;">
           <strong><div class="xp-bar-fill" style="height:30px; color: var(--text); background-color:var(--greenpop);border-radius: 10px; width: 0%;"></div></strong>
         </div>
-        <button onclick="calculateXP()" style="padding: 10px 14px; font-size: 14px; border: none; border-radius: 10px; cursor: pointer; transition: 0.25s ease; background: var(--bg); color: var(--text); border: 1px solid var(--border);">Calculate XP</button>
+        <button onclick="calculateXP(false)" style="padding: 10px 14px; font-size: 14px; border: none; border-radius: 10px; cursor: pointer; transition: 0.25s ease; background: var(--bg); color: var(--text); border: 1px solid var(--border);">Calculate XP</button>
         <div class="ads xp-factors" style="flex-wrap: wrap;">
             <div class="ad xp-factor">Tests: <div class='score' id="xp-tests">-</div></div>
-            <div class="ad xp-factor">Vocab Completion: <div class='score' id="xp-vocab">-</div></div>
-            <div class="ad xp-factor">Grammar Completion: <div class='score' id="xp-grammar">-</div></div>
+            <div class="ad xp-factor">Vocab Progress: <div class='score' id="xp-vocab">-</div></div>
+            <div class="ad xp-factor">Grammar Progress: <div class='score' id="xp-grammar">-</div></div>
             <div class="ad xp-factor">Study Hours: <div class='score' id="xp-hours">-</div></div>
             <div class="ad xp-factor">Daily Logins: <div class='score' id="xp-daily">-</div></div>
             <div class="ad xp-factor">Current Login Streak: <div class='score' id="xp-streak">-</div></div>
@@ -221,16 +231,17 @@
 <section class="adContainer bottom" style="flex-wrap: wrap;">
         <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Dashboard</div>
         <div class="ads xp-factors" style="flex-wrap: wrap;">
-            <div class="ad xp-factor">Vocab Progress: <div class='score' id="div-vocab-completed"></div></div>
-            <div class="ad xp-factor">Grammar Progress: <div class='score' id="div-grammar-completed"></div></div>
-            <div class="ad xp-factor">Achievement Progress: <div class='score' id="div-achievement-completed"></div></div>
-            <div class="ad xp-factor">Questions Completed: <div class='score' id="div-questions-completed"></div></div>
-            <div class="ad xp-factor">Average Score: <div class='score' id="div-average-score"></div></div>
-            <div class="ad xp-factor">Tests Completed: <div class='score' id="div-tests-completed"></div></div>
-            <div class="ad xp-factor">Total Hours Studied: <div class='score' id="div-hours-studied"></div></div>
-            <div class="ad xp-factor">Total Login Days: <div class='score' id="div-login-days"></div></div>
-            <div class="ad xp-factor">Current Login Streak: <div class='score' id="div-login-streak"></div></div>
-            <div class="ad xp-factor">Longest Login Streak: <div class='score' id="div-longest-streak"></div></div>
+            <div class="ad xp-factor">CLC Vocab Progress:<div class='score' id="div-vocab-completed-clc"></div></div>
+            <div class="ad xp-factor">De Romanis Vocab Progress:<div class='score' id="div-vocab-completed-dr"></div></div>
+            <div class="ad xp-factor">Grammar Progress:<div class='score' id="div-grammar-completed"></div></div>
+            <div class="ad xp-factor">Achievement Progress:<div class='score' id="div-achievement-completed"></div></div>
+            <div class="ad xp-factor">Questions Completed:<div class='score' id="div-questions-completed"></div></div>
+            <div class="ad xp-factor">Average Score:<div class='score' id="div-average-score"></div></div>
+            <div class="ad xp-factor">Tests Completed:<div class='score' id="div-tests-completed"></div></div>
+            <div class="ad xp-factor">Total Hours Studied:<div class='score' id="div-hours-studied"></div></div>
+            <div class="ad xp-factor">Total Login Days:<div class='score' id="div-login-days"></div></div>
+            <div class="ad xp-factor">Current Login Streak:<div class='score' id="div-login-streak"></div></div>
+            <div class="ad xp-factor">Longest Login Streak:<div class='score' id="div-longest-streak"></div></div>
             
         </div>
   </section>
@@ -295,7 +306,8 @@
 <script src="./verbs/grammarData.js"></script>
 <script src="../achievementData.js"></script>
 <script>
-  let divVocabCompleted = document.getElementById("div-vocab-completed");
+  let divVocabCompletedCLC = document.getElementById("div-vocab-completed-clc");
+  let divVocabCompletedDR = document.getElementById("div-vocab-completed-dr");
   let divGrammarCompleted = document.getElementById("div-grammar-completed");
   let divAchievementCompleted = document.getElementById("div-achievement-completed");
   let divTestsCompleted = document.getElementById("div-tests-completed");
@@ -308,17 +320,26 @@
   let divUsernameInput = document.querySelector(".username-input");
   let divUsernameInteract = document.querySelector(".username-interact");
   let username = localStorage.getItem("username") || ""; //username is a single string value
-
+loadVocab(); 
   function update(){
     let vocabCount = 0;
     let vocabTotal = 0;
-      for (let prop in vocabProgress){
-        if (vocabProgress[prop]===true){
+      for (let prop in vocabProgressCLC){
+        if (vocabProgressCLC[prop]===true){
           vocabCount+=1;
         }
         vocabTotal+=1;
       }
-      divVocabCompleted.textContent=`${vocabCount}/${vocabTotal} => ${Math.round((vocabCount/vocabTotal)*100)}%`;
+      divVocabCompletedCLC.textContent=`${vocabCount}/${vocabTotal} => ${Math.round((vocabCount/vocabTotal)*100)}%`;
+    vocabCount = 0;
+    vocabTotal = 0;
+      for (let prop in vocabProgressDR){
+        if (vocabProgressDR[prop]===true){
+          vocabCount+=1;
+        }
+        vocabTotal+=1;
+      }
+      divVocabCompletedDR.textContent=`${vocabCount}/${vocabTotal} => ${Math.round((vocabCount/vocabTotal)*100)}%`;
 
     let grammarCount = 0;
     let grammarTotal = 0;
@@ -354,9 +375,9 @@
           highestScore = test.percent;
         }
       }
-      let averageScore = (scoreTotal/questionTotal)*100;
+      let averageScore = (scoreTotal/Math.max(questionTotal, 1))*100;
       divQuestionsCompleted.textContent = questionTotal;
-      divAverageScore.textContent = scoreTotal +"/"+questionTotal + " => "+Math.floor(averageScore)+"%";
+      divAverageScore.textContent = scoreTotal +"/"+questionTotal + " => "+Math.floor(averageScore*10)/10+"%";
       //divHighestScore.textContent = highestScore;
       
 
@@ -372,11 +393,13 @@
       divUsernameInput.placeHolder = "Change username here...";
       divUsernameInteract.textContent = "Current username: '"+username+"'. Type here to change it.";
     }
-    
-  }
-  divLoginStreak.textContent = getLoginStreaks().current;
+    divLoginStreak.textContent = getLoginStreaks().current;
   divBestLoginStreak.textContent = getLoginStreaks().longest;
   divLoginDays.textContent = JSON.parse(localStorage.getItem('savedLogins')).length;
+  console.log("ststs have been updated.");
+  }
+  
+
   function usernameUpdate(){
     
     username=divUsernameInput.value;
@@ -385,8 +408,21 @@
     rerenderUsername();
     console.log("New username is: " + username);
   }
+
+  function changeCourse(course){
+  localStorage.setItem('activeCourse', course || 'dr');
+  if (course==='clc'){
+    let vocabData = vocabDataCLC;
+  }else {
+    let vocabData = vocabDataDR;
+  }
+  console.log("new course is: "+ localStorage.getItem('activeCourse'));
+  loadVocab();
   update();
-  
+}
+update();
+
+
 /*
 Notes:
 - Everything is saved as a String
@@ -516,6 +552,14 @@ Hey everyone! Second devlog: Recently, I added a universal feature to my Latin S
 - Like Spotify, users can access and change the music at the very bottom of their viewport, from any page in the website.
 - The music is public domain, selected from Pixabay, each referenced to the original creator by hyperlink from the music library homepage.
 Overall, I'm really happy about the direction of this project - and am currently running out of ideas, heh. I might ship this project soon, if I find nothing else to add. 
+
+THIRD DEVLOG:
+Hey everyone! Third devlog: Just today, I added a new page to my Latin Study Website - the flashcard feature.
+Users can now:
+- Flip through all 800+ latin words in the Cambridge Latin Course wordlist, in anki-style flippable flashcards
+- Filter out the wordlist by 'stage' and 'type', so they can focus their revision to what's relevant to them
+On the side, I also cleaned up the index.html homepage, so that it can display more statistics and data about the user.
+Next, I plan on making a seperate vocab database, but from the De Romanis Latin Course rather than the Cambride Latin Course, allowing for more diversity in the website.
 
 
 

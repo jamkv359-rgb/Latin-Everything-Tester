@@ -518,7 +518,7 @@ function calcScore(score, total){
 }
 
 function rerenderUsername(){
-    let username = localStorage.getItem("username");
+    let username = localStorage.getItem("username")|| "";
     if (username ===""){
       document.getElementById("username-greet").innerHTML = ``;
       console.log("No username to load");

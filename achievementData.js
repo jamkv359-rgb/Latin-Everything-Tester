@@ -1,140 +1,161 @@
 const achievementData =[
-    //Average Score, 
-   { index: "01000", type: "rawVocab", criteria: "10", name: "Vocab Beginner", difficulty: "1", desc: "Complete 10 vocabulary words", },
-    { index: "01001", type: "rawVocab", criteria: "50", name: "Building Momentum", difficulty: "1", desc: "Complete 50 vocabulary words", },
-    { index: "01002", type: "rawVocab", criteria: "100", name: "Word Collector", difficulty: "2", desc: "Complete 100 vocabulary words", },
-    { index: "01003", type: "rawVocab", criteria: "250", name: "Lexicon Explorer", difficulty: "2", desc: "Complete 250 vocabulary words", },
-    { index: "01004", type: "rawVocab", criteria: "500", name: "Latin Scholar", difficulty: "3", desc: "Complete 500 vocabulary words", },
-    { index: "01005", type: "rawVocab", criteria: "750", name: "Walking Dictionary", difficulty: "4", desc: "Complete 750 vocabulary words", },
-    { index: "01006", type: "rawVocab", criteria: "888", name: "Master of Vocabulary", difficulty: "5", desc: "Complete every vocabulary word", },
-    { index: "02000", type: "rawGrammar", criteria: "10", name: "Verb Ending Beginner", difficulty: "", desc: "Complete 10 Verb Endings in 1D or 2D Verb Tester", },
-    { index: "02001", type: "rawGrammar", criteria: "50", name: "Tense Translator", difficulty: "", desc: "Complete 50 Verb Endings", },
-    { index: "02002", type: "rawGrammar", criteria: "100", name: "Verb Collector", difficulty: "", desc: "Complete 100 Verb Endings", },
-    { index: "02003", type: "rawGrammar", criteria: "250", name: "Conjugation Collector", difficulty: "", desc: "Complete 250 Verb Endings", },
-    { index: "02004", type: "rawGrammar", criteria: "500", name: "Mood Mystic", difficulty: "", desc: "Complete 500 Verb Endings", },
-    { index: "02005", type: "rawGrammar", criteria: "672", name: "Master of Verb Endings", difficulty: "", desc: "Complete 672 Verb Endings", },
-    { index: "03000", type: "levelling", criteria: "5", name: "1st Day of Latin", difficulty: "2", desc: "Reach level 5", },
-    { index: "03001", type: "levelling", criteria: "10", name: "1st Week of Latin", difficulty: "3", desc: "Reach level 10", },
-    { index: "03002", type: "levelling", criteria: "40", name: "1st Month of Latin", difficulty: "3", desc: "Reach level 40", },
-    { index: "03003", type: "levelling", criteria: "160", name: "1st Semester of Latin", difficulty: "4", desc: "Reach level 160", },
-    { index: "03004", type: "levelling", criteria: "360", name: "1st Year of Latin", difficulty: "4", desc: "Reach level 360", },
-    { index: "03005", type: "levelling", criteria: "720", name: "1st Degree in Latin", difficulty: "4", desc: "Reach level 720", },
-    { index: "03006", type: "levelling", criteria: "1000", name: "Solo Levelling", difficulty: "5", desc: "Reach level 1000", },
-    { index: "04000", type: "questionsAnswered", criteria: "50", name: "First Steps", difficulty: "1", desc: "Answer 50 questions", },
-    { index: "04001", type: "questionsAnswered", criteria: "250", name: "Practised Mind", difficulty: "1", desc: "Answer 250 questions", },
-    { index: "04002", type: "questionsAnswered", criteria: "500", name: "Getting Serious", difficulty: "2", desc: "Answer 500 questions", },
-    { index: "04003", type: "questionsAnswered", criteria: "1000", name: "Dedicated Student", difficulty: "2", desc: "Answer 1000 questions", },
-    { index: "04004", type: "questionsAnswered", criteria: "2500", name: "Roman Apprentice", difficulty: "3", desc: "Answer 2500 questions", },
-    { index: "04005", type: "questionsAnswered", criteria: "5000", name: "Centurion of Study", difficulty: "4", desc: "Answer 5000 questions", },
-    { index: "04006", type: "questionsAnswered", criteria: "10000", name: "Imperator of Latin", difficulty: "5", desc: "Answer 10000 questions", },
-    { index: "05000", type: "testsCompleted", criteria: "1", name: "First Test", difficulty: "1", desc: "Complete your first test", },
-    { index: "05001", type: "testsCompleted", criteria: "10", name: "Settling In", difficulty: "1", desc: "Complete 10 tests", },
-    { index: "05002", type: "testsCompleted", criteria: "25", name: "Consistent Learner", difficulty: "2", desc: "Complete 25 tests", },
-    { index: "05003", type: "testsCompleted", criteria: "50", name: "Habit Builder", difficulty: "2", desc: "Complete 50 tests", },
-    { index: "05004", type: "testsCompleted", criteria: "100", name: "Midnight Grinder", difficulty: "3", desc: "Complete 100 tests", },
-    { index: "05005", type: "testsCompleted", criteria: "250", name: "Exam Machine", difficulty: "4", desc: "Complete 250 tests", },
-    { index: "06000", type: "averageScore", criteria: "60", name: "Riding on D", difficulty: "1", desc: "Reach a lifetime average of 60%", },
-    { index: "06001", type: "averageScore", criteria: "75", name: "Averaging C", difficulty: "2", desc: "Reach a lifetime average of 75%", },
-    { index: "06002", type: "averageScore", criteria: "85", name: "Beyond the belcurve with B", difficulty: "3", desc: "Reach a lifetime average of 85%", },
-    { index: "06003", type: "averageScore", criteria: "95", name: "Aurafarming A", difficulty: "4", desc: "Reach a lifetime average of 95%", },
-    { index: "06004", type: "averageScore", criteria: "100", name: "A+ and Beyond!", difficulty: "5", desc: "Maintain a perfect average", },
-    { index: "07000", type: "perfectTests", criteria: "1", name: "Evanescent Victory", difficulty: "1", desc: "Score 100% on a test", },
-    { index: "07001", type: "perfectTests", criteria: "5", name: "Transient Yet Tangible", difficulty: "2", desc: "Score perfectly five times", },
-    { index: "07002", type: "perfectTests", criteria: "10", name: "Unfleeting Victory", difficulty: "3", desc: "Score perfectly ten times", },
-    { index: "07003", type: "perfectTests", criteria: "25", name: "Unblemished Record", difficulty: "4", desc: "Score perfectly twenty-five times", },
-    { index: "07004", type: "perfectTests", criteria: "50", name: "Progeny of Perfection", difficulty: "5", desc: "Achieve fifty perfect tests", },
-    { index: "08000", type: "highestScore", criteria: "90", name: "Walk Among the Belcurve", difficulty: "2", desc: "Score at least 90% on a test", },
-    { index: "08001", type: "highestScore", criteria: "95", name: "Understand the Belcurve", difficulty: "3", desc: "Score at least 95%", },
-    { index: "08002", type: "highestScore", criteria: "100", name: "Rise Above the Belcurve", difficulty: "4", desc: "Score 100%", },
-    { index: "09000", type: "hours", criteria: "1", name: "One Hour Later", difficulty: "1", desc: "Study for one hour", },
-    { index: "09001", type: "hours", criteria: "5", name: "Time Well Spent", difficulty: "1", desc: "Study for five hours", },
-    { index: "09002", type: "hours", criteria: "10", name: "Committed Learner", difficulty: "2", desc: "Study for ten hours", },
-    { index: "09003", type: "hours", criteria: "25", name: "Focused Mind", difficulty: "3", desc: "Study for twenty-five hours", },
-    { index: "09004", type: "hours", criteria: "50", name: "Marathon Scholar", difficulty: "4", desc: "Study for fifty hours", },
-    { index: "09005", type: "hours", criteria: "100", name: "Master of Persistence", difficulty: "5", desc: "Study for one hundred hours", },
-    { index: "10000", type: "studyStreak", criteria: "3", name: "On a Roll", difficulty: "1", desc: "Study three days in a row", },
-    { index: "10001", type: "studyStreak", criteria: "7", name: "Weekly Warrior", difficulty: "2", desc: "Study seven days in a row", },
-    { index: "10002", type: "studyStreak", criteria: "30", name: "Monthly Master", difficulty: "4", desc: "Study for thirty consecutive days", },
-    { index: "10003", type: "studyStreak", criteria: "100", name: "Unbreakable Habit", difficulty: "5", desc: "Study one hundred days consecutively", },
-    { index: "11000", type: "darkMode", criteria: "1", name: "Into the Darkness", difficulty: "1", desc: "Enable Dark Mode", },
-    { index: "12000", type: "macronKeyboard", criteria: "1", name: "Accent Expert", difficulty: "1", desc: "Use the macron keyboard", },
-    { index: "13000", type: "zeroPercent", criteria: "0", name: "At Least You Tried", difficulty: "2", desc: "Finish a test with 0%", },
-    { index: "14000", type: "oneQuestion", criteria: "1", name: "Technically Finished", difficulty: "1", desc: "Complete a test with only one question", },
-    { index: "15000", type: "retryImmediately", criteria: "5", name: "Persistence Pays", difficulty: "2", desc: "Restart the same test five times", },
-    { index: "16000", type: "loadOrDo", criteria: "historyPage", name: "Looking Back", difficulty: "1", desc: "Visit the Test History page", },
-    { index: "16001", type: "loadOrDo", criteria: "archivesPage", name: "Historian", difficulty: "1", desc: "Visit the Archives", },
-    { index: "16002", type: "loadOrDo", criteria: "databasePage", name: "Researcher", difficulty: "1", desc: "Open the Vocabulary Database", },
-    { index: "16003", type: "loadOrDo", criteria: "grammarPage", name: "Grammar Enthusiast", difficulty: "1", desc: "Complete your first grammar exercise", },
-    { index: "16004", type: "loadOrDo", criteria: "vocabPage", name: "Word Hunter", difficulty: "1", desc: "Complete your first vocabulary test", },
-    { index: "16005", type: "loadOrDo", criteria: "practiceTestPage", name: "Completionist", difficulty: "1", desc: "Complete your first practice test", },
-    { index: "17000", type: "time", criteria: "midnight", name: "Nocturnus", difficulty: "3", desc: "Study between 1 and 6am", },
-    { index: "17001", type: "time", criteria: "sunrise", name: "Aurora", difficulty: "3", desc: "Study between 6 and 8am", },
-    { index: "18000", type: "day", criteria: "christmas", name: "Festive Scholar", difficulty: "4", desc: "Study on Christmas Day", },
-    { index: "18001", type: "day", criteria: "leapDay", name: "Rare Opportunity", difficulty: "5", desc: "Study on February 29", },
-    { index: "18002", type: "day", criteria: "earlyAccess", name: "Early Access", difficulty: "3", desc: "Login to this website in 2026", },
-    { index: "19000", type: "grammarMoods", criteria: "indicative", name: "The Concrete Mood", difficulty: "4", desc: "Learn all verb endings in the indicative mood", },
-    { index: "19001", type: "grammarMoods", criteria: "subjunctive", name: "The Hypothetical Mood", difficulty: "4", desc: "Learn all verb endings in the subjunctive mood", },
-    { index: "19002", type: "grammarMoods", criteria: "imperative", name: "The Exclamatory Mood", difficulty: "4", desc: "Learn all verb endings in the imperative mood", },
-    { index: "19003", type: "grammarMoods", criteria: "infinitive", name: "The Constant Mood", difficulty: "4", desc: "Learn all verb endings in the infinitive mood", },
-    { index: "19004", type: "grammarMoods", criteria: "participle", name: "The Verbal Adjectives", difficulty: "4", desc: "Learn all verb endings in the participle mood", },
-    { index: "20000", type: "grammarConj", criteria: "1", name: "Word Declining 1", difficulty: "4", desc: "Learn all verb endings in the 1st conjugation", },
-    { index: "20001", type: "grammarConj", criteria: "2", name: "Word Declining 2", difficulty: "4", desc: "Learn all verb endings in the 2nd conjugation", },
-    { index: "20002", type: "grammarConj", criteria: "3", name: "Word Declining 3", difficulty: "4", desc: "Learn all verb endings in the 3rd conjugation", },
-    { index: "20003", type: "grammarConj", criteria: "4", name: "Word Declining 4", difficulty: "4", desc: "Learn all verb endings in the 4th conjugation", },
-    { index: "21000", type: "vocabStage", criteria: "1", name: "Stage 1", difficulty: "2", desc: "Complete Stage 1", },
-    { index: "21001", type: "vocabStage", criteria: "2", name: "Stage 2", difficulty: "2", desc: "Complete Stage 2", },
-    { index: "21002", type: "vocabStage", criteria: "3", name: "Stage 3", difficulty: "2", desc: "Complete Stage 3", },
-    { index: "21003", type: "vocabStage", criteria: "4", name: "Stage 4", difficulty: "2", desc: "Complete Stage 4", },
-    { index: "21004", type: "vocabStage", criteria: "5", name: "Stage 5", difficulty: "2", desc: "Complete Stage 5", },
-    { index: "21005", type: "vocabStage", criteria: "6", name: "Stage 6", difficulty: "2", desc: "Complete Stage 6", },
-    { index: "21006", type: "vocabStage", criteria: "7", name: "Stage 7", difficulty: "2", desc: "Complete Stage 7", },
-    { index: "21007", type: "vocabStage", criteria: "8", name: "Stage 8", difficulty: "2", desc: "Complete Stage 8", },
-    { index: "21008", type: "vocabStage", criteria: "9", name: "Stage 9", difficulty: "2", desc: "Complete Stage 9", },
-    { index: "21009", type: "vocabStage", criteria: "10", name: "Stage 10", difficulty: "2", desc: "Complete Stage 10", },
-    { index: "21010", type: "vocabStage", criteria: "11", name: "Stage 11", difficulty: "2", desc: "Complete Stage 11", },
-    { index: "21011", type: "vocabStage", criteria: "12", name: "Stage 12", difficulty: "2", desc: "Complete Stage 12", },
-    { index: "21012", type: "vocabStage", criteria: "13", name: "Stage 13", difficulty: "2", desc: "Complete Stage 13", },
-    { index: "21013", type: "vocabStage", criteria: "14", name: "Stage 14", difficulty: "2", desc: "Complete Stage 14", },
-    { index: "21014", type: "vocabStage", criteria: "15", name: "Stage 15", difficulty: "2", desc: "Complete Stage 15", },
-    { index: "21015", type: "vocabStage", criteria: "16", name: "Stage 16", difficulty: "2", desc: "Complete Stage 16", },
-    { index: "21016", type: "vocabStage", criteria: "17", name: "Stage 17", difficulty: "2", desc: "Complete Stage 17", },
-    { index: "21017", type: "vocabStage", criteria: "18", name: "Stage 18", difficulty: "2", desc: "Complete Stage 18", },
-    { index: "21018", type: "vocabStage", criteria: "19", name: "Stage 19", difficulty: "2", desc: "Complete Stage 19", },
-    { index: "21019", type: "vocabStage", criteria: "20", name: "Stage 20", difficulty: "2", desc: "Complete Stage 20", },
-    { index: "21020", type: "vocabStage", criteria: "21", name: "Stage 21", difficulty: "3", desc: "Complete Stage 21", },
-    { index: "21021", type: "vocabStage", criteria: "22", name: "Stage 22", difficulty: "3", desc: "Complete Stage 22", },
-    { index: "21022", type: "vocabStage", criteria: "23", name: "Stage 23", difficulty: "3", desc: "Complete Stage 23", },
-    { index: "21023", type: "vocabStage", criteria: "24", name: "Stage 24", difficulty: "3", desc: "Complete Stage 24", },
-    { index: "21024", type: "vocabStage", criteria: "25", name: "Stage 25", difficulty: "3", desc: "Complete Stage 25", },
-    { index: "21025", type: "vocabStage", criteria: "26", name: "Stage 26", difficulty: "3", desc: "Complete Stage 26", },
-    { index: "21026", type: "vocabStage", criteria: "27", name: "Stage 27", difficulty: "3", desc: "Complete Stage 27", },
-    { index: "21027", type: "vocabStage", criteria: "28", name: "Stage 28", difficulty: "3", desc: "Complete Stage 28", },
-    { index: "21028", type: "vocabStage", criteria: "29", name: "Stage 29", difficulty: "3", desc: "Complete Stage 29", },
-    { index: "21029", type: "vocabStage", criteria: "30", name: "Stage 30", difficulty: "3", desc: "Complete Stage 30", },
-    { index: "21030", type: "vocabStage", criteria: "31", name: "Stage 31", difficulty: "3", desc: "Complete Stage 31", },
-    { index: "21031", type: "vocabStage", criteria: "32", name: "Stage 32", difficulty: "3", desc: "Complete Stage 32", },
-    { index: "21032", type: "vocabStage", criteria: "33", name: "Stage 33", difficulty: "3", desc: "Complete Stage 33", },
-    { index: "21033", type: "vocabStage", criteria: "34", name: "Stage 34", difficulty: "3", desc: "Complete Stage 34", },
-    { index: "21034", type: "vocabStage", criteria: "35", name: "Stage 35", difficulty: "3", desc: "Complete Stage 35", },
-    { index: "21035", type: "vocabStage", criteria: "36", name: "Stage 36", difficulty: "3", desc: "Complete Stage 36", },
-    { index: "21036", type: "vocabStage", criteria: "37", name: "Stage 37", difficulty: "3", desc: "Complete Stage 37", },
-    { index: "21037", type: "vocabStage", criteria: "38", name: "Stage 38", difficulty: "3", desc: "Complete Stage 38", },
-    { index: "21038", type: "vocabStage", criteria: "39", name: "Stage 39", difficulty: "3", desc: "Complete Stage 39", },
-    { index: "21039", type: "vocabStage", criteria: "40", name: "Stage 40", difficulty: "3", desc: "Complete Stage 40", },
-    { index: "22000", type: "vocabType", criteria: "noun", name: "Noun Master", difficulty: "4", desc: "Complete all nouns in the Vocab Tester", },
-    { index: "22001", type: "vocabType", criteria: "verb", name: "Verb Master", difficulty: "4", desc: "Complete all verbs in the Vocab Tester", },
-    { index: "22002", type: "vocabType", criteria: "adjective", name: "Adjective Master", difficulty: "4", desc: "Complete all adjectives in the Vocab Tester", },
-    { index: "22003", type: "vocabType", criteria: "adverb", name: "Adverb Master", difficulty: "4", desc: "Complete all adverbs in the Vocab Tester", },
-    { index: "22004", type: "vocabType", criteria: "preposition", name: "Preposition Master", difficulty: "4", desc: "Complete all prepositions in the Vocab Tester", },
-    { index: "22005", type: "vocabType", criteria: "particle", name: "Wait, These Exist?", difficulty: "4", desc: "Complete all particles in the Vocab Tester", },
-    { index: "22006", type: "vocabType", criteria: "exclamation", name: "Probably Vocative Case", difficulty: "4", desc: "Complete all exclamations in the Vocab Tester", },
-    { index: "22007", type: "vocabType", criteria: "conjunction", name: "Pneumonic: FANBOYS", difficulty: "4", desc: "Complete all conjunctions in the Vocab Tester", },
-    { index: "22008", type: "vocabType", criteria: "pronoun", name: "Don't Mix These Up!", difficulty: "4", desc: "Complete all pronouns in the Vocab Tester", },
-    { index: "22009", type: "vocabType", criteria: "deponent verb", name: "'Passive in Form, Active in Meaning'", difficulty: "4", desc: "Complete all deponent verbs in the Vocab Tester", },
-    { index: "23000", type: "secret", criteria: "1", name: "Quack", difficulty: "2", desc: "???", },
-    { index: "23001", type: "secret", criteria: "1", name: "Ancient Cheat Code", difficulty: "4", desc: "???", },
-    { index: "23002", type: "secret", criteria: "1", name: "The Owl of Minerva", difficulty: "5", desc: "???", },
-    { index: "23003", type: "secret", criteria: "1", name: "TRuE", difficulty: "5", desc: "???", },
+    { index: "01000", type: "rawVocab", criteria: "10", name: "Vocab Beginner", difficulty: "1", desc: "Complete 10 vocabulary words in your selected course", },
+{ index: "01001", type: "rawVocab", criteria: "50", name: "Building Momentum", difficulty: "1", desc: "Complete 50 vocabulary words in your selected course", },
+{ index: "01002", type: "rawVocab", criteria: "100", name: "Word Collector", difficulty: "2", desc: "Complete 100 vocabulary words in your selected course", },
+{ index: "01003", type: "rawVocab", criteria: "250", name: "Lexicon Explorer", difficulty: "2", desc: "Complete 250 vocabulary words in your selected course", },
+{ index: "01004", type: "rawVocab", criteria: "500", name: "Latin Scholar", difficulty: "3", desc: "Complete 500 vocabulary words in your selected course", },
+{ index: "01005", type: "rawVocab", criteria: "750", name: "Walking Dictionary", difficulty: "4", desc: "Complete 750 vocabulary words in the Cambridge Latin Course", },
+{ index: "01006", type: "rawVocab", criteria: "888", name: "Master of Vocabulary", difficulty: "5", desc: "Complete every vocabulary word in the Cambridge Latin Course", },
+{ index: "02000", type: "rawGrammar", criteria: "10", name: "Verb Ending Beginner", difficulty: "1", desc: "Complete 10 Verb Endings in 1D or 2D Verb Tester", },
+{ index: "02001", type: "rawGrammar", criteria: "50", name: "Tense Translator", difficulty: "1", desc: "Complete 50 Verb Endings", },
+{ index: "02002", type: "rawGrammar", criteria: "100", name: "Verb Collector", difficulty: "2", desc: "Complete 100 Verb Endings", },
+{ index: "02003", type: "rawGrammar", criteria: "250", name: "Conjugation Collector", difficulty: "3", desc: "Complete 250 Verb Endings", },
+{ index: "02004", type: "rawGrammar", criteria: "500", name: "Mood Mystic", difficulty: "4", desc: "Complete 500 Verb Endings", },
+{ index: "02005", type: "rawGrammar", criteria: "672", name: "Master of Verb Endings", difficulty: "5", desc: "Complete 672 Verb Endings", },
+{ index: "03000", type: "levelling", criteria: "5", name: "1st Day of Latin", difficulty: "2", desc: "Reach level 5", },
+{ index: "03001", type: "levelling", criteria: "10", name: "1st Week of Latin", difficulty: "3", desc: "Reach level 10", },
+{ index: "03002", type: "levelling", criteria: "40", name: "1st Month of Latin", difficulty: "3", desc: "Reach level 40", },
+{ index: "03003", type: "levelling", criteria: "160", name: "1st Semester of Latin", difficulty: "4", desc: "Reach level 160", },
+{ index: "03004", type: "levelling", criteria: "360", name: "1st Year of Latin", difficulty: "4", desc: "Reach level 360", },
+{ index: "03005", type: "levelling", criteria: "720", name: "1st Degree in Latin", difficulty: "4", desc: "Reach level 720", },
+{ index: "03006", type: "levelling", criteria: "1000", name: "Solo Levelling", difficulty: "5", desc: "Reach level 1000", },
+{ index: "04000", type: "questionsAnswered", criteria: "50", name: "First Steps", difficulty: "1", desc: "Answer 50 questions", },
+{ index: "04001", type: "questionsAnswered", criteria: "250", name: "Practised Mind", difficulty: "1", desc: "Answer 250 questions", },
+{ index: "04002", type: "questionsAnswered", criteria: "500", name: "Getting Serious", difficulty: "2", desc: "Answer 500 questions", },
+{ index: "04003", type: "questionsAnswered", criteria: "1000", name: "Dedicated Student", difficulty: "2", desc: "Answer 1000 questions", },
+{ index: "04004", type: "questionsAnswered", criteria: "2500", name: "Roman Apprentice", difficulty: "3", desc: "Answer 2500 questions", },
+{ index: "04005", type: "questionsAnswered", criteria: "5000", name: "Centurion of Study", difficulty: "4", desc: "Answer 5000 questions", },
+{ index: "04006", type: "questionsAnswered", criteria: "10000", name: "Imperator of Latin", difficulty: "5", desc: "Answer 10000 questions", },
+{ index: "05000", type: "testsCompleted", criteria: "1", name: "First Test", difficulty: "1", desc: "Complete your first test", },
+{ index: "05001", type: "testsCompleted", criteria: "10", name: "Settling In", difficulty: "1", desc: "Complete 10 tests", },
+{ index: "05002", type: "testsCompleted", criteria: "25", name: "Consistent Learner", difficulty: "2", desc: "Complete 25 tests", },
+{ index: "05003", type: "testsCompleted", criteria: "50", name: "Habit Builder", difficulty: "2", desc: "Complete 50 tests", },
+{ index: "05004", type: "testsCompleted", criteria: "100", name: "Midnight Grinder", difficulty: "3", desc: "Complete 100 tests", },
+{ index: "05005", type: "testsCompleted", criteria: "250", name: "Exam Machine", difficulty: "4", desc: "Complete 250 tests", },
+{ index: "06000", type: "averageScore", criteria: "60", name: "Riding on D", difficulty: "1", desc: "Reach a lifetime average of 60%", },
+{ index: "06001", type: "averageScore", criteria: "75", name: "Averaging C", difficulty: "2", desc: "Reach a lifetime average of 75%", },
+{ index: "06002", type: "averageScore", criteria: "85", name: "Beyond the belcurve with B", difficulty: "3", desc: "Reach a lifetime average of 85%", },
+{ index: "06003", type: "averageScore", criteria: "95", name: "Aurafarming A", difficulty: "4", desc: "Reach a lifetime average of 95%", },
+{ index: "06004", type: "averageScore", criteria: "100", name: "A+ and Beyond!", difficulty: "5", desc: "Maintain a perfect average", },
+{ index: "07000", type: "perfectTests", criteria: "1", name: "Evanescent Victory", difficulty: "1", desc: "Score 100% on a test", },
+{ index: "07001", type: "perfectTests", criteria: "5", name: "Transient Yet Tangible", difficulty: "2", desc: "Score perfectly five times", },
+{ index: "07002", type: "perfectTests", criteria: "10", name: "Unfleeting Victory", difficulty: "3", desc: "Score perfectly ten times", },
+{ index: "07003", type: "perfectTests", criteria: "25", name: "Unblemished Record", difficulty: "4", desc: "Score perfectly twenty-five times", },
+{ index: "07004", type: "perfectTests", criteria: "50", name: "Progeny of Perfection", difficulty: "5", desc: "Achieve fifty perfect tests", },
+{ index: "08000", type: "highestScore", criteria: "90", name: "Walk Among the Belcurve", difficulty: "2", desc: "Score at least 90% on a test", },
+{ index: "08001", type: "highestScore", criteria: "95", name: "Understand the Belcurve", difficulty: "3", desc: "Score at least 95%", },
+{ index: "08002", type: "highestScore", criteria: "100", name: "Rise Above the Belcurve", difficulty: "4", desc: "Score 100%", },
+{ index: "09000", type: "hours", criteria: "1", name: "One Hour Later", difficulty: "1", desc: "Study for one hour", },
+{ index: "09001", type: "hours", criteria: "5", name: "Time Well Spent", difficulty: "1", desc: "Study for five hours", },
+{ index: "09002", type: "hours", criteria: "10", name: "Committed Learner", difficulty: "2", desc: "Study for ten hours", },
+{ index: "09003", type: "hours", criteria: "25", name: "Focused Mind", difficulty: "3", desc: "Study for twenty-five hours", },
+{ index: "09004", type: "hours", criteria: "50", name: "Marathon Scholar", difficulty: "4", desc: "Study for fifty hours", },
+{ index: "09005", type: "hours", criteria: "100", name: "Master of Persistence", difficulty: "5", desc: "Study for one hundred hours", },
+{ index: "10000", type: "studyStreak", criteria: "3", name: "On a Roll", difficulty: "1", desc: "Study three days in a row", },
+{ index: "10001", type: "studyStreak", criteria: "7", name: "Weekly Warrior", difficulty: "2", desc: "Study seven days in a row", },
+{ index: "10002", type: "studyStreak", criteria: "30", name: "Monthly Master", difficulty: "4", desc: "Study for thirty consecutive days", },
+{ index: "10003", type: "studyStreak", criteria: "100", name: "Unbreakable Habit", difficulty: "5", desc: "Study one hundred days consecutively", },
+{ index: "11000", type: "darkMode", criteria: "1", name: "Into the Darkness", difficulty: "1", desc: "Enable Dark Mode", },
+{ index: "12000", type: "macronKeyboard", criteria: "1", name: "Accent Expert", difficulty: "1", desc: "Use the macron keyboard", },
+{ index: "13000", type: "zeroPercent", criteria: "0", name: "At Least You Tried", difficulty: "2", desc: "Finish a test with 0%", },
+{ index: "14000", type: "oneQuestion", criteria: "1", name: "Technically Finished", difficulty: "1", desc: "Complete a test with only one question", },
+{ index: "15000", type: "retryImmediately", criteria: "5", name: "Persistence Pays", difficulty: "2", desc: "Restart the same test five times", },
+{ index: "16000", type: "loadOrDo", criteria: "historyPage", name: "Looking Back", difficulty: "1", desc: "Visit the Test History page", },
+{ index: "16001", type: "loadOrDo", criteria: "archivesPage", name: "Historian", difficulty: "1", desc: "Visit the Archives", },
+{ index: "16002", type: "loadOrDo", criteria: "databasePage", name: "Researcher", difficulty: "1", desc: "Open the Vocabulary Database", },
+{ index: "16003", type: "loadOrDo", criteria: "grammarPage", name: "Grammar Enthusiast", difficulty: "1", desc: "Complete your first grammar exercise", },
+{ index: "16004", type: "loadOrDo", criteria: "vocabPage", name: "Word Hunter", difficulty: "1", desc: "Complete your first vocabulary test", },
+{ index: "16005", type: "loadOrDo", criteria: "practiceTestPage", name: "Completionist", difficulty: "1", desc: "Complete your first practice test", },
+{ index: "17000", type: "time", criteria: "midnight", name: "Nocturnus", difficulty: "3", desc: "Study between 1 and 6am", },
+{ index: "17001", type: "time", criteria: "sunrise", name: "Aurora", difficulty: "3", desc: "Study between 6 and 8am", },
+{ index: "18000", type: "day", criteria: "christmas", name: "Festive Scholar", difficulty: "4", desc: "Study on Christmas Day", },
+{ index: "18001", type: "day", criteria: "leapDay", name: "Rare Opportunity", difficulty: "5", desc: "Study on February 29", },
+{ index: "18002", type: "day", criteria: "earlyAccess", name: "Early Access", difficulty: "3", desc: "Login to this website in 2026", },
+{ index: "19000", type: "grammarMoods", criteria: "indicative", name: "The Concrete Mood", difficulty: "4", desc: "Learn all verb endings in the indicative mood", },
+{ index: "19001", type: "grammarMoods", criteria: "subjunctive", name: "The Hypothetical Mood", difficulty: "4", desc: "Learn all verb endings in the subjunctive mood", },
+{ index: "19002", type: "grammarMoods", criteria: "imperative", name: "The Exclamatory Mood", difficulty: "4", desc: "Learn all verb endings in the imperative mood", },
+{ index: "19003", type: "grammarMoods", criteria: "infinitive", name: "The Constant Mood", difficulty: "4", desc: "Learn all verb endings in the infinitive mood", },
+{ index: "19004", type: "grammarMoods", criteria: "participle", name: "The Verbal Adjectives", difficulty: "4", desc: "Learn all verb endings in the participle mood", },
+{ index: "20000", type: "grammarConj", criteria: "1", name: "Word Declining 1", difficulty: "4", desc: "Learn all verb endings in the 1st conjugation", },
+{ index: "20001", type: "grammarConj", criteria: "2", name: "Word Declining 2", difficulty: "4", desc: "Learn all verb endings in the 2nd conjugation", },
+{ index: "20002", type: "grammarConj", criteria: "3", name: "Word Declining 3", difficulty: "4", desc: "Learn all verb endings in the 3rd conjugation", },
+{ index: "20003", type: "grammarConj", criteria: "4", name: "Word Declining 4", difficulty: "4", desc: "Learn all verb endings in the 4th conjugation", },
+{ index: "21000", type: "vocabStageCambridgeLatinCourse", criteria: "1", name: "Stage 1", difficulty: "2", desc: "Complete Stage 1 of the Cambride Latin Course", },
+{ index: "21001", type: "vocabStageCambridgeLatinCourse", criteria: "2", name: "Stage 2", difficulty: "2", desc: "Complete Stage 2 of the Cambride Latin Course", },
+{ index: "21002", type: "vocabStageCambridgeLatinCourse", criteria: "3", name: "Stage 3", difficulty: "2", desc: "Complete Stage 3 of the Cambride Latin Course", },
+{ index: "21003", type: "vocabStageCambridgeLatinCourse", criteria: "4", name: "Stage 4", difficulty: "2", desc: "Complete Stage 4 of the Cambride Latin Course", },
+{ index: "21004", type: "vocabStageCambridgeLatinCourse", criteria: "5", name: "Stage 5", difficulty: "2", desc: "Complete Stage 5 of the Cambride Latin Course", },
+{ index: "21005", type: "vocabStageCambridgeLatinCourse", criteria: "6", name: "Stage 6", difficulty: "2", desc: "Complete Stage 6 of the Cambride Latin Course", },
+{ index: "21006", type: "vocabStageCambridgeLatinCourse", criteria: "7", name: "Stage 7", difficulty: "2", desc: "Complete Stage 7 of the Cambride Latin Course", },
+{ index: "21007", type: "vocabStageCambridgeLatinCourse", criteria: "8", name: "Stage 8", difficulty: "2", desc: "Complete Stage 8 of the Cambride Latin Course", },
+{ index: "21008", type: "vocabStageCambridgeLatinCourse", criteria: "9", name: "Stage 9", difficulty: "2", desc: "Complete Stage 9 of the Cambride Latin Course", },
+{ index: "21009", type: "vocabStageCambridgeLatinCourse", criteria: "10", name: "Stage 10", difficulty: "2", desc: "Complete Stage 10 of the Cambride Latin Course", },
+{ index: "21010", type: "vocabStageCambridgeLatinCourse", criteria: "11", name: "Stage 11", difficulty: "2", desc: "Complete Stage 11 of the Cambride Latin Course", },
+{ index: "21011", type: "vocabStageCambridgeLatinCourse", criteria: "12", name: "Stage 12", difficulty: "2", desc: "Complete Stage 12 of the Cambride Latin Course", },
+{ index: "21012", type: "vocabStageCambridgeLatinCourse", criteria: "13", name: "Stage 13", difficulty: "2", desc: "Complete Stage 13 of the Cambride Latin Course", },
+{ index: "21013", type: "vocabStageCambridgeLatinCourse", criteria: "14", name: "Stage 14", difficulty: "2", desc: "Complete Stage 14 of the Cambride Latin Course", },
+{ index: "21014", type: "vocabStageCambridgeLatinCourse", criteria: "15", name: "Stage 15", difficulty: "2", desc: "Complete Stage 15 of the Cambride Latin Course", },
+{ index: "21015", type: "vocabStageCambridgeLatinCourse", criteria: "16", name: "Stage 16", difficulty: "2", desc: "Complete Stage 16 of the Cambride Latin Course", },
+{ index: "21016", type: "vocabStageCambridgeLatinCourse", criteria: "17", name: "Stage 17", difficulty: "2", desc: "Complete Stage 17 of the Cambride Latin Course", },
+{ index: "21017", type: "vocabStageCambridgeLatinCourse", criteria: "18", name: "Stage 18", difficulty: "2", desc: "Complete Stage 18 of the Cambride Latin Course", },
+{ index: "21018", type: "vocabStageCambridgeLatinCourse", criteria: "19", name: "Stage 19", difficulty: "2", desc: "Complete Stage 19 of the Cambride Latin Course", },
+{ index: "21019", type: "vocabStageCambridgeLatinCourse", criteria: "20", name: "Stage 20", difficulty: "2", desc: "Complete Stage 20 of the Cambride Latin Course", },
+{ index: "21020", type: "vocabStageCambridgeLatinCourse", criteria: "21", name: "Stage 21", difficulty: "3", desc: "Complete Stage 21 of the Cambride Latin Course", },
+{ index: "21021", type: "vocabStageCambridgeLatinCourse", criteria: "22", name: "Stage 22", difficulty: "3", desc: "Complete Stage 22 of the Cambride Latin Course", },
+{ index: "21022", type: "vocabStageCambridgeLatinCourse", criteria: "23", name: "Stage 23", difficulty: "3", desc: "Complete Stage 23 of the Cambride Latin Course", },
+{ index: "21023", type: "vocabStageCambridgeLatinCourse", criteria: "24", name: "Stage 24", difficulty: "3", desc: "Complete Stage 24 of the Cambride Latin Course", },
+{ index: "21024", type: "vocabStageCambridgeLatinCourse", criteria: "25", name: "Stage 25", difficulty: "3", desc: "Complete Stage 25 of the Cambride Latin Course", },
+{ index: "21025", type: "vocabStageCambridgeLatinCourse", criteria: "26", name: "Stage 26", difficulty: "3", desc: "Complete Stage 26 of the Cambride Latin Course", },
+{ index: "21026", type: "vocabStageCambridgeLatinCourse", criteria: "27", name: "Stage 27", difficulty: "3", desc: "Complete Stage 27 of the Cambride Latin Course", },
+{ index: "21027", type: "vocabStageCambridgeLatinCourse", criteria: "28", name: "Stage 28", difficulty: "3", desc: "Complete Stage 28 of the Cambride Latin Course", },
+{ index: "21028", type: "vocabStageCambridgeLatinCourse", criteria: "29", name: "Stage 29", difficulty: "3", desc: "Complete Stage 29 of the Cambride Latin Course", },
+{ index: "21029", type: "vocabStageCambridgeLatinCourse", criteria: "30", name: "Stage 30", difficulty: "3", desc: "Complete Stage 30 of the Cambride Latin Course", },
+{ index: "21030", type: "vocabStageCambridgeLatinCourse", criteria: "31", name: "Stage 31", difficulty: "3", desc: "Complete Stage 31 of the Cambride Latin Course", },
+{ index: "21031", type: "vocabStageCambridgeLatinCourse", criteria: "32", name: "Stage 32", difficulty: "3", desc: "Complete Stage 32 of the Cambride Latin Course", },
+{ index: "21032", type: "vocabStageCambridgeLatinCourse", criteria: "33", name: "Stage 33", difficulty: "3", desc: "Complete Stage 33 of the Cambride Latin Course", },
+{ index: "21033", type: "vocabStageCambridgeLatinCourse", criteria: "34", name: "Stage 34", difficulty: "3", desc: "Complete Stage 34 of the Cambride Latin Course", },
+{ index: "21034", type: "vocabStageCambridgeLatinCourse", criteria: "35", name: "Stage 35", difficulty: "3", desc: "Complete Stage 35 of the Cambride Latin Course", },
+{ index: "21035", type: "vocabStageCambridgeLatinCourse", criteria: "36", name: "Stage 36", difficulty: "3", desc: "Complete Stage 36 of the Cambride Latin Course", },
+{ index: "21036", type: "vocabStageCambridgeLatinCourse", criteria: "37", name: "Stage 37", difficulty: "3", desc: "Complete Stage 37 of the Cambride Latin Course", },
+{ index: "21037", type: "vocabStageCambridgeLatinCourse", criteria: "38", name: "Stage 38", difficulty: "3", desc: "Complete Stage 38 of the Cambride Latin Course", },
+{ index: "21038", type: "vocabStageCambridgeLatinCourse", criteria: "39", name: "Stage 39", difficulty: "3", desc: "Complete Stage 39 of the Cambride Latin Course", },
+{ index: "21039", type: "vocabStageCambridgeLatinCourse", criteria: "40", name: "Stage 40", difficulty: "3", desc: "Complete Stage 40 of the Cambride Latin Course", },
+{ index: "22000", type: "vocabTypeCambridgeLatinCourse", criteria: "noun", name: "Cambridge course: Noun Master", difficulty: "4", desc: "Complete all nouns in Cambridge Latin Course Vocab", },
+{ index: "22001", type: "vocabTypeCambridgeLatinCourse", criteria: "verb", name: "Cambridge course: Verb Master", difficulty: "4", desc: "Complete all verbs in Cambridge Latin Course Vocab", },
+{ index: "22002", type: "vocabTypeCambridgeLatinCourse", criteria: "adjective", name: "Cambridge course: Adjective Master", difficulty: "4", desc: "Complete all adjectives in Cambridge Latin Course Vocab", },
+{ index: "22003", type: "vocabTypeCambridgeLatinCourse", criteria: "adverb", name: "Cambridge course: Adverb Master", difficulty: "4", desc: "Complete all adverbs in Cambridge Latin Course Vocab", },
+{ index: "22004", type: "vocabTypeCambridgeLatinCourse", criteria: "preposition", name: "Cambridge course: Preposition Master", difficulty: "4", desc: "Complete all prepositions in Cambridge Latin Course Vocab", },
+{ index: "22005", type: "vocabTypeCambridgeLatinCourse", criteria: "particle", name: "Cambridge course: Wait, These Exist?", difficulty: "4", desc: "Complete all particles in Cambridge Latin Course Vocab", },
+{ index: "22006", type: "vocabTypeCambridgeLatinCourse", criteria: "exclamation", name: "Cambridge course: Probably Vocative Case", difficulty: "4", desc: "Complete all exclamations in Cambridge Latin Course Vocab", },
+{ index: "22007", type: "vocabTypeCambridgeLatinCourse", criteria: "conjunction", name: "Cambridge course: Pneumonic: FANBOYS", difficulty: "4", desc: "Complete all conjunctions in Cambridge Latin Course Vocab", },
+{ index: "22008", type: "vocabTypeCambridgeLatinCourse", criteria: "pronoun", name: "Cambridge course: Don't Mix These Up!", difficulty: "4", desc: "Complete all pronouns in Cambridge Latin Course Vocab", },
+{ index: "22009", type: "vocabTypeCambridgeLatinCourse", criteria: "deponent verb", name: "Cambridge course: 'Passive in Form, Active in Meaning'", difficulty: "4", desc: "Complete all deponent verbs in Cambridge Latin Course Vocab", },
+{ index: "23000", type: "vocabStageDeRomanis", criteria: "1", name: "Stage 1", difficulty: "2", desc: "Complete Stage 1 of the De Romanis Course", },
+{ index: "23001", type: "vocabStageDeRomanis", criteria: "2", name: "Stage 2", difficulty: "2", desc: "Complete Stage 2 of the De Romanis Course", },
+{ index: "23002", type: "vocabStageDeRomanis", criteria: "3", name: "Stage 3", difficulty: "2", desc: "Complete Stage 3 of the De Romanis Course", },
+{ index: "23003", type: "vocabStageDeRomanis", criteria: "4", name: "Stage 4", difficulty: "2", desc: "Complete Stage 4 of the De Romanis Course", },
+{ index: "23004", type: "vocabStageDeRomanis", criteria: "5", name: "Stage 5", difficulty: "2", desc: "Complete Stage 5 of the De Romanis Course", },
+{ index: "23005", type: "vocabStageDeRomanis", criteria: "6", name: "Stage 6", difficulty: "2", desc: "Complete Stage 6 of the De Romanis Course", },
+{ index: "23006", type: "vocabStageDeRomanis", criteria: "7", name: "Stage 7", difficulty: "2", desc: "Complete Stage 7 of the De Romanis Course", },
+{ index: "23007", type: "vocabStageDeRomanis", criteria: "8", name: "Stage 8", difficulty: "2", desc: "Complete Stage 8 of the De Romanis Course", },
+{ index: "23008", type: "vocabStageDeRomanis", criteria: "9", name: "Stage 9", difficulty: "2", desc: "Complete Stage 9 of the De Romanis Course", },
+{ index: "23009", type: "vocabStageDeRomanis", criteria: "10", name: "Stage 10", difficulty: "2", desc: "Complete Stage 10 of the De Romanis Course", },
+{ index: "23010", type: "vocabStageDeRomanis", criteria: "11", name: "Stage 11", difficulty: "2", desc: "Complete Stage 11 of the De Romanis Course", },
+{ index: "23011", type: "vocabStageDeRomanis", criteria: "12", name: "Stage 12", difficulty: "3", desc: "Complete Stage 12 of the De Romanis Course", },
+{ index: "23012", type: "vocabStageDeRomanis", criteria: "13", name: "Stage 13", difficulty: "3", desc: "Complete Stage 13 of the De Romanis Course", },
+{ index: "23013", type: "vocabStageDeRomanis", criteria: "14", name: "Stage 14", difficulty: "3", desc: "Complete Stage 14 of the De Romanis Course", },
+{ index: "23014", type: "vocabStageDeRomanis", criteria: "15", name: "Stage 15", difficulty: "3", desc: "Complete Stage 15 of the De Romanis Course", },
+{ index: "23015", type: "vocabStageDeRomanis", criteria: "16", name: "Stage 16", difficulty: "3", desc: "Complete Stage 16 of the De Romanis Course", },
+{ index: "24000", type: "vocabTypeDeRomanis", criteria: "adjective", name: "De Romanis: Adjective Master", difficulty: "4", desc: "Complete all adjectives in De Romanis Course Vocab", },
+{ index: "24001", type: "vocabTypeDeRomanis", criteria: "adverb", name: "De Romanis: Adverb Master", difficulty: "4", desc: "Complete all adverbs in De Romanis Course Vocab", },
+{ index: "24002", type: "vocabTypeDeRomanis", criteria: "conjunction", name: "De Romanis: Conjugation Collector", difficulty: "4", desc: "Complete all conjunctions in De Romanis Course Vocab", },
+{ index: "24003", type: "vocabTypeDeRomanis", criteria: "deponent verb", name: "De Romanis: 'Passive in Form, Active in Meaning'", difficulty: "4", desc: "Complete all deponent verbs in De Romanis Course Vocab", },
+{ index: "24004", type: "vocabTypeDeRomanis", criteria: "interjection", name: "De Romanis: Probably Vocative Case", difficulty: "4", desc: "Complete all interjections in De Romanis Course Vocab", },
+{ index: "24005", type: "vocabTypeDeRomanis", criteria: "noun", name: "De Romanis: Noun Master", difficulty: "4", desc: "Complete all nouns in De Romanis Course Vocab", },
+{ index: "24006", type: "vocabTypeDeRomanis", criteria: "particle", name: "De Romanis: Wait, These Exist?", difficulty: "4", desc: "Complete all particles in De Romanis Course Vocab", },
+{ index: "24007", type: "vocabTypeDeRomanis", criteria: "preposition", name: "De Romanis: Preposition Master", difficulty: "4", desc: "Complete all prepositions in De Romanis Course Vocab", },
+{ index: "24008", type: "vocabTypeDeRomanis", criteria: "pronoun", name: "De Romanis: Don't Mix These Up!", difficulty: "4", desc: "Complete all pronouns in De Romanis Course Vocab", },
+{ index: "24009", type: "vocabTypeDeRomanis", criteria: "verb", name: "De Romanis: Verb Master", difficulty: "4", desc: "Complete all verbs in De Romanis Course Vocab", },
 ];
 /*
 Test XP + Completion XP + Achievements + Study Hours + Login Bonuses + Special Bonuses
@@ -225,7 +246,7 @@ example: {
             */
 let darkModeUsed = localStorage.getItem('achievementDarkMode') === 'true';                  ////stored value: 'true' or 'false'
 let macronKeyboardUsed = localStorage.getItem('achievementMacronKeyboard') === 'true';      ////stored value: 'true' or 'false'
-let loadedPages =JSON.parse(localStorage.getItem('savedPagesLoaded'));                      ////example: ['index.html', 'vocabData.html', 'archives.html']
+let loadedPages =JSON.parse(localStorage.getItem('savedPagesLoaded'))||[];                  ////example: ['index.html', 'vocabData.html', 'archives.html']
 //let grammarProgress = JSON.parse(localStorage.getItem("latinGrammarProgress")) || {};     ////structure is same as achievementProgress, defined in another script
 //let vocabProgress = JSON.parse(localStorage.getItem("latinVocabProgress")) || {};         ////structure is same as achievementProgress, defined in another script
 let loginsArray = JSON.parse(localStorage.getItem('savedLogins'));                          ////example: ["7/2/2026","7/1/2026","6/30/2026"] (never the same day)
@@ -234,6 +255,7 @@ let loginTimesArray = JSON.parse(localStorage.getItem('savedLoginTimes'));      
 
 
 function calculateXP(isReturn){
+    loadVocab();
     let xpObj = structuredClone(xp);
     
     for (let test of testHistory){
@@ -312,18 +334,22 @@ function reload(){
     testHistory = JSON.parse(localStorage.getItem("latinHistory")) ||[];
     darkModeUsed = localStorage.getItem('achievementDarkMode') === 'true';
     macronKeyboardUsed = localStorage.getItem('achievementMacronKeyboard') === 'true';
-    loadedPages =JSON.parse(localStorage.getItem('savedPagesLoaded'));
+    loadedPages =JSON.parse(localStorage.getItem('savedPagesLoaded')) ||[];
     grammarProgress = JSON.parse(localStorage.getItem("latinGrammarProgress")) || {};
-    vocabProgress = JSON.parse(localStorage.getItem("latinVocabProgress")) || {};
+    if (localStorage.getItem("activeCourse")==='clc'){
+        vocabProgress = JSON.parse(localStorage.getItem("latinVocabProgressCLC")) || {};
+    }else{
+        vocabprogress = JSON.parse(localStorage.getItem("latinVocabProgressDR")) || {};
+    }
     loginsArray = JSON.parse(localStorage.getItem('savedLogins'));
     loginTimesArray = JSON.parse(localStorage.getItem('savedLoginTimes'));
     buildAchievements();
     achievementProgress = JSON.parse(localStorage.getItem("localAchievementProgress"));
 }
 function buildAchievements(){
-let achievementProgress = {};
+    let achievementProgress = {};
 
-const savedAchievementProgress = localStorage.getItem("localAchievementProgress");
+    const savedAchievementProgress = localStorage.getItem("localAchievementProgress");
     if (savedAchievementProgress) {
         achievementProgress = JSON.parse(savedAchievementProgress);
     } else {
@@ -342,6 +368,7 @@ const savedAchievementProgress = localStorage.getItem("localAchievementProgress"
     });
     localStorage.setItem("localAchievementProgress", JSON.stringify(achievementProgress));
 }
+reload();
 
 function check(){
     //rawVocab:
@@ -404,8 +431,11 @@ function check(){
     
     */
 
-    let stageCompleted = checkNounSections().stageCompleted;
-    let typeCompleted = checkNounSections().typeCompleted;
+    let stageCompletedCLC = checkNounSections(vocabDataCLC, vocabProgressCLC).stageCompleted;
+    let typeCompletedCLC = checkNounSections(vocabDataCLC, vocabProgressCLC).typeCompleted;
+
+    let stageCompletedDR = checkNounSections(vocabDataDR, vocabProgressDR).stageCompleted;
+    let typeCompletedDR = checkNounSections(vocabDataDR, vocabProgressDR).typeCompleted;
 
     
 
@@ -591,14 +621,25 @@ function check(){
             }
         }
         //vocabStages achievements
-        if (achievement.type==="vocabStage"){
-            if (stageCompleted[achievement.criteria]){
+        if (achievement.type==="vocabStageCambridgeLatinCourse"){
+            if (stageCompletedCLC[achievement.criteria]){
                 achievementProgress["i"+achievement.index] = true;
             }
         }
         //vocabTypes acheivements
-        if (achievement.type==="vocabType"){
-            if (typeCompleted[achievement.criteria]){
+        if (achievement.type==="vocabTypeCambridgeLatinCourse"){
+            if (typeCompletedCLC[achievement.criteria]){
+                achievementProgress["i"+achievement.index] = true;
+            }
+        }
+        if (achievement.type==="vocabStageDeRomanis"){
+            if (stageCompletedDR[achievement.criteria]){
+                achievementProgress["i"+achievement.index] = true;
+            }
+        }
+        //vocabTypes acheivements
+        if (achievement.type==="vocabTypeDeRomanis"){
+            if (typeCompletedDR[achievement.criteria]){
                 achievementProgress["i"+achievement.index] = true;
             }
         }
@@ -620,7 +661,7 @@ localStorage.setItem("localAchievementProgress", JSON.stringify(achievementProgr
 }
 
 
-function checkNounSections(){
+function checkNounSections(vocabData, vocabProgress){
     let stages = {};
     let types = {};
     for (let word of vocabData){

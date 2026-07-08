@@ -444,20 +444,7 @@ let timeLeft = 0;
 
 /* LOAD VOCAB */
 vocab = vocabData;
-vocab.forEach(word => {
-    const key = "i" + word.index;
-    
-    // If this word isn't tracked yet, set it to false
-    if (vocabProgress[key] === undefined) {
-        vocabProgress[key] = false;
-    }
-    
-    // Dynamically update the runtime vocab object's completed status
-    word.completed = vocabProgress[key];
-});
 
-// Save it back to local storage just to keep it clean
-localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
 
 buildCheckboxes();
 
@@ -983,16 +970,7 @@ function capitalise(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function updateWordCompletion(wordObj, isComplete) {
-    const key = "i" + wordObj.index;
-    
-    // Update the runtime objects
-    vocabProgress[key] = isComplete;
-    wordObj.completed = isComplete;
-    
-    // Save to localStorage
-    localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
-}
+
 
 </script>
 
