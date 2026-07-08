@@ -1,4 +1,4 @@
-let vocabData = [
+let vocabDataCLC = [
     /*
   { stage: "0", type: "Noun", latin: ["canis"], english: ["dog"] },
   { stage: "0", type: "Verb", latin: "laboro", english: "work" },
@@ -916,26 +916,653 @@ let vocabData = [
 ];
 
 
-let vocabProgress = {};
 
-const savedProgress = localStorage.getItem("latinVocabProgress");
-if (savedProgress) {
-    vocabProgress = JSON.parse(savedProgress);
-} else {
-    vocabProgress = {}; 
+
+vocabDataDR = [
+    { stage: "1", type: "adjective", subtype: "descriptive", index: "01000", info: "1st & 2nd declention", latin: ["īrātus", "īrāta", "īrātum"], english: ["angry"] },
+    { stage: "1", type: "adjective", subtype: "descriptive", index: "01001", info: "1st & 2nd declention", latin: ["laetus", "laeta", "laetum"], english: ["happy"] },
+    { stage: "1", type: "adjective", subtype: "descriptive", index: "01002", info: "1st & 2nd declention", latin: ["pulcher", "pulchra", "pulchrum"], english: ["beautiful", "handsome"] },
+    { stage: "1", type: "adjective", subtype: "descriptive", index: "01003", info: "1st & 2nd declention", latin: ["saevus", "saeva", "saevum"], english: ["savage", "cruel"] },
+    { stage: "1", type: "adjective", subtype: "nationality", index: "01004", info: "1st & 2nd declention", latin: ["Rōmānus", "Rōmāna", "Rōmānum"], english: ["Roman"] },
+    { stage: "1", type: "adjective", subtype: "quantitative", index: "01005", info: "1st & 2nd declention", latin: ["multus", "multa", "multum"], english: ["much", "many"] },
+    { stage: "1", type: "adverb", subtype: "other", index: "01006", info: "", latin: ["etiam"], english: ["also", "even"] },
+    { stage: "1", type: "adverb", subtype: "temporal", index: "01007", info: "", latin: ["saepe"], english: ["often"] },
+    { stage: "1", type: "adverb", subtype: "temporal", index: "01008", info: "", latin: ["tum"], english: ["then"] },
+    { stage: "1", type: "conjunction", subtype: "coordinating", index: "01009", info: "copulative", latin: ["et"], english: ["and", "even"] },
+    { stage: "1", type: "conjunction", subtype: "coordinating", index: "01010", info: "adversative", latin: ["sed"], english: ["but"] },
+    { stage: "1", type: "noun", subtype: "1st declention", index: "01011", info: "feminine", latin: ["dea", "deae"], english: ["goddess"] },
+    { stage: "1", type: "noun", subtype: "1st declention", index: "01012", info: "feminine", latin: ["fēmina", "fēminae"], english: ["woman"] },
+    { stage: "1", type: "noun", subtype: "1st declention", index: "01013", info: "feminine", latin: ["fīlia", "fīliae"], english: ["daughter"] },
+    { stage: "1", type: "noun", subtype: "1st declention", index: "01014", info: "feminine", latin: ["rēgīna", "rēgīnae"], english: ["queen"] },
+    { stage: "1", type: "noun", subtype: "2nd declention", index: "01015", info: "masculine", latin: ["deus", "deī"], english: ["god"] },
+    { stage: "1", type: "noun", subtype: "2nd declention", index: "01016", info: "masculine", latin: ["fīlius", "fīliī"], english: ["son"] },
+    { stage: "1", type: "noun", subtype: "2nd declention", index: "01017", info: "masculine plural", latin: ["līberī", "līberōrum"], english: ["children"] },
+    { stage: "1", type: "noun", subtype: "3rd declention", index: "01018", info: "masculine", latin: ["homō", "hominis"], english: ["man", "human being"] },
+    { stage: "1", type: "noun", subtype: "3rd declention", index: "01019", info: "feminine", latin: ["māter", "mātris"], english: ["mother"] },
+    { stage: "1", type: "noun", subtype: "3rd declention", index: "01020", info: "masculine", latin: ["pater", "patris"], english: ["father"] },
+    { stage: "1", type: "noun", subtype: "3rd declention", index: "01021", info: "masculine", latin: ["rēx", "rēgis"], english: ["king"] },
+    { stage: "1", type: "noun", subtype: "3rd declention", index: "01022", info: "feminine", latin: ["uxor", "uxōris"], english: ["wife"] },
+    { stage: "1", type: "verb", subtype: "1st conj", index: "01023", info: "", latin: ["amō", "amāre", "amāvī", "amātum"], english: ["love", "like"] },
+    { stage: "1", type: "verb", subtype: "1st conj", index: "01024", info: "", latin: ["lacrimō", "lacrimāre", "lacrimāvī", "lacrimātum"], english: ["weep", "cry"] },
+    { stage: "1", type: "verb", subtype: "1st conj", index: "01025", info: "", latin: ["laudō", "laudāre", "laudāvī", "laudātum"], english: ["praise"] },
+    { stage: "1", type: "verb", subtype: "2nd conj", index: "01026", info: "", latin: ["terreō", "terrēre", "terruī", "territum"], english: ["frighten", "terrify"] },
+    { stage: "1", type: "verb", subtype: "3rd conj", index: "01027", info: "", latin: ["regō", "regere", "rēxī", "rēctum"], english: ["rule"] },
+    { stage: "1", type: "verb", subtype: "4th conj", index: "01028", info: "", latin: ["pūniō", "pūnīre", "pūnīvī", "pūnītum"], english: ["punish"] },
+    { stage: "1", type: "verb", subtype: "irregular conj", index: "01029", info: "", latin: ["sum", "esse", "fuī"], english: ["be"] },
+    { stage: "2", type: "adjective", subtype: "descriptive", index: "02000", info: "3rd declention", latin: ["audāx", "audācis"], english: ["bold", "daring"] },
+    { stage: "2", type: "adjective", subtype: "descriptive", index: "02001", info: "3rd declention", latin: ["fortis", "forte"], english: ["brave", "strong"] },
+    { stage: "2", type: "adjective", subtype: "descriptive", index: "02002", info: "3rd declention", latin: ["ingēns", "ingentis"], english: ["huge"] },
+    { stage: "2", type: "adjective", subtype: "nationality", index: "02003", info: "1st & 2nd declention", latin: ["Graecus", "Graeca", "Graecum"], english: ["Greek"] },
+    { stage: "2", type: "adverb", subtype: "manner", index: "02004", info: "", latin: ["fortiter"], english: ["bravely", "strongly"] },
+    { stage: "2", type: "noun", subtype: "1st declention", index: "02005", info: "feminine", latin: ["hasta", "hastae"], english: ["spear"] },
+    { stage: "2", type: "noun", subtype: "1st declention", index: "02006", info: "feminine", latin: ["sagitta", "sagittae"], english: ["arrow"] },
+    { stage: "2", type: "noun", subtype: "1st declention", index: "02007", info: "feminine", latin: ["silva", "silvae"], english: ["wood"] },
+    { stage: "2", type: "noun", subtype: "2nd declention", index: "02008", info: "masculine", latin: ["gladius", "gladiī"], english: ["sword"] },
+    { stage: "2", type: "noun", subtype: "2nd declention", index: "02009", info: "neuter plural", latin: ["arma", "armōrum"], english: ["arms", "weapons"] },
+    { stage: "2", type: "noun", subtype: "2nd declention", index: "02010", info: "neuter", latin: ["bellum", "bellī"], english: ["war"] },
+    { stage: "2", type: "noun", subtype: "2nd declention", index: "02011", info: "neuter", latin: ["perīculum", "perīculī"], english: ["danger"] },
+    { stage: "2", type: "noun", subtype: "3rd declention", index: "02012", info: "neuter", latin: ["corpus", "corporis"], english: ["body"] },
+    { stage: "2", type: "noun", subtype: "3rd declention", index: "02013", info: "neuter", latin: ["flūmen", "flūminis"], english: ["river"] },
+    { stage: "2", type: "particle", subtype: "other", index: "02014", info: "negative", latin: ["nōn"], english: ["not"] },
+    { stage: "2", type: "preposition", subtype: "accusative-governing", index: "02015", info: "", latin: ["ad"], english: ["to", "towards", "at"] },
+    { stage: "2", type: "preposition", subtype: "accusative-governing", index: "02016", info: "", latin: ["contrā"], english: ["against"] },
+    { stage: "2", type: "preposition", subtype: "accusative-governing", index: "02017", info: "", latin: ["per"], english: ["through", "along"] },
+    { stage: "2", type: "preposition", subtype: "accusative-governing", index: "02018", info: "", latin: ["prope"], english: ["near"] },
+    { stage: "2", type: "preposition", subtype: "accusative-governing", index: "02019", info: "", latin: ["trāns"], english: ["across"] },
+    { stage: "2", type: "preposition", subtype: "ambigoverning", index: "02020", info: "", latin: ["in"], english: ["into", "onto"] },
+    { stage: "2", type: "verb", subtype: "2nd conj", index: "02021", info: "", latin: ["maneō", "manēre", "mānsī", "mānsum"], english: ["remain", "stay"] },
+    { stage: "2", type: "verb", subtype: "2nd conj", index: "02022", info: "", latin: ["timeō", "timēre", "timuī", "timitum"], english: ["fear", "be afraid"] },
+    { stage: "2", type: "verb", subtype: "3rd conj", index: "02023", info: "", latin: ["currō", "currere", "cucurrī", "cursum"], english: ["run"] },
+    { stage: "2", type: "verb", subtype: "3rd conj", index: "02024", info: "", latin: ["vincō", "vincere", "vīcī", "victum"], english: ["conquer", "win", "be victorious", "defeat"] },
+    { stage: "2", type: "verb", subtype: "irregular conj", index: "02025", info: "", latin: ["eō", "īre", "iī / īvī", "itum"], english: ["go"] },
+    { stage: "2", type: "verb", subtype: "defective", index: "02026", info: "", latin: ["inquit", "inquiunt"], english: ["said", "says"] },
+    { stage: "2", type: "verb", subtype: "mixed conj", index: "02027", info: "", latin: ["capiō", "capere", "cēpī", "captum"], english: ["take", "catch", "capture", "make (a plan)"] },
+    { stage: "2", type: "verb", subtype: "mixed conj", index: "02028", info: "", latin: ["iaciō", "iacere", "iēcī", "iactum"], english: ["throw"] },
+    { stage: "2", type: "verb", subtype: "mixed conj", index: "02029", info: "", latin: ["interficiō", "interficere", "interfēcī", "interfectum"], english: ["kill"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03000", info: "1st & 2nd declention", latin: ["bonus", "bona", "bonum"], english: ["good"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03001", info: "1st & 2nd declention", latin: ["magnus", "magna", "magnum"], english: ["big", "large", "great"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03002", info: "1st & 2nd declention", latin: ["malus", "mala", "malum"], english: ["evil", "bad"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03003", info: "3rd declention", latin: ["difficilis", "difficile"], english: ["difficult"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03004", info: "3rd declention", latin: ["facilis", "facile"], english: ["easy"] },
+    { stage: "3", type: "adjective", subtype: "descriptive", index: "03005", info: "3rd declention", latin: ["fēlīx", "fēlīcis"], english: ["fortunate", "happy", "lucky"] },
+    { stage: "3", type: "adverb", subtype: "manner", index: "03006", info: "", latin: ["celeriter"], english: ["quickly"] },
+    { stage: "3", type: "adverb", subtype: "temporal", index: "03007", info: "", latin: ["diū"], english: ["for a long time"] },
+    { stage: "3", type: "adverb", subtype: "temporal", index: "03008", info: "", latin: ["ōlim"], english: ["once", "some time ago"] },
+    { stage: "3", type: "adverb", subtype: "temporal", index: "03009", info: "", latin: ["subitō"], english: ["suddenly"] },
+    { stage: "3", type: "adverb", subtype: "temporal", index: "03010", info: "", latin: ["tandem"], english: ["at last", "finally"] },
+    { stage: "3", type: "noun", subtype: "1st declention", index: "03011", info: "feminine", latin: ["terra", "terrae"], english: ["ground", "land", "country"] },
+    { stage: "3", type: "noun", subtype: "2nd declention", index: "03012", info: "masculine", latin: ["equus", "equī"], english: ["horse"] },
+    { stage: "3", type: "noun", subtype: "2nd declention", index: "03013", info: "neuter", latin: ["auxilium", "auxiliī"], english: ["help"] },
+    { stage: "3", type: "noun", subtype: "2nd declention", index: "03014", info: "neuter", latin: ["caelum", "caelī"], english: ["sky", "heaven"] },
+    { stage: "3", type: "noun", subtype: "3rd declention", index: "03015", info: "masculine", latin: ["mōns", "montis"], english: ["mountain"] },
+    { stage: "3", type: "noun", subtype: "3rd declention", index: "03016", info: "neuter", latin: ["mare", "maris"], english: ["sea"] },
+    { stage: "3", type: "preposition", subtype: "ablative-governing", index: "03017", info: "", latin: ["ā, ab"], english: ["from", "away from", "by"] },
+    { stage: "3", type: "preposition", subtype: "ablative-governing", index: "03018", info: "", latin: ["cum"], english: ["with"] },
+    { stage: "3", type: "preposition", subtype: "ablative-governing", index: "03019", info: "", latin: ["dē"], english: ["from", "down from", "about"] },
+    { stage: "3", type: "preposition", subtype: "ablative-governing", index: "03020", info: "", latin: ["ē, ex"], english: ["from", "out of", "out from"] },
+    { stage: "3", type: "preposition", subtype: "ambigoverning", index: "03021", info: "", latin: ["in"], english: ["in", "on"] },
+    { stage: "3", type: "verb", subtype: "1st conj", index: "03022", info: "", latin: ["pugnō", "pugnāre", "pugnāvī", "pugnātum"], english: ["fight"] },
+    { stage: "3", type: "verb", subtype: "2nd conj", index: "03023", info: "", latin: ["iubeō", "iubēre", "iūssī", "iūssum"], english: ["order"] },
+    { stage: "3", type: "verb", subtype: "3rd conj", index: "03024", info: "", latin: ["ascendō", "ascendere", "ascendī", "ascēnsum"], english: ["climb"] },
+    { stage: "3", type: "verb", subtype: "3rd conj", index: "03025", info: "", latin: ["dēscendō", "dēscendere", "dēscendī", "dēscēnsum"], english: ["go down", "come down"] },
+    { stage: "3", type: "verb", subtype: "3rd conj", index: "03026", info: "", latin: ["petō", "petere", "petīvī", "petītum"], english: ["make for", "seek", "beg", "ask for"] },
+    { stage: "3", type: "verb", subtype: "4th conj", index: "03027", info: "", latin: ["audiō", "audīre", "audīvī", "audītum"], english: ["hear", "listen to"] },
+    { stage: "3", type: "verb", subtype: "irregular conj", index: "03028", info: "", latin: ["possum", "posse", "potuī"], english: ["can", "be able"] },
+    { stage: "3", type: "verb", subtype: "mixed conj", index: "03029", info: "", latin: ["cōnspiciō", "cōnspicere", "cōnspexī", "cōnspectum"], english: ["catch sight of", "notice"] },
+    { stage: "4", type: "adjective", subtype: "descriptive", index: "04000", info: "1st & 2nd declention", latin: ["miser", "misera", "miserum"], english: ["miserable", "wretched", "sad"] },
+    { stage: "4", type: "adjective", subtype: "descriptive", index: "04001", info: "1st & 2nd declention", latin: ["perterritus", "perterrita", "perterritum"], english: ["terrified"] },
+    { stage: "4", type: "adjective", subtype: "descriptive", index: "04002", info: "3rd declention", latin: ["crūdēlis", "crūdēle"], english: ["cruel"] },
+    { stage: "4", type: "adjective", subtype: "descriptive", index: "04003", info: "3rd declention", latin: ["trīstis", "trīste"], english: ["sad"] },
+    { stage: "4", type: "adverb", subtype: "interrogative", index: "04004", info: "", latin: ["cūr?"], english: ["why?"] },
+    { stage: "4", type: "adverb", subtype: "interrogative", index: "04005", info: "", latin: ["quandō?"], english: ["when?"] },
+    { stage: "4", type: "adverb", subtype: "interrogative", index: "04006", info: "", latin: ["ubi?"], english: ["where?"] },
+    { stage: "4", type: "adverb", subtype: "other", index: "04007", info: "adversative/concessive", latin: ["tamen"], english: ["however"] },
+    { stage: "4", type: "adverb", subtype: "temporal", index: "04008", info: "", latin: ["semper"], english: ["always"] },
+    { stage: "4", type: "conjunction", subtype: "subordinating", index: "04009", info: "causal", latin: ["quod"], english: ["because"] },
+    { stage: "4", type: "noun", subtype: "1st declention", index: "04010", info: "feminine", latin: ["īra", "īrae"], english: ["anger"] },
+    { stage: "4", type: "noun", subtype: "1st declention", index: "04011", info: "feminine", latin: ["pecūnia", "pecūniae"], english: ["money"] },
+    { stage: "4", type: "noun", subtype: "2nd declention", index: "04012", info: "masculine", latin: ["ager", "agrī"], english: ["field"] },
+    { stage: "4", type: "noun", subtype: "2nd declention", index: "04013", info: "neuter", latin: ["aurum", "aurī"], english: ["gold"] },
+    { stage: "4", type: "noun", subtype: "2nd declention", index: "04014", info: "neuter", latin: ["dōnum", "dōnī"], english: ["gift", "present"] },
+    { stage: "4", type: "noun", subtype: "2nd declention", index: "04015", info: "neuter", latin: ["templum", "templī"], english: ["temple"] },
+    { stage: "4", type: "noun", subtype: "3rd declention", index: "04016", info: "neuter", latin: ["nōmen", "nōminis"], english: ["name"] },
+    { stage: "4", type: "particle", subtype: "enclitic", index: "04017", info: "", latin: ["-ne"], english: ["(introduces question)"] },
+    { stage: "4", type: "particle", subtype: "interrogative", index: "04018", info: "", latin: ["nōnne …?"], english: ["surely ... ?"] },
+    { stage: "4", type: "particle", subtype: "interrogative", index: "04019", info: "", latin: ["num ... ?"], english: ["surely … not?"] },
+    { stage: "4", type: "verb", subtype: "1st conj", index: "04020", info: "", latin: ["aedificō", "aedificāre", "aedificāvī", "aedificātum"], english: ["build"] },
+    { stage: "4", type: "verb", subtype: "1st conj", index: "04021", info: "", latin: ["dō", "dare", "dedī", "datum"], english: ["give"] },
+    { stage: "4", type: "verb", subtype: "2nd conj", index: "04022", info: "", latin: ["habeō", "habēre", "habuī", "habitum"], english: ["have", "hold"] },
+    { stage: "4", type: "verb", subtype: "2nd conj", index: "04023", info: "+ dative", latin: ["persuādeō", "persuādēre", "persuāsī", "persuāsum"], english: ["persuade"] },
+    { stage: "4", type: "verb", subtype: "3rd conj", index: "04024", info: "+ dative", latin: ["crēdō", "crēdere", "crēdidī", "crēditum"], english: ["believe", "trust"] },
+    { stage: "4", type: "verb", subtype: "3rd conj", index: "04025", info: "", latin: ["pōnō", "pōnere", "posuī", "positum"], english: ["put", "place", "set up"] },
+    { stage: "4", type: "verb", subtype: "irregular conj", index: "04026", info: "", latin: ["ferō", "ferre", "tulī", "lātum"], english: ["bring", "carry", "bear"] },
+    { stage: "4", type: "verb", subtype: "irregular conj", index: "04027", info: "", latin: ["nōlō", "nōlle", "nōluī"], english: ["not want", "refuse"] },
+    { stage: "4", type: "verb", subtype: "irregular conj", index: "04028", info: "", latin: ["volō", "velle", "voluī"], english: ["want", "wish", "be willing"] },
+    { stage: "4", type: "verb", subtype: "mixed conj", index: "04029", info: "", latin: ["faciō", "facere", "fēcī", "factum"], english: ["make", "do"] },
+    { stage: "5", type: "adjective", subtype: "descriptive", index: "05000", info: "1st & 2nd declention", latin: ["fessus", "fessa", "fessum"], english: ["tired"] },
+    { stage: "5", type: "adjective", subtype: "descriptive", index: "05001", info: "1st & 2nd declention", latin: ["mortuus", "mortua", "mortuum"], english: ["dead"] },
+    { stage: "5", type: "adjective", subtype: "descriptive", index: "05002", info: "1st & 2nd declention", latin: ["sacer", "sacra", "sacrum"], english: ["sacred"] },
+    { stage: "5", type: "adjective", subtype: "indefinite", index: "05003", info: "1st & 2nd declention", latin: ["cēterī", "cēterae", "cētera"], english: ["the rest", "the others"] },
+    { stage: "5", type: "adverb", subtype: "degree", index: "05004", info: "", latin: ["magnopere"], english: ["greatly", "very much"] },
+    { stage: "5", type: "adverb", subtype: "temporal", index: "05005", info: "", latin: ["iterum"], english: ["again"] },
+    { stage: "5", type: "adverb", subtype: "temporal", index: "05006", info: "", latin: ["mox"], english: ["soon"] },
+    { stage: "5", type: "adverb", subtype: "temporal", index: "05007", info: "", latin: ["nunc"], english: ["now"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05008", info: "masculine", latin: ["agricola", "agricolae"], english: ["farmer"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05009", info: "feminine", latin: ["ancilla", "ancillae"], english: ["female slave"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05010", info: "feminine", latin: ["aqua", "aquae"], english: ["water"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05011", info: "feminine", latin: ["cēna", "cēnae"], english: ["dinner", "meal"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05012", info: "feminine", latin: ["taberna", "tabernae"], english: ["shop", "inn"] },
+    { stage: "5", type: "noun", subtype: "1st declention", index: "05013", info: "feminine", latin: ["vīlla", "vīllae"], english: ["house", "country villa"] },
+    { stage: "5", type: "noun", subtype: "2nd declention", index: "05014", info: "masculine", latin: ["cibus", "cibī"], english: ["food"] },
+    { stage: "5", type: "noun", subtype: "2nd declention", index: "05015", info: "masculine", latin: ["lūdus", "lūdī"], english: ["school", "game", "public games", "festival"] },
+    { stage: "5", type: "noun", subtype: "2nd declention", index: "05016", info: "masculine", latin: ["servus", "servī"], english: ["slave"] },
+    { stage: "5", type: "noun", subtype: "2nd declention", index: "05017", info: "neuter", latin: ["vīnum", "vīnī"], english: ["wine"] },
+    { stage: "5", type: "noun", subtype: "3rd declention", index: "05018", info: "feminine", latin: ["urbs", "urbis"], english: ["city"] },
+    { stage: "5", type: "verb", subtype: "1st conj", index: "05019", info: "", latin: ["clāmō", "clāmāre", "clāmāvī", "clāmātum"], english: ["shout"] },
+    { stage: "5", type: "verb", subtype: "1st conj", index: "05020", info: "", latin: ["festīnō", "festīnāre", "festīnāvī", "festīnātum"], english: ["hurry"] },
+    { stage: "5", type: "verb", subtype: "1st conj", index: "05021", info: "", latin: ["parō", "parāre", "parāvī", "parātum"], english: ["prepare", "provide"] },
+    { stage: "5", type: "verb", subtype: "1st conj", index: "05022", info: "", latin: ["spectō", "spectāre", "spectāvī", "spectātum"], english: ["look at", "watch"] },
+    { stage: "5", type: "verb", subtype: "1st conj", index: "05023", info: "", latin: ["vocō", "vocāre", "vocāvī", "vocātum"], english: ["call"] },
+    { stage: "5", type: "verb", subtype: "2nd conj", index: "05024", info: "", latin: ["rīdeō", "rīdēre", "rīsī", "rīsum"], english: ["laugh", "smile", "laugh at"] },
+    { stage: "5", type: "verb", subtype: "3rd conj", index: "05025", info: "", latin: ["bibō", "bibere", "bibī"], english: ["drink"] },
+    { stage: "5", type: "verb", subtype: "3rd conj", index: "05026", info: "", latin: ["cōnsūmō", "cōnsūmere", "cōnsūmpsī", "cōnsūmptum"], english: ["eat"] },
+    { stage: "5", type: "verb", subtype: "4th conj", index: "05027", info: "", latin: ["veniō", "venīre", "vēnī", "ventum"], english: ["come"] },
+    { stage: "5", type: "verb", subtype: "irregular conj", index: "05028", info: "", latin: ["absum", "abesse", "āfuī"], english: ["be absent", "be away", "be distant from"] },
+    { stage: "5", type: "verb", subtype: "irregular conj", index: "05029", info: "", latin: ["adsum", "adesse", "adfuī"], english: ["be here", "be present"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06000", info: "indeclinable", latin: ["centum"], english: ["hundred"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06001", info: "indeclinable", latin: ["decem"], english: ["ten"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06002", info: "1st & 2nd declention", latin: ["duo", "duae", "duo"], english: ["two"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06003", info: "3rd declention", latin: ["mīlia", "mīlium"], english: ["1000s"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06004", info: "indeclinable", latin: ["mīlle"], english: ["1000"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06005", info: "indeclinable", latin: ["novem"], english: ["nine"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06006", info: "indeclinable", latin: ["octō"], english: ["eight"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06007", info: "indeclinable", latin: ["quattuor"], english: ["four"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06008", info: "indeclinable", latin: ["quīnque"], english: ["five"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06009", info: "indeclinable", latin: ["septem"], english: ["seven"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06010", info: "indeclinable", latin: ["sex"], english: ["six"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06011", info: "1st & 2nd declention", latin: ["trēs", "tria"], english: ["three"] },
+    { stage: "6", type: "adjective", subtype: "cardinal numerical", index: "06012", info: "1st & 2nd declention", latin: ["ūnus", "ūna", "ūnum"], english: ["one"] },
+    { stage: "6", type: "adjective", subtype: "descriptive", index: "06013", info: "1st & 2nd declention", latin: ["altus", "alta", "altum"], english: ["high", "deep"] },
+    { stage: "6", type: "adjective", subtype: "descriptive", index: "06014", info: "1st & 2nd declention", latin: ["novus", "nova", "novum"], english: ["new"] },
+    { stage: "6", type: "adjective", subtype: "descriptive", index: "06015", info: "1st & 2nd declention", latin: ["parvus", "parva", "parvum"], english: ["small"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06016", info: "1st & 2nd declention", latin: ["decimus", "decima", "decimum"], english: ["tenth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06017", info: "1st & 2nd declention", latin: ["nōnus", "nōna", "nōnum"], english: ["ninth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06018", info: "1st & 2nd declention", latin: ["octāvus", "octāva", "octāvum"], english: ["eighth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06019", info: "1st & 2nd declention", latin: ["prīmus", "prīma", "prīmum"], english: ["first"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06020", info: "1st & 2nd declention", latin: ["quārtus", "quārta", "quārtum"], english: ["fourth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06021", info: "1st & 2nd declention", latin: ["quīntus", "quīnta", "quīntum"], english: ["fifth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06022", info: "1st & 2nd declention", latin: ["secundus", "secunda", "secundum"], english: ["second"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06023", info: "1st & 2nd declention", latin: ["septimus", "septima", "septimum"], english: ["seventh"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06024", info: "1st & 2nd declention", latin: ["sextus", "sexta", "sextum"], english: ["sixth"] },
+    { stage: "6", type: "adjective", subtype: "ordinal numerical", index: "06025", info: "1st & 2nd declention", latin: ["tertius", "tertia", "tertium"], english: ["third"] },
+    { stage: "6", type: "adjective", subtype: "possessive", index: "06026", info: "1st & 2nd declention", latin: ["meus", "mea", "meum"], english: ["my"] },
+    { stage: "6", type: "adjective", subtype: "possessive", index: "06027", info: "1st & 2nd declention", latin: ["noster", "nostra", "nostrum"], english: ["our"] },
+    { stage: "6", type: "adjective", subtype: "possessive", index: "06028", info: "1st & 2nd declention", latin: ["suus", "sua", "suum"], english: ["his", "her", "its", "their"] },
+    { stage: "6", type: "adjective", subtype: "possessive", index: "06029", info: "1st & 2nd declention", latin: ["tuus", "tua", "tuum"], english: ["your", "yours"] },
+    { stage: "6", type: "adjective", subtype: "possessive", index: "06030", info: "1st & 2nd declention", latin: ["vester", "vestra", "vestrum"], english: ["your", "yours"] },
+    { stage: "6", type: "adverb", subtype: "locative", index: "06031", info: "", latin: ["hīc"], english: ["here"] },
+    { stage: "6", type: "adverb", subtype: "locative", index: "06032", info: "", latin: ["ibi"], english: ["there"] },
+    { stage: "6", type: "adverb", subtype: "manner", index: "06033", info: "", latin: ["sīc"], english: ["thus", "in this way"] },
+    { stage: "6", type: "adverb", subtype: "temporal", index: "06034", info: "", latin: ["iam"], english: ["now", "already"] },
+    { stage: "6", type: "adverb", subtype: "temporal", index: "06035", info: "", latin: ["numquam"], english: ["never"] },
+    { stage: "6", type: "conjunction", subtype: "other", index: "06036", info: "illative", latin: ["itaque"], english: ["and so", "therefore"] },
+    { stage: "6", type: "interjection", subtype: "regular", index: "06037", info: "+ vocative", latin: ["ō"], english: ["oh"] },
+    { stage: "6", type: "noun", subtype: "1st declention", index: "06038", info: "feminine", latin: ["hōra", "hōrae"], english: ["hour"] },
+    { stage: "6", type: "noun", subtype: "1st declention", index: "06039", info: "feminine", latin: ["puella", "puellae"], english: ["girl"] },
+    { stage: "6", type: "noun", subtype: "2nd declention", index: "06040", info: "masculine", latin: ["amīcus", "amīcī"], english: ["friend"] },
+    { stage: "6", type: "noun", subtype: "2nd declention", index: "06041", info: "masculine", latin: ["annus", "annī"], english: ["year"] },
+    { stage: "6", type: "noun", subtype: "2nd declention", index: "06042", info: "masculine", latin: ["locus", "locī"], english: ["place"] },
+    { stage: "6", type: "noun", subtype: "2nd declention", index: "06043", info: "masculine", latin: ["puer", "puerī"], english: ["boy"] },
+    { stage: "6", type: "noun", subtype: "2nd declention", index: "06044", info: "neuter", latin: ["verbum", "verbī"], english: ["word"] },
+    { stage: "6", type: "noun", subtype: "3rd declention", index: "06045", info: "masculine", latin: ["iuvenis", "iuvenis"], english: ["young man"] },
+    { stage: "6", type: "verb", subtype: "1st conj", index: "06046", info: "", latin: ["rogō", "rogāre", "rogāvī", "rogātum"], english: ["ask", "ask for"] },
+    { stage: "6", type: "verb", subtype: "2nd conj", index: "06047", info: "", latin: ["moneō", "monēre", "monuī", "monitum"], english: ["warn", "advise"] },
+    { stage: "6", type: "verb", subtype: "2nd conj", index: "06048", info: "", latin: ["respondeō", "respondēre", "respondī", "respōnsum"], english: ["reply"] },
+    { stage: "6", type: "verb", subtype: "2nd conj", index: "06049", info: "", latin: ["videō", "vidēre", "vīdī", "vīsum"], english: ["see"] },
+    { stage: "6", type: "verb", subtype: "3rd conj", index: "06050", info: "", latin: ["emō", "emere", "ēmī", "ēmptum"], english: ["buy"] },
+    { stage: "6", type: "verb", subtype: "3rd conj", index: "06051", info: "", latin: ["ostendō", "ostendere", "ostendī", "ostentum"], english: ["show"] },
+    { stage: "6", type: "verb", subtype: "4th conj", index: "06052", info: "", latin: ["dormiō", "dormīre", "dormīvī", "dormītum"], english: ["sleep"] },
+    { stage: "6", type: "verb", subtype: "irregular conj", index: "06053", info: "+ infinitive", latin: ["nōlī", "nōlīte"], english: ["don't ..."] },
+    { stage: "7", type: "adjective", subtype: "descriptive", index: "07000", info: "1st & 2nd declention", latin: ["clārus", "clāra", "clārum"], english: ["famous", "clear"] },
+    { stage: "7", type: "adjective", subtype: "quantitative", index: "07001", info: "1st & 2nd declention", latin: ["paucī", "paucae", "pauca"], english: ["few", "a few"] },
+    { stage: "7", type: "adverb", subtype: "other", index: "07002", info: "", latin: ["quoque"], english: ["also", "too"] },
+    { stage: "7", type: "conjunction", subtype: "coordinating", index: "07003", info: "correlative", latin: ["et ... et"], english: ["both ... and"] },
+    { stage: "7", type: "conjunction", subtype: "subordinating", index: "07004", info: "temporal", latin: ["antequam"], english: ["before"] },
+    { stage: "7", type: "conjunction", subtype: "subordinating", index: "07005", info: "temporal", latin: ["postquam"], english: ["after", "when"] },
+    { stage: "7", type: "conjunction", subtype: "subordinating", index: "07006", info: "concessive", latin: ["quamquam"], english: ["although"] },
+    { stage: "7", type: "conjunction", subtype: "subordinating", index: "07007", info: "temporal", latin: ["ubi"], english: ["when", "where"] },
+    { stage: "7", type: "noun", subtype: "1st declention", index: "07008", info: "feminine", latin: ["domina", "dominae"], english: ["mistress"] },
+    { stage: "7", type: "noun", subtype: "1st declention", index: "07009", info: "feminine", latin: ["Rōma", "Rōmae"], english: ["Rome"] },
+    { stage: "7", type: "noun", subtype: "1st declention", index: "07010", info: "feminine", latin: ["Rōmae"], english: ["at Rome"] },
+    { stage: "7", type: "noun", subtype: "1st declention", index: "07011", info: "feminine", latin: ["via", "viae", ""], english: ["street", "road", "way"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07012", info: "masculine", latin: ["dominus", "dominī"], english: ["master"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07013", info: "masculine", latin: ["hortus", "hortī"], english: ["garden"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07014", info: "masculine", latin: ["lībertus", "lībertī"], english: ["freedman", "ex-slave"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07015", info: "masculine", latin: ["mūrus", "mūrī"], english: ["wall"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07016", info: "masculine", latin: ["nūntius", "nūntiī"], english: ["messenger"] },
+    { stage: "7", type: "noun", subtype: "2nd declention", index: "07017", info: "neuter", latin: ["forum", "forī"], english: ["forum", "market place"] },
+    { stage: "7", type: "noun", subtype: "3rd declention", index: "07018", info: "masculine/feminine", latin: ["cīvis", "cīvis"], english: ["citizen"] },
+    { stage: "7", type: "noun", subtype: "3rd declention", index: "07019", info: "masculine", latin: ["senātor", "senātōris"], english: ["senator"] },
+    { stage: "7", type: "pronoun", subtype: "demonstrative", index: "07020", info: "", latin: ["hic", "haec", "hoc"], english: ["this", "these"] },
+    { stage: "7", type: "pronoun", subtype: "demonstrative", index: "07021", info: "", latin: ["ille", "ilIa", "illud"], english: ["that", "those", "he", "she", "it"] },
+    { stage: "7", type: "pronoun", subtype: "demonstrative", index: "07022", info: "", latin: ["is", "ea", "id"], english: ["he", "she", "it", "that", "those"] },
+    { stage: "7", type: "pronoun", subtype: "indefinite", index: "07023", info: "3rd declention", latin: ["omnis", "omne"], english: ["all", "every"] },
+    { stage: "7", type: "pronoun", subtype: "interrogative", index: "07024", info: "", latin: ["quis?", "quid?"], english: ["who?", "what?", "which?"] },
+    { stage: "7", type: "pronoun", subtype: "relative", index: "07025", info: "", latin: ["quī", "quae", "quod"], english: ["who", "which"] },
+    { stage: "7", type: "verb", subtype: "1st conj", index: "07026", info: "", latin: ["ambulō", "ambulāre", "ambulāvī", "ambulātum"], english: ["walk"] },
+    { stage: "7", type: "verb", subtype: "1st conj", index: "07027", info: "", latin: ["habitō", "habitāre", "habitāvī", "habitātum"], english: ["live"] },
+    { stage: "7", type: "verb", subtype: "1st conj", index: "07028", info: "", latin: ["līberō", "līberāre", "līberāvī", "līberātum"], english: ["set free"] },
+    { stage: "7", type: "verb", subtype: "1st conj", index: "07029", info: "", latin: ["salūtō", "salūtāre", "salūtāvī", "salūtātum"], english: ["greet"] },
+    { stage: "7", type: "verb", subtype: "3rd conj", index: "07030", info: "", latin: ["dīcō", "dīcere", "dīxī", "dictum"], english: ["say", "speak", "tell"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08000", info: "3rd declention", latin: ["maior", "maius"], english: ["bigger", "larger", "greater"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08001", info: "3rd declention", latin: ["melior", "melius"], english: ["better"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08002", info: "3rd declention", latin: ["minor", "minus"], english: ["smaller", "less"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08003", info: "3rd declention", latin: ["peior", "peius"], english: ["worse"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08004", info: "3rd declention", latin: ["plūrēs", "plūra"], english: ["more"] },
+    { stage: "8", type: "adjective", subtype: "comparative", index: "08005", info: "3rd declention", latin: ["plūs"], english: ["more"] },
+    { stage: "8", type: "adjective", subtype: "descriptive", index: "08006", info: "1st & 2nd declention", latin: ["longus", "longa", "longum"], english: ["long"] },
+    { stage: "8", type: "adjective", subtype: "descriptive", index: "08007", info: "1st & 2nd declention", latin: ["nōtus", "nōta", "nōtum"], english: ["famous", "well-known"] },
+    { stage: "8", type: "adjective", subtype: "descriptive", index: "08008", info: "1st & 2nd declention", latin: ["stultus", "stulta", "stultum"], english: ["stupid", "foolish"] },
+    { stage: "8", type: "adjective", subtype: "descriptive", index: "08009", info: "3rd declention", latin: ["ferōx", "ferōcis"], english: ["fierce", "ferocious"] },
+    { stage: "8", type: "adjective", subtype: "descriptive", index: "08010", info: "3rd declention", latin: ["nōbilis", "nōbile"], english: ["of noble birth", "renowned"] },
+    { stage: "8", type: "adjective", subtype: "locative", index: "08011", info: "1st & 2nd declention", latin: ["medius", "media", "medium"], english: ["middle"] },
+    { stage: "8", type: "adjective", subtype: "superlative", index: "08012", info: "1st & 2nd declention", latin: ["maximus", "maxima", "maximum"], english: ["greatest", "largest", "biggest"] },
+    { stage: "8", type: "adjective", subtype: "superlative", index: "08013", info: "1st & 2nd declention", latin: ["minimus", "minima", "minimum"], english: ["smallest", "least"] },
+    { stage: "8", type: "adjective", subtype: "superlative", index: "08014", info: "1st & 2nd declention", latin: ["optimus", "optima", "optimum"], english: ["best"] },
+    { stage: "8", type: "adjective", subtype: "superlative", index: "08015", info: "1st & 2nd declention", latin: ["pessimus", "pessima", "pessimum"], english: ["worst"] },
+    { stage: "8", type: "adjective", subtype: "superlative", index: "08016", info: "1st & 2nd declention", latin: ["plūrimus", "plūrima", "plūrimum"], english: ["most", "very many"] },
+    { stage: "8", type: "adverb", subtype: "degree", index: "08017", info: "", latin: ["magis"], english: ["more"] },
+    { stage: "8", type: "adverb", subtype: "degree", index: "08018", info: "", latin: ["maximē"], english: ["very greatly"] },
+    { stage: "8", type: "adverb", subtype: "degree", index: "08019", info: "+ superlative", latin: ["quam"], english: ["as ... as possible"] },
+    { stage: "8", type: "adverb", subtype: "manner", index: "08020", info: "", latin: ["frūstrā"], english: ["in vain"] },
+    { stage: "8", type: "conjunction", subtype: "subordinating", index: "08021", info: "postpositive causal", latin: ["enim"], english: ["for"] },
+    { stage: "8", type: "noun", subtype: "1st declention", index: "08022", info: "feminine", latin: ["epistula", "epistulae", ""], english: ["letter"] },
+    { stage: "8", type: "noun", subtype: "2nd declention", index: "08023", info: "masculine", latin: ["liber", "librī"], english: ["book"] },
+    { stage: "8", type: "noun", subtype: "2nd declention", index: "08024", info: "masculine", latin: ["magister", "magistrī"], english: ["teacher"] },
+    { stage: "8", type: "noun", subtype: "2nd declention", index: "08025", info: "masculine", latin: ["vir", "virī"], english: ["man", "husband"] },
+    { stage: "8", type: "noun", subtype: "3rd declention", index: "08026", info: "masculine", latin: ["clāmor", "clāmōris"], english: ["shout", "shouting", "noise"] },
+    { stage: "8", type: "noun", subtype: "3rd declention", index: "08027", info: "masculine", latin: ["senex", "senis"], english: ["old man"] },
+    { stage: "8", type: "particle", subtype: "comparative", index: "08028", info: "", latin: ["quam"], english: ["than", "how"] },
+    { stage: "8", type: "pronoun", subtype: "personal", index: "08029", info: "", latin: ["ego", "meī"], english: ["I", "me"] },
+    { stage: "8", type: "pronoun", subtype: "personal", index: "08030", info: "", latin: ["nōs", "nostrum"], english: ["we", "us"] },
+    { stage: "8", type: "pronoun", subtype: "personal", index: "08031", info: "", latin: ["sē", "suī"], english: ["himself", "herself", "itself", "themselves"] },
+    { stage: "8", type: "pronoun", subtype: "personal", index: "08032", info: "", latin: ["tū", "tuī"], english: ["you"] },
+    { stage: "8", type: "pronoun", subtype: "personal", index: "08033", info: "", latin: ["vōs", "vestrum"], english: ["you"] },
+    { stage: "8", type: "verb", subtype: "1st conj", index: "08034", info: "+ dative", latin: ["appropinquō", "appropinquāre", "appropinquāvī", "appropinquātum"], english: ["approach", "come near to"] },
+    { stage: "8", type: "verb", subtype: "1st conj", index: "08035", info: "", latin: ["labōrō", "labōrāre", "labōrāvī", "labōrātum"], english: ["work", "toil"] },
+    { stage: "8", type: "verb", subtype: "3rd conj", index: "08036", info: "", latin: ["legō", "legere", "lēgī", "lēctum"], english: ["read", "choose"] },
+    { stage: "8", type: "verb", subtype: "3rd conj", index: "08037", info: "", latin: ["scrībō", "scrībere", "scrīpsī", "scrīptum"], english: ["write"] },
+    { stage: "8", type: "verb", subtype: "4th conj", index: "08038", info: "", latin: ["conveniō", "convenīre", "convēnī", "conventum"], english: ["come together", "gather", "meet"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08039", info: "", latin: ["abeō", "abīre", "abiī", "abitum"], english: ["go away"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08040", info: "", latin: ["adeō", "adīre", "adiī", "aditum"], english: ["go to", "approach"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08041", info: "", latin: ["exeō", "exīre", "exiī", "exitum"], english: ["go out from", "go away"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08042", info: "", latin: ["ineō", "inīre", "iniī", "initum"], english: ["go into", "enter"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08043", info: "", latin: ["pereō", "perīre", "periī", "peritum"], english: ["die", "perish"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08044", info: "", latin: ["redeō", "redīre", "rediī", "reditum"], english: ["go back", "come back", "return"] },
+    { stage: "8", type: "verb", subtype: "irregular conj", index: "08045", info: "", latin: ["trānseō", "trānsīre", "trānsiī", "trānsitum"], english: ["go over", "cross"] },
+    { stage: "8", type: "verb", subtype: "mixed conj", index: "08046", info: "", latin: ["cupiō", "cupere", "cupīvī", "cupītum"], english: ["want", "desire"] },
+    { stage: "9", type: "adverb", subtype: "manner", index: "09000", info: "", latin: ["bene"], english: ["well"] },
+    { stage: "9", type: "adverb", subtype: "temporal", index: "09001", info: "", latin: ["deinde"], english: ["then"] },
+    { stage: "9", type: "noun", subtype: "1st declention", index: "09002", info: "feminine plural", latin: ["cōpiae", "cōpiārum"], english: ["forces", "troops"] },
+    { stage: "9", type: "noun", subtype: "1st declention", index: "09003", info: "masculine/feminine", latin: ["incola", "incolae"], english: ["inhabitant"] },
+    { stage: "9", type: "noun", subtype: "1st declention", index: "09004", info: "feminine", latin: ["patria", "patriae"], english: ["country", "homeland"] },
+    { stage: "9", type: "noun", subtype: "2nd declention", index: "09005", info: "neuter", latin: ["oppidum", "oppidī"], english: ["town"] },
+    { stage: "9", type: "noun", subtype: "2nd declention", index: "09006", info: "neuter", latin: ["proelium", "proeliī"], english: ["battle"] },
+    { stage: "9", type: "noun", subtype: "2nd declention", index: "09007", info: "neuter", latin: ["scūtum", "scūtī"], english: ["shield"] },
+    { stage: "9", type: "noun", subtype: "3rd declention", index: "09008", info: "masculine/feminine", latin: ["comes", "comitis"], english: ["comrade", "companion"] },
+    { stage: "9", type: "noun", subtype: "3rd declention", index: "09009", info: "masculine", latin: ["dux", "ducis"], english: ["leader"] },
+    { stage: "9", type: "noun", subtype: "3rd declention", index: "09010", info: "masculine", latin: ["hostis", "hostis"], english: ["enemy"] },
+    { stage: "9", type: "noun", subtype: "3rd declention", index: "09011", info: "masculine", latin: ["mīles", "mīlitis"], english: ["soldier"] },
+    { stage: "9", type: "noun", subtype: "3rd declention", index: "09012", info: "feminine", latin: ["mors", "mortis"], english: ["death"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09013", info: "", latin: ["invītō", "invītāre", "invītāvī", "invītātum"], english: ["invite"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09014", info: "", latin: ["necō", "necāre", "necāvī", "necātum"], english: ["kill"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09015", info: "", latin: ["occupō", "occupāre", "occupāvī", "occupātum"], english: ["take possession of", "occupy"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09016", info: "", latin: ["oppugnō", "oppugnāre", "oppugnāvī", "oppugnātum"], english: ["attack"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09017", info: "", latin: ["superō", "superāre", "superāvī", "superātum"], english: ["overcome", "overpower"] },
+    { stage: "9", type: "verb", subtype: "1st conj", index: "09018", info: "", latin: ["vulnerō", "vulnerāre", "vulnerāvī", "vulnerātum"], english: ["wound", "injure"] },
+    { stage: "9", type: "verb", subtype: "2nd conj", index: "09019", info: "", latin: ["dēleō", "dēlēre", "dēlēvī", "dēlētum"], english: ["destroy"] },
+    { stage: "9", type: "verb", subtype: "2nd conj", index: "09020", info: "", latin: ["moveō", "movēre", "mōvī", "mōtum"], english: ["move"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09021", info: "", latin: ["dēfendō", "dēfendere", "dēfendī", "dēfēnsum"], english: ["defend"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09022", info: "", latin: ["dūcō", "dūcere", "dūxī", "ductum"], english: ["lead", "take"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09023", info: "", latin: ["gerō", "gerere", "gessī", "gestum"], english: ["wear", "wage"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09024", info: "", latin: ["incendō", "incendere", "incendī", "incēnsum"], english: ["burn", "set on fire"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09025", info: "", latin: ["mittō", "mittere", "mīsī", "missum"], english: ["send"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09026", info: "", latin: ["occīdō", "occīdere", "occīdī", "occīsum"], english: ["kill"] },
+    { stage: "9", type: "verb", subtype: "3rd conj", index: "09027", info: "", latin: ["trādō", "trādere", "trādidī", "trāditum"], english: ["hand over", "hand down"] },
+    { stage: "9", type: "verb", subtype: "4th conj", index: "09028", info: "", latin: ["custōdiō", "custōdīre", "custōdīvī", "custōdītum"], english: ["guard"] },
+    { stage: "9", type: "verb", subtype: "mixed conj", index: "09029", info: "", latin: ["rapiō", "rapere", "rapuī", "raptum"], english: ["seize", "grab"] },
+    { stage: "10", type: "adjective", subtype: "descriptive", index: "10000", info: "1st & 2nd declention", latin: ["doctus", "docta", "doctum"], english: ["educated"] },
+    { stage: "10", type: "adjective", subtype: "descriptive", index: "10001", info: "1st & 2nd declention", latin: ["tūtus", "tūta", "tūtum"], english: ["safe"] },
+    { stage: "10", type: "adjective", subtype: "descriptive", index: "10002", info: "3rd declention", latin: ["mīrābilis", "mīrābile"], english: ["wonderful", "extraordinary"] },
+    { stage: "10", type: "adjective", subtype: "indefinite", index: "10003", info: "1st & 2nd declention", latin: ["aliī....aliī....."], english: ["some ... others"] },
+    { stage: "10", type: "adjective", subtype: "indefinite", index: "10004", info: "1st & 2nd declention", latin: ["alius", "alia", "aliud"], english: ["other", "another"] },
+    { stage: "10", type: "adjective", subtype: "other", index: "10005", info: "indeclinable", latin: ["necesse"], english: ["necessary"] },
+    { stage: "10", type: "adverb", subtype: "degree", index: "10006", info: "", latin: ["satis"], english: ["enough"] },
+    { stage: "10", type: "adverb", subtype: "other", index: "10007", info: "", latin: ["forte"], english: ["by chance"] },
+    { stage: "10", type: "adverb", subtype: "temporal", index: "10008", info: "", latin: ["statim"], english: ["at once", "immediately"] },
+    { stage: "10", type: "conjunction", subtype: "coordinating", index: "10009", info: "enclitic copulative", latin: ["-que"], english: ["and"] },
+    { stage: "10", type: "noun", subtype: "1st declention", index: "10010", info: "masculine", latin: ["nauta", "nautae"], english: ["sailor"] },
+    { stage: "10", type: "noun", subtype: "1st declention", index: "10011", info: "feminine", latin: ["turba", "turbae"], english: ["crowd"] },
+    { stage: "10", type: "noun", subtype: "2nd declention", index: "10012", info: "masculine", latin: ["marītus", "marītī"], english: ["husband"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10013", info: "masculine", latin: ["amor", "amōris"], english: ["love"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10014", info: "masculine/feminine", latin: ["coniūnx", "coniugis"], english: ["husband", "wife"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10015", info: "feminine", latin: ["lūx", "lūcis"], english: ["light", "daylight"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10016", info: "feminine", latin: ["mulier", "mulieris"], english: ["woman", "wife"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10017", info: "feminine", latin: ["nāvis", "nāvis"], english: ["ship"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10018", info: "masculine/feminine", latin: ["parēns", "parentis"], english: ["parent"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10019", info: "feminine", latin: ["pars", "partis"], english: ["part"] },
+    { stage: "10", type: "noun", subtype: "3rd declention", index: "10020", info: "neuter", latin: ["iter", "itineris"], english: ["journey"] },
+    { stage: "10", type: "preposition", subtype: "accusative-governing", index: "10021", info: "", latin: ["circum"], english: ["around"] },
+    { stage: "10", type: "preposition", subtype: "accusative-governing", index: "10022", info: "", latin: ["inter"], english: ["among", "between"] },
+    { stage: "10", type: "preposition", subtype: "accusative-governing", index: "10023", info: "", latin: ["post"], english: ["after", "behind"] },
+    { stage: "10", type: "pronoun", subtype: "indefinite", index: "10024", info: "", latin: ["nihil"], english: ["nothing"] },
+    { stage: "10", type: "verb", subtype: "1st conj", index: "10025", info: "", latin: ["exspectō", "exspectāre", "exspectāvī", "exspectātum"], english: ["wait for", "expect"] },
+    { stage: "10", type: "verb", subtype: "1st conj", index: "10026", info: "", latin: ["nāvigō", "nāvigāre", "nāvigāvī", "nāvigātum"], english: ["sail"] },
+    { stage: "10", type: "verb", subtype: "2nd conj", index: "10027", info: "", latin: ["doceō", "docēre", "docuī", "doctum"], english: ["teach"] },
+    { stage: "10", type: "verb", subtype: "2nd conj", index: "10028", info: "", latin: ["teneō", "tenēre", "tenuī", "tentum"], english: ["hold"] },
+    { stage: "10", type: "verb", subtype: "3rd conj", index: "10029", info: "", latin: ["quaerō", "quaerere", "quaesīvī", "quaesītum"], english: ["search for", "look for", "ask"] },
+    { stage: "10", type: "verb", subtype: "4th conj", index: "10030", info: "", latin: ["inveniō", "invenīre", "invēnī", "inventum"], english: ["find"] },
+    { stage: "10", type: "verb", subtype: "mixed conj", index: "10031", info: "", latin: ["fugiō", "fugere", "fūgī", "fugitum"], english: ["run away", "flee"] },
+    { stage: "11", type: "adjective", subtype: "descriptive", index: "11000", info: "1st & 2nd declention", latin: ["cārus", "cāra", "cārum"], english: ["dear", "beloved"] },
+    { stage: "11", type: "adjective", subtype: "descriptive", index: "11001", info: "1st & 2nd declention", latin: ["validus", "valida", "validum"], english: ["strong"] },
+    { stage: "11", type: "adverb", subtype: "interrogative", index: "11002", info: "", latin: ["quō?"], english: ["to where?"] },
+    { stage: "11", type: "adverb", subtype: "interrogative", index: "11003", info: "", latin: ["unde?"], english: ["from where?"] },
+    { stage: "11", type: "adverb", subtype: "temporal", index: "11004", info: "", latin: ["posteā"], english: ["afterwards"] },
+    { stage: "11", type: "conjunction", subtype: "coordinating", index: "11005", info: "postpositive adversative", latin: ["autem"], english: ["but", "however"] },
+    { stage: "11", type: "conjunction", subtype: "coordinating", index: "11006", info: "negative copulative", latin: ["neque, nec"], english: ["and not", "nor", "neither"] },
+    { stage: "11", type: "interjection", subtype: "regular", index: "11007", info: "", latin: ["ecce!"], english: ["look!"] },
+    { stage: "11", type: "noun", subtype: "1st declention", index: "11008", info: "masculine", latin: ["poēta", "poētae"], english: ["poet"] },
+    { stage: "11", type: "noun", subtype: "1st declention", index: "11009", info: "feminine", latin: ["porta", "portae"], english: ["gate"] },
+    { stage: "11", type: "noun", subtype: "1st declention", index: "11010", info: "feminine", latin: ["unda", "undae"], english: ["wave"] },
+    { stage: "11", type: "noun", subtype: "2nd declention", index: "11011", info: "masculine", latin: ["socius", "sociī"], english: ["ally"] },
+    { stage: "11", type: "noun", subtype: "2nd declention", index: "11012", info: "neuter", latin: ["cōnsilium", "cōnsiliī"], english: ["plan", "idea", "advice"] },
+    { stage: "11", type: "noun", subtype: "3rd declention", index: "11013", info: "feminine", latin: ["pāx", "pācis"], english: ["peace"] },
+    { stage: "11", type: "noun", subtype: "3rd declention", index: "11014", info: "neuter", latin: ["tempus", "temporis"], english: ["time"] },
+    { stage: "11", type: "preposition", subtype: "ablative-governing", index: "11015", info: "", latin: ["prō"], english: ["in front of", "for", "on behalf of"] },
+    { stage: "11", type: "preposition", subtype: "accusative-governing", index: "11016", info: "", latin: ["propter"], english: ["on account of", "because of"] },
+    { stage: "11", type: "verb", subtype: "1st conj", index: "11017", info: "", latin: ["intrō", "intrāre", "intrāvī", "intrātum"], english: ["enter"] },
+    { stage: "11", type: "verb", subtype: "1st conj", index: "11018", info: "", latin: ["nūntiō", "nūntiāre", "nūntiāvī", "nūntiātum"], english: ["announce", "report"] },
+    { stage: "11", type: "verb", subtype: "1st conj", index: "11019", info: "", latin: ["putō", "putāre", "putāvī", "putātum"], english: ["think"] },
+    { stage: "11", type: "verb", subtype: "1st conj", index: "11020", info: "", latin: ["servō", "servāre", "servāvī", "servātum"], english: ["save", "protect", "keep"] },
+    { stage: "11", type: "verb", subtype: "1st conj", index: "11021", info: "", latin: ["stō", "stāre", "stetī", "statum"], english: ["stand"] },
+    { stage: "11", type: "verb", subtype: "2nd conj", index: "11022", info: "", latin: ["dēbeō", "dēbēre", "dēbuī", "dēbitum"], english: ["owe", "ought", "should", "must"] },
+    { stage: "11", type: "verb", subtype: "2nd conj", index: "11023", info: "", latin: ["taceō", "tacēre", "tacuī", "tacitum"], english: ["be silent", "be quiet"] },
+    { stage: "11", type: "verb", subtype: "3rd conj", index: "11024", info: "", latin: ["discēdō", "discēdere", "discessī", "discessum"], english: ["depart", "leave"] },
+    { stage: "11", type: "verb", subtype: "3rd conj", index: "11025", info: "", latin: ["intellegō", "intellegere", "intellēxī", "intellēctum"], english: ["understand", "realise"] },
+    { stage: "11", type: "verb", subtype: "3rd conj", index: "11026", info: "", latin: ["redūcō", "redūcere", "redūxī", "reductum"], english: ["lead back", "bring back"] },
+    { stage: "11", type: "verb", subtype: "3rd conj", index: "11027", info: "", latin: ["relinquō", "relinquere", "relīquī", "relictum"], english: ["leave", "leave behind"] },
+    { stage: "11", type: "verb", subtype: "4th conj", index: "11028", info: "", latin: ["adveniō", "advenīre", "advēnī", "adventum"], english: ["arrive"] },
+    { stage: "11", type: "verb", subtype: "mixed conj", index: "11029", info: "", latin: ["accipiō", "accipere", "accēpī", "acceptum"], english: ["receive", "accept", "take in"] },
+    { stage: "12", type: "adjective", subtype: "descriptive", index: "12000", info: "3rd declention", latin: ["celer", "celeris", "celere"], english: ["quick", "fast"] },
+    { stage: "12", type: "adjective", subtype: "descriptive", index: "12001", info: "3rd declention", latin: ["gravis", "grave"], english: ["heavy", "serious"] },
+    { stage: "12", type: "adjective", subtype: "pronominal", index: "12002", info: "1st & 2nd declention", latin: ["nūllus", "nūlla", "nūllum"], english: ["not any", "no"] },
+    { stage: "12", type: "adverb", subtype: "other", index: "12003", info: "", latin: ["fortasse"], english: ["perhaps"] },
+    { stage: "12", type: "adverb", subtype: "temporal", index: "12004", info: "", latin: ["crās"], english: ["tomorrow"] },
+    { stage: "12", type: "adverb", subtype: "temporal", index: "12005", info: "", latin: ["herī"], english: ["yesterday"] },
+    { stage: "12", type: "adverb", subtype: "temporal", index: "12006", info: "", latin: ["hodiē"], english: ["today"] },
+    { stage: "12", type: "conjunction", subtype: "other", index: "12007", info: "postpositive illative", latin: ["igitur"], english: ["therefore", "and so"] },
+    { stage: "12", type: "conjunction", subtype: "subordinating", index: "12008", info: "causal", latin: ["nam"], english: ["for"] },
+    { stage: "12", type: "noun", subtype: "1st declention", index: "12009", info: "feminine", latin: ["īnsula", "īnsulae"], english: ["island"] },
+    { stage: "12", type: "noun", subtype: "2nd declention", index: "12010", info: "masculine", latin: ["ventus", "ventī"], english: ["wind"] },
+    { stage: "12", type: "noun", subtype: "2nd declention", index: "12011", info: "neuter", latin: ["rēgnum", "rēgnī"], english: ["kingdom"] },
+    { stage: "12", type: "noun", subtype: "3rd declention", index: "12012", info: "masculine", latin: ["frāter", "frātris"], english: ["brother"] },
+    { stage: "12", type: "noun", subtype: "3rd declention", index: "12013", info: "feminine", latin: ["gēns", "gentis"], english: ["family", "tribe", "people"] },
+    { stage: "12", type: "noun", subtype: "3rd declention", index: "12014", info: "feminine", latin: ["nox", "noctis"], english: ["night"] },
+    { stage: "12", type: "noun", subtype: "3rd declention", index: "12015", info: "feminine", latin: ["soror", "sorōris"], english: ["sister"] },
+    { stage: "12", type: "noun", subtype: "3rd declention", index: "12016", info: "neuter", latin: ["caput", "capitis"], english: ["head"] },
+    { stage: "12", type: "pronoun", subtype: "indefinite", index: "12017", info: "", latin: ["nēmō", "nūllīus"], english: ["no one", "nobody"] },
+    { stage: "12", type: "verb", subtype: "1st conj", index: "12018", info: "", latin: ["dēspērō", "dēspērāre", "dēspērāvī", "dēspērātum"], english: ["despair"] },
+    { stage: "12", type: "verb", subtype: "1st conj", index: "12019", info: "", latin: ["errō", "errāre", "errāvī", "errātum"], english: ["stray", "make a mistake"] },
+    { stage: "12", type: "verb", subtype: "1st conj", index: "12020", info: "", latin: ["nārrō", "nārrāre", "nārrāvī", "nārrātum"], english: ["tell", "relate"] },
+    { stage: "12", type: "verb", subtype: "1st conj", index: "12021", info: "", latin: ["portō", "portāre", "portāvī", "portātum"], english: ["carry", "bear", "take"] },
+    { stage: "12", type: "verb", subtype: "2nd conj", index: "12022", info: "", latin: ["sedeō", "sedēre", "sēdī", "sessum"], english: ["sit"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12023", info: "", latin: ["cadō", "cadere", "cecidī", "cāsum"], english: ["fall"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12024", info: "", latin: ["colligō", "colligere", "collēgī", "collēctum"], english: ["gather together", "collect"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12025", info: "", latin: ["cōnstituō", "cōnstituere", "cōnstituī", "cōnstitūtum"], english: ["decide"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12026", info: "", latin: ["contendō", "contendere", "contendī", "contentum"], english: ["hasten", "march", "compete"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12027", info: "", latin: ["trahō", "trahere", "trāxī", "tractum"], english: ["drag"] },
+    { stage: "12", type: "verb", subtype: "3rd conj", index: "12028", info: "", latin: ["vēndō", "vēndere", "vēndidī", "vēnditum"], english: ["sell"] },
+    { stage: "12", type: "verb", subtype: "mixed conj", index: "12029", info: "", latin: ["effugiō", "effugere", "effūgī"], english: ["escape"] },
+    { stage: "13", type: "adjective", subtype: "indefinite", index: "13000", info: "1st & 2nd declention", latin: ["nōnnūllī", "nōnnūllae", "nōnnūlla"], english: ["some", "several"] },
+    { stage: "13", type: "adjective", subtype: "pronominal", index: "13001", info: "1st & 2nd declention", latin: ["sōlus", "sōla", "sōlum"], english: ["alone", "lonely", "only", "on one's own"] },
+    { stage: "13", type: "adjective", subtype: "pronominal", index: "13002", info: "1st & 2nd declention", latin: ["tōtus", "tōta", "tōtum"], english: ["whole"] },
+    { stage: "13", type: "adjective", subtype: "pronominal", index: "13003", info: "1st & 2nd declention", latin: ["alter", "altera", "alterum"], english: ["the other", "another", "one (of two)", "the second (of two)"] },
+    { stage: "13", type: "adverb", subtype: "locative", index: "13004", info: "", latin: ["domī"], english: ["at home"] },
+    { stage: "13", type: "deponent verb", subtype: "1st conj", index: "13005", info: "", latin: ["cōnor", "cōnāri", "cōnātus sum"], english: ["try"] },
+    { stage: "13", type: "deponent verb", subtype: "1st conj", index: "13006", info: "", latin: ["mīror", "mīrārī", "mīrātus sum"], english: ["wonder at", "admire"] },
+    { stage: "13", type: "deponent verb", subtype: "2nd conj", index: "13007", info: "", latin: ["videor", "vidērī", "vīsus sum"], english: ["seem", "appear"] },
+    { stage: "13", type: "deponent verb", subtype: "3rd conj", index: "13008", info: "", latin: ["loquor", "loquī", "locūtus sum"], english: ["speak", "talk"] },
+    { stage: "13", type: "deponent verb", subtype: "3rd conj", index: "13009", info: "", latin: ["proficīscor", "proficīscī", "profectus sum"], english: ["set out"] },
+    { stage: "13", type: "deponent verb", subtype: "3rd conj", index: "13010", info: "", latin: ["sequor", "sequi", "secūtus sum"], english: ["follow"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13011", info: "", latin: ["ēgredior", "ēgredī", "ēgressus sum"], english: ["go out"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13012", info: "", latin: ["ingredior", "ingredī", "ingressus sum"], english: ["enter"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13013", info: "", latin: ["morior", "morī", "mortuus sum"], english: ["die"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13014", info: "", latin: ["patior", "patī", "passus sum"], english: ["suffer", "endure"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13015", info: "", latin: ["prōgredior", "prōgredī", "prōgressus sum"], english: ["advance"] },
+    { stage: "13", type: "deponent verb", subtype: "mixed conj", index: "13016", info: "", latin: ["regredior", "regredī", "regressus sum"], english: ["go back", "return"] },
+    { stage: "13", type: "noun", subtype: "4th declention", index: "13017", info: "feminine", latin: ["domus", "domūs"], english: ["home"] },
+    { stage: "13", type: "noun", subtype: "4th declention", index: "13018", info: "masculine", latin: ["exercitus", "exercitūs"], english: ["army"] },
+    { stage: "13", type: "noun", subtype: "4th declention", index: "13019", info: "feminine", latin: ["manus", "manūs"], english: ["hand", "group of people"] },
+    { stage: "13", type: "noun", subtype: "5th declention", index: "13020", info: "masculine", latin: ["diēs", "diēī"], english: ["day"] },
+    { stage: "13", type: "noun", subtype: "5th declention", index: "13021", info: "feminine", latin: ["rēs", "reī"], english: ["thing", "matter", "event"] },
+    { stage: "13", type: "noun", subtype: "5th declention", index: "13022", info: "feminine", latin: ["spēs", "speī"], english: ["hope"] },
+    { stage: "13", type: "preposition", subtype: "ablative-governing", index: "13023", info: "", latin: ["sine"], english: ["without"] },
+    { stage: "13", type: "preposition", subtype: "ambigoverning", index: "13024", info: "", latin: ["sub"], english: ["under", "beneath"] },
+    { stage: "13", type: "pronoun", subtype: "demonstrative", index: "13025", info: "", latin: ["īdem", "eadem", "idem"], english: ["the same"] },
+    { stage: "13", type: "pronoun", subtype: "indefinite", index: "13026", info: "", latin: ["quīdam", "quaedam", "quoddam"], english: ["one", "a certain", "some"] },
+    { stage: "13", type: "pronoun", subtype: "intensive", index: "13027", info: "", latin: ["ipse", "ipsa", "ipsum"], english: ["myself", "yourself", "himself", "herself", "itself etc."] },
+    { stage: "13", type: "verb", subtype: "3rd conj", index: "13028", info: "", latin: ["tollō", "tollere", "sustulī", "sublātum"], english: ["raise", "lift up", "hold up"] },
+    { stage: "13", type: "verb", subtype: "defective", index: "13029", info: "", latin: ["coepī", "coepisse"], english: ["began"] },
+    { stage: "13", type: "verb", subtype: "irregular conj", index: "13030", info: "", latin: ["auferō", "auferre", "abstulī", "ablātum"], english: ["take away", "carry off", "steal"] },
+    { stage: "13", type: "verb", subtype: "irregular conj", index: "13031", info: "", latin: ["mālō", "mālle", "māluī"], english: ["prefer"] },
+    { stage: "13", type: "verb", subtype: "irregular conj", index: "13032", info: "", latin: ["offerō", "offerre", "obtulī", "oblatum"], english: ["offer"] },
+    { stage: "13", type: "verb", subtype: "irregular conj", index: "13033", info: "", latin: ["referō", "referre", "rettulī", "relātum"], english: ["bring", "report", "tell", "carry back"] },
+    { stage: "14", type: "adjective", subtype: "descriptive", index: "14000", info: "1st & 2nd declention", latin: ["dīrus", "dīra", "dīrum"], english: ["dreadful"] },
+    { stage: "14", type: "adjective", subtype: "descriptive", index: "14001", info: "3rd declention", latin: ["brevis", "breve"], english: ["short", "brief"] },
+    { stage: "14", type: "adjective", subtype: "descriptive", index: "14002", info: "3rd declention", latin: ["fidēlis", "fidēle"], english: ["faithful", "loyal"] },
+    { stage: "14", type: "adjective", subtype: "descriptive", index: "14003", info: "3rd declention", latin: ["īnfēlīx", "īnfēlīcis"], english: ["unlucky", "unhappy"] },
+    { stage: "14", type: "adverb", subtype: "degree", index: "14004", info: "", latin: ["paene"], english: ["almost", "nearly"] },
+    { stage: "14", type: "conjunction", subtype: "coordinating", index: "14005", info: "", latin: ["ac, atque"], english: ["and"] },
+    { stage: "14", type: "deponent verb", subtype: "2nd conj", index: "14006", info: "semi-deponent", latin: ["audeō", "audēre", "ausus sum"], english: ["dare"] },
+    { stage: "14", type: "deponent verb", subtype: "2nd conj", index: "14007", info: "semi-deponent", latin: ["gaudeō", "gaudēre", "gāvīsus sum"], english: ["be pleased", "rejoice"] },
+    { stage: "14", type: "deponent verb", subtype: "2nd conj", index: "14008", info: "semi-deponent", latin: ["soleō", "solere", "solītus sum"], english: ["be accustomed"] },
+    { stage: "14", type: "noun", subtype: "1st declention", index: "14009", info: "feminine", latin: ["cūra", "cūrae"], english: ["care", "worry"] },
+    { stage: "14", type: "noun", subtype: "1st declention", index: "14010", info: "feminine", latin: ["poena", "poenae"], english: ["punishment"] },
+    { stage: "14", type: "noun", subtype: "2nd declention", index: "14011", info: "masculine", latin: ["animus", "animī"], english: ["spirit", "soul", "mind"] },
+    { stage: "14", type: "noun", subtype: "2nd declention", index: "14012", info: "neuter", latin: ["gaudium", "gaudiī"], english: ["joy", "pleasure"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14013", info: "feminine", latin: ["ars", "artis"], english: ["art", "skill"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14014", info: "masculine", latin: ["labor", "labōris"], english: ["work", "toil"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14015", info: "masculine", latin: ["pēs", "pedis"], english: ["foot"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14016", info: "masculine", latin: ["sanguis", "sanguinis"], english: ["blood"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14017", info: "feminine", latin: ["virtūs", "virtūtis"], english: ["courage", "virtue"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14018", info: "feminine", latin: ["vōx", "vōcis"], english: ["voice", "shout"] },
+    { stage: "14", type: "noun", subtype: "3rd declention", index: "14019", info: "neuter", latin: ["vulnus", "vulneris"], english: ["wound"] },
+    { stage: "14", type: "verb", subtype: "1st conj", index: "14020", info: "", latin: ["cēlō", "cēlāre", "cēlavi", "cēlātum"], english: ["hide"] },
+    { stage: "14", type: "verb", subtype: "1st conj", index: "14021", info: "", latin: ["cōgitō", "cōgitāre", "cōgitavi", "cōgitātum"], english: ["think", "consider"] },
+    { stage: "14", type: "verb", subtype: "1st conj", index: "14022", info: "", latin: ["spērō", "spērāre", "spēravī", "spērātum"], english: ["hope", "expect"] },
+    { stage: "14", type: "verb", subtype: "1st conj", index: "14023", info: "idiom", latin: ["poenās dō"], english: ["pay the penalty", "be punished"] },
+    { stage: "14", type: "verb", subtype: "3rd conj", index: "14024", info: "", latin: ["agō", "agere", "ēgī", "āctum"], english: ["do", "act", "drive"] },
+    { stage: "14", type: "verb", subtype: "3rd conj", index: "14025", info: "", latin: ["cognōscō", "cognōscere", "cognōvī", "cognitum"], english: ["get to know", "find out"] },
+    { stage: "14", type: "verb", subtype: "3rd conj", index: "14026", info: "", latin: ["prōcēdō", "prōcēdere", "prōcessī"], english: ["advance", "proceed"] },
+    { stage: "14", type: "verb", subtype: "3rd conj", index: "14027", info: "", latin: ["prōmittō", "prōmittere", "prōmīsī", "prōmissum"], english: ["promise"] },
+    { stage: "14", type: "verb", subtype: "3rd conj", index: "14028", info: "", latin: ["vīvō", "vīvere", "vīxī"], english: ["live", "be alive"] },
+    { stage: "14", type: "verb", subtype: "4th conj", index: "14029", info: "", latin: ["nesciō", "nescīre", "nescīvī"], english: ["not know"] },
+    { stage: "14", type: "verb", subtype: "4th conj", index: "14030", info: "", latin: ["sciō", "scīre", "scīvī", "scītum"], english: ["know"] },
+    { stage: "14", type: "verb", subtype: "4th conj", index: "14031", info: "", latin: ["sentiō", "sentīre", "sēnsī", "sēnsum"], english: ["feel", "notice"] },
+    { stage: "15", type: "adjective", subtype: "descriptive", index: "15000", info: "1st & 2nd declention", latin: ["lentus", "lenta", "lentum"], english: ["slow"] },
+    { stage: "15", type: "adjective", subtype: "descriptive", index: "15001", info: "1st & 2nd declention", latin: ["scelestus", "scelesta", "scelestum"], english: ["wicked"] },
+    { stage: "15", type: "adjective", subtype: "descriptive", index: "15002", info: "3rd declention", latin: ["dīligens", "dīligēntis"], english: ["careful"] },
+    { stage: "15", type: "adverb", subtype: "manner", index: "15003", info: "", latin: ["libenter"], english: ["willingly", "gladly"] },
+    { stage: "15", type: "adverb", subtype: "manner", index: "15004", info: "", latin: ["vehementer"], english: ["violently", "loudly"] },
+    { stage: "15", type: "adverb", subtype: "temporal", index: "15005", info: "", latin: ["anteā"], english: ["before"] },
+    { stage: "15", type: "adverb", subtype: "temporal", index: "15006", info: "", latin: ["intereā"], english: ["meanwhile"] },
+    { stage: "15", type: "adverb", subtype: "temporal", index: "15007", info: "", latin: ["postrīdiē"], english: ["on the next day"] },
+    { stage: "15", type: "adverb", subtype: "temporal", index: "15008", info: "", latin: ["simul"], english: ["at the same time"] },
+    { stage: "15", type: "adverb", subtype: "temporal", index: "15009", info: "", latin: ["umquam"], english: ["ever"] },
+    { stage: "15", type: "conjunction", subtype: "conditional", index: "15010", info: "", latin: ["nisi"], english: ["if ... not", "unless", "except"] },
+    { stage: "15", type: "conjunction", subtype: "conditional", index: "15011", info: "", latin: ["sī"], english: ["if"] },
+    { stage: "15", type: "conjunction", subtype: "temporal", index: "15012", info: "", latin: ["dum"], english: ["while", "until"] },
+    { stage: "15", type: "conjunction", subtype: "temporal", index: "15013", info: "", latin: ["simulac", "simulatque"], english: ["as soon as"] },
+    { stage: "15", type: "conjunction", subtype: "temporal", index: "15014", info: "polysemy: indicative", latin: ["ut"], english: ["as", "when"] },
+    { stage: "15", type: "noun", subtype: "1st declention", index: "15015", info: "feminine", latin: ["victōria", "victōriae"], english: ["victory"] },
+    { stage: "15", type: "noun", subtype: "2nd declention", index: "15016", info: "masculine", latin: ["captīvus", "captīvī"], english: ["captive", "prisoner"] },
+    { stage: "15", type: "noun", subtype: "2nd declention", index: "15017", info: "neuter plural", latin: ["castra", "castrōrum"], english: ["camp"] },
+    { stage: "15", type: "noun", subtype: "2nd declention", index: "15018", info: "neuter", latin: ["imperium", "imperiī"], english: ["empire", "power", "command"] },
+    { stage: "15", type: "noun", subtype: "2nd declention", index: "15019", info: "neuter", latin: ["praemium", "praemiī"], english: ["prize", "reward", "profit"] },
+    { stage: "15", type: "noun", subtype: "3rd declention", index: "15020", info: "masculine", latin: ["imperātor", "imperātōris"], english: ["emperor", "general", "leader"] },
+    { stage: "15", type: "noun", subtype: "3rd declention", index: "15021", info: "feminine", latin: ["legiō", "legiōnis"], english: ["legion"] },
+    { stage: "15", type: "noun", subtype: "3rd declention", index: "15022", info: "masculine", latin: ["prīnceps", "prīncipis"], english: ["chief", "emperor"] },
+    { stage: "15", type: "noun", subtype: "3rd declention", index: "15023", info: "neuter", latin: ["scelus", "sceleris"], english: ["crime"] },
+    { stage: "15", type: "verb", subtype: "2nd conj", index: "15024", info: "+ dative", latin: ["faveō", "favēre", "fāvī", "fautum"], english: ["favour", "support"] },
+    { stage: "15", type: "verb", subtype: "2nd conj", index: "15025", info: "", latin: ["iaceō", "iacēre", "iacuī"], english: ["lie", "lie (down)"] },
+    { stage: "15", type: "verb", subtype: "3rd conj", index: "15026", info: "", latin: ["accidō", "accidere", "accidī"], english: ["happen"] },
+    { stage: "15", type: "verb", subtype: "3rd conj", index: "15027", info: "", latin: ["opprimō", "opprimere", "oppressī", "oppressum"], english: ["crush", "overwhelm"] },
+    { stage: "15", type: "verb", subtype: "3rd conj", index: "15028", info: "", latin: ["pellō", "pellere", "pēpūlī", "pulsum"], english: ["drive"] },
+    { stage: "15", type: "verb", subtype: "3rd conj", index: "15029", info: "+ dative", latin: ["resistō", "resistere", "restitī"], english: ["resist"] },
+    { stage: "16", type: "adjective", subtype: "correlative", index: "16000", info: "1st & 2nd declention", latin: ["tantus", "tanta", "tantum"], english: ["so great", "such a great"] },
+    { stage: "16", type: "adjective", subtype: "demonstrative", index: "16001", info: "indeclinable", latin: ["tot"], english: ["so many"] },
+    { stage: "16", type: "adjective", subtype: "interrogative", index: "16002", info: "1st & 2nd declention", latin: ["quantus?", "quanta?", "quantum?"], english: ["how big?", "how much?"] },
+    { stage: "16", type: "adjective", subtype: "interrogative", index: "16003", info: "indeclinable", latin: ["quot?"], english: ["how many?"] },
+    { stage: "16", type: "adjective", subtype: "superlative", index: "16004", info: "1st & 2nd declention", latin: ["proximus", "proxima", "proximum"], english: ["nearest", "next to"] },
+    { stage: "16", type: "adjective", subtype: "superlative", index: "16005", info: "1st & 2nd declention", latin: ["summus", "summa", "summum"], english: ["highest", "greatest", "top"] },
+    { stage: "16", type: "adverb", subtype: "degree", index: "16006", info: "", latin: ["adeō"], english: ["so much", "so greatly", "to such an extent"] },
+    { stage: "16", type: "adverb", subtype: "degree", index: "16007", info: "", latin: ["tam"], english: ["so"] },
+    { stage: "16", type: "adverb", subtype: "interrogative", index: "16008", info: "", latin: ["quōmodō?"], english: ["how?"] },
+    { stage: "16", type: "adverb", subtype: "manner", index: "16009", info: "", latin: ["ita"], english: ["in this way", "to such an extent", "so"] },
+    { stage: "16", type: "conjunction", subtype: "purpose", index: "16010", info: "polysemy: subjunctive", latin: ["ne"], english: ["that ... not", "so that ... not", "that", "lest"] },
+    { stage: "16", type: "conjunction", subtype: "purpose", index: "16011", info: "polysemy: subjunctive", latin: ["ut"], english: ["that", "so that", "in order that"] },
+    { stage: "16", type: "conjunction", subtype: "temporal", index: "16012", info: "", latin: ["cum"], english: ["when", "since", "although"] },
+    { stage: "16", type: "deponent verb", subtype: "1st conj", index: "16013", info: "", latin: ["hortor", "hortārī", "hortātus sum"], english: ["encourage", "urge"] },
+    { stage: "16", type: "noun", subtype: "1st declention", index: "16014", info: "feminine", latin: ["iānua", "iānuae"], english: ["door"] },
+    { stage: "16", type: "noun", subtype: "1st declention", index: "16015", info: "feminine", latin: ["vīta", "vītae"], english: ["life"] },
+    { stage: "16", type: "noun", subtype: "2nd declention", index: "16016", info: "masculine", latin: ["inimīcus", "inimīcī"], english: ["enemy", "(personal) enemy"] },
+    { stage: "16", type: "noun", subtype: "2nd declention", index: "16017", info: "masculine", latin: ["modus", "modī"], english: ["manner", "way", "kind"] },
+    { stage: "16", type: "noun", subtype: "3rd declention", index: "16018", info: "masculine", latin: ["cōnsul", "cōnsulis"], english: ["consul"] },
+    { stage: "16", type: "noun", subtype: "3rd declention", index: "16019", info: "masculine/feminine", latin: ["custōs", "custōdis"], english: ["guard"] },
+    { stage: "16", type: "noun", subtype: "3rd declention", index: "16020", info: "feminine", latin: ["tempestās", "tempestātis"], english: ["storm"] },
+    { stage: "16", type: "particle", subtype: "interrogative", index: "16021", info: "", latin: ["num"], english: ["whether"] },
+    { stage: "16", type: "pronoun", subtype: "demonstrative", index: "16022", info: "", latin: ["tālis", "tāle"], english: ["such", "of such a kind"] },
+    { stage: "16", type: "pronoun", subtype: "interrogative", index: "16023", info: "", latin: ["quālis?", "quāle"], english: ["what sort of?"] },
+    { stage: "16", type: "verb", subtype: "1st conj", index: "16024", info: "+ dative", latin: ["imperō", "imperāre", "imperāvī", "imperātum"], english: ["order", "command"] },
+    { stage: "16", type: "verb", subtype: "1st conj", index: "16025", info: "", latin: ["ōrō", "ōrāre", "ōrāvī", "ōrātum"], english: ["beg"] },
+    { stage: "16", type: "verb", subtype: "3rd conj", index: "16026", info: "", latin: ["cōgō", "cōgere", "coēgī", "coāctum"], english: ["force", "compel"] },
+    { stage: "16", type: "verb", subtype: "3rd conj", index: "16027", info: "", latin: ["reddō", "reddere", "reddidī", "redditum"], english: ["give back", "restore"] },
+    { stage: "16", type: "verb", subtype: "3rd conj", index: "16028", info: "", latin: ["surgō", "surgere", "surrēxī"], english: ["get up", "stand up", "rise"] },
+    { stage: "16", type: "verb", subtype: "3rd conj", index: "16029", info: "", latin: ["vertō", "vertere", "vertī", "versum"], english: ["turn"] },
+    { stage: "16", type: "verb", subtype: "mixed conj", index: "16030", info: "", latin: ["cōnficiō", "cōnficere", "cōnfēcī", "cōnfectum"], english: ["finish", "wear out"] },
+];
+console.log("Current course is: " + localStorage.getItem('activeCourse'));
+if (localStorage.getItem('activeCourse')===null){
+    localStorage.setItem('activeCourse', 'dr');
 }
 
-vocabData.forEach(word => {
-    const key = "i" + word.index;
-    
-    // If this word isn't tracked yet, set it to false
-    if (vocabProgress[key] === undefined) {
-        vocabProgress[key] = false;
-    }
-    
-    // Dynamically update the runtime vocab object's completed status
-    word.completed = vocabProgress[key];
-});
 
-// Save it back to local storage just to keep it clean
-localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
+let vocabProgressCLC = {};
+
+    const savedProgressCLC = localStorage.getItem("latinVocabProgressCLC");
+    if (savedProgressCLC) {
+        vocabProgressCLC = JSON.parse(savedProgressCLC);
+    } else {
+        vocabProgressCLC = {}; 
+    }
+
+    vocabDataCLC.forEach(word => {
+        const key = "i" + word.index;
+        
+        // If this word isn't tracked yet, set it to false
+        if (vocabProgressCLC[key] === undefined) {
+            vocabProgressCLC[key] = false;
+        }
+        
+        // Dynamically update the runtime vocab object's completed status
+        word.completed = vocabProgressCLC[key];
+    });
+    // Save it back to local storage just to keep it clean
+    localStorage.setItem("latinVocabProgressCLC", JSON.stringify(vocabProgressCLC));
+
+
+
+let vocabProgressDR = {};
+
+    const savedProgressDR = localStorage.getItem("latinVocabProgressDR");
+    if (savedProgressDR) {
+        vocabProgressDR = JSON.parse(savedProgressDR);
+    } else {
+        vocabProgressDR = {}; 
+    }
+
+    vocabDataDR.forEach(word => {
+        const key = "i" + word.index;
+        
+        // If this word isn't tracked yet, set it to false
+        if (vocabProgressDR[key] === undefined) {
+            vocabProgressDR[key] = false;
+        }
+        
+        // Dynamically update the runtime vocab object's completed status
+        word.completed = vocabProgressDR[key];
+    });
+
+    // Save it back to local storage just to keep it clean
+    localStorage.setItem("latinVocabProgressDR", JSON.stringify(vocabProgressDR));
+
+
+let vocabProgress=localStorage.getItem('activeCourse')==='dr'? vocabProgressDR : vocabProgressCLC;
+let vocabData = localStorage.getItem('activeCourse')==='dr'? vocabDataDR : vocabDataCLC;
+
+
+
+function loadVocab(){
+    let vocabProgressCLC = {};
+
+    const savedProgressCLC = localStorage.getItem("latinVocabProgressCLC");
+    if (savedProgressCLC) {
+        vocabProgressCLC = JSON.parse(savedProgressCLC);
+    } else {
+        vocabProgressCLC = {}; 
+    }
+
+    vocabDataCLC.forEach(word => {
+        const key = "i" + word.index;
+        
+        // If this word isn't tracked yet, set it to false
+        if (vocabProgressCLC[key] === undefined) {
+            vocabProgressCLC[key] = false;
+        }
+        
+        // Dynamically update the runtime vocab object's completed status
+        word.completed = vocabProgressCLC[key];
+    });
+    // Save it back to local storage just to keep it clean
+    localStorage.setItem("latinVocabProgressCLC", JSON.stringify(vocabProgressCLC));
+
+
+
+    let vocabProgressDR = {};
+
+    const savedProgressDR = localStorage.getItem("latinVocabProgressDR");
+    if (savedProgressDR) {
+        vocabProgressDR = JSON.parse(savedProgressDR);
+    } else {
+        vocabProgressDR = {}; 
+    }
+
+    vocabDataDR.forEach(word => {
+        const key = "i" + word.index;
+        
+        // If this word isn't tracked yet, set it to false
+        if (vocabProgressDR[key] === undefined) {
+            vocabProgressDR[key] = false;
+        }
+        
+        // Dynamically update the runtime vocab object's completed status
+        word.completed = vocabProgressDR[key];
+    });
+
+    // Save it back to local storage just to keep it clean
+    localStorage.setItem("latinVocabProgressDR", JSON.stringify(vocabProgressDR));
+
+    vocabProgress=localStorage.getItem('activeCourse')==='dr'? vocabProgressDR : vocabProgressCLC;
+    vocabData = localStorage.getItem('activeCourse')==='dr'? vocabDataDR : vocabDataCLC;
+    
+}

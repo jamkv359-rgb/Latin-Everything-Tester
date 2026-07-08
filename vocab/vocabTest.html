@@ -433,7 +433,7 @@
     </section>
 
 </body>
-<script src="vocabData.js"></script>
+<script src="./vocabData.js"></script>
 <script src="../achievementData.js"></script>
 <script>
     let vocab = [];
@@ -448,20 +448,7 @@ let timeLeft = 0;
 
 /* LOAD VOCAB */
 vocab = vocabData;
-vocab.forEach(word => {
-    const key = "i" + word.index;
-    
-    // If this word isn't tracked yet, set it to false
-    if (vocabProgress[key] === undefined) {
-        vocabProgress[key] = false;
-    }
-    
-    // Dynamically update the runtime vocab object's completed status
-    word.completed = vocabProgress[key];
-});
-
-// Save it back to local storage just to keep it clean
-localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
+loadVocab();
 
 buildCheckboxes();
 
@@ -968,13 +955,14 @@ function capitalise(str) {
 
 function updateWordCompletion(wordObj, isComplete) {
     const key = "i" + wordObj.index;
-    
-    // Update the runtime objects
-    vocabProgress[key] = isComplete;
-    wordObj.completed = isComplete;
-    
-    // Save to localStorage
-    localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
+   
+        vocabProgress[key] = isComplete;
+        wordObj.completed = isComplete;
+    if (localStorage.getItem("activeCourse")==='clc'){
+        localStorage.setItem("latinVocabProgressCLC", JSON.stringify(vocabProgress));
+    }else{
+        localStorage.setItem("latinVocabProgressDR", JSON.stringify(vocabProgress));
+    }
 }
 
 </script>

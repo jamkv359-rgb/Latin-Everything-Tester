@@ -775,8 +775,11 @@ function changeCompleted(wordIndex, checkboxElement) {
     }
 
     // 3. Save the updated map back to localStorage
-    localStorage.setItem("latinVocabProgress", JSON.stringify(vocabProgress));
-    
+    if (localStorage.getItem("activeCourse")==='clc'){
+        localStorage.setItem("latinVocabProgressCLC", JSON.stringify(vocabProgress));
+    }else{
+        localStorage.setItem("latinVocabProgressDR", JSON.stringify(vocabProgress));
+    }
     console.log(`Word ${wordIndex} completion updated to: ${isChecked}`);
     update();
 }
