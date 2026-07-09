@@ -12,4 +12,5 @@ Features:
 - Automatic progress saving using localStorage
 - Macron input keyboard with Unicode normalisation
 - Interactive vocabulary databases with powerful filtering and searching
+
 Designed as a long-term educational project, the goal was to make studying Latin feel less like reading a textbook and more like using a modern learning platform.
