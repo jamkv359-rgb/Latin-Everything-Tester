@@ -14,3 +14,5 @@ Features:
 - Interactive vocabulary databases with powerful filtering and searching
 
 Designed as a long-term educational project, the goal was to make studying Latin feel less like reading a textbook and more like using a modern learning platform.
+
+Much of the final product was done by me, JamKV, but I also used AI for brainstorming, code debugging assistance, formatting suggestions, hex-code colour picking, and some complex javascript logic.
