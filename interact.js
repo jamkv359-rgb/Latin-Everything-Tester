@@ -93,130 +93,45 @@ const techQuotes = [
     { maxHour: 23, text: "Dark mode. For the late-night sweats studying under the radar." }
 ];
 
+
 const terribleQuotes = [
-    {
-        latin: "Errare humanum est.",
-        english: "To err is human."
-    },
-    {
-        latin: "Labor omnia vincit.",
-        english: "Hard work conquers all things."
-    },
-    {
-        latin: "Repetitio mater studiorum est.",
-        english: "Repetition is the mother of learning."
-    },
-    {
-        latin: "Discendo discimus.",
-        english: "We learn by learning."
-    }
+    { latin: "Errare humanum est.", english: "To err is human." },
+    { latin: "Labor omnia vincit.", english: "Hard work conquers all things." },
+    { latin: "Repetitio mater studiorum est.", english: "Repetition is the mother of learning." },
+    { latin: "Discendo discimus.", english: "We learn by learning." },
 ];
-
 const improvingQuotes = [
-    {
-        latin: "Per aspera ad astra.",
-        english: "Through hardships to the stars."
-    },
-    {
-        latin: "Non scholae sed vitae discimus.",
-        english: "We learn not for school, but for life."
-    },
-    {
-        latin: "Gutta cavat lapidem.",
-        english: "The drop hollows the stone."
-    },
-    {
-        latin: "Paulatim sed certe.",
-        english: "Slowly but surely."
-    }
+    { latin: "Per aspera ad astra.", english: "Through hardships to the stars." },
+    { latin: "Non scholae sed vitae discimus.", english: "We learn not for school, but for life." },
+    { latin: "Gutta cavat lapidem.", english: "The drop hollows the stone." },
+    { latin: "Paulatim sed certe.", english: "Slowly but surely." },
 ];
-
 const decentQuotes = [
-    {
-        latin: "Fortuna fortes adiuvat.",
-        english: "Fortune favours the brave."
-    },
-    {
-        latin: "Qui audet adipiscitur.",
-        english: "Who dares, wins."
-    },
-    {
-        latin: "Dimidium facti qui coepit habet.",
-        english: "He who has begun has half done."
-    },
-    {
-        latin: "Sapientia potentia est.",
-        english: "Knowledge is power."
-    }
+    { latin: "Fortuna fortes adiuvat.", english: "Fortune favours the brave." },
+    { latin: "Qui audet adipiscitur.", english: "Who dares, wins." },
+    { latin: "Dimidium facti qui coepit habet.", english: "He who has begun has half done." },
+    { latin: "Sapientia potentia est.", english: "Knowledge is power." },
 ];
-
 const goodQuotes = [
-    {
-        latin: "Veni, vidi, vici.",
-        english: "I came, I saw, I conquered."
-    },
-    {
-        latin: "Audentes fortuna iuvat.",
-        english: "Fortune favours the bold."
-    },
-    {
-        latin: "Virtus in actione consistit.",
-        english: "Virtue consists in action."
-    },
-    {
-        latin: "Age quod agis.",
-        english: "Do well whatever you do."
-    }
+    { latin: "Veni, vidi, vici.", english: "I came, I saw, I conquered." },
+    { latin: "Audentes fortuna iuvat.", english: "Fortune favours the bold." },
+    { latin: "Virtus in actione consistit.", english: "Virtue consists in action." },
+    { latin: "Age quod agis.", english: "Do well whatever you do." },
 ];
-
 const excellentQuotes = [
-    {
-        latin: "Ad astra per aspera.",
-        english: "To the stars through hardships."
-    },
-    {
-        latin: "Ad astra abyssosque.",
-        english: "To the stars and the depths."
-    },
-    {
-        latin: "Nil difficile volenti.",
-        english: "Nothing is difficult for the willing."
-    },
-    {
-        latin: "Scientia potentia est.",
-        english: "Knowledge is power."
-    },
-    {
-        latin: "Victoria amat praeparationem.",
-        english: "Victory loves preparation."
-    }
+    { latin: "Ad astra per aspera.", english: "To the stars through hardships." },
+    { latin: "Ad astra abyssosque.", english: "To the stars and the depths." },
+    { latin: "Nil difficile volenti.", english: "Nothing is difficult for the willing." },
+    { latin: "Scientia potentia est.", english: "Knowledge is power." },
+    { latin: "Victoria amat praeparationem.", english: "Victory loves preparation." },
 ];
-
 const perfectQuotes = [
-    {
-        latin: "Alea iacta est.",
-        english: "The die is cast."
-    },
-    {
-        latin: "Aut viam inveniam aut faciam.",
-        english: "I shall either find a way or make one."
-    },
-    {
-        latin: "Nil desperandum.",
-        english: "Never despair."
-    },
-    {
-        latin: "Sic itur ad astra.",
-        english: "Thus one journeys to the stars."
-    },
-    {
-        latin: "Carpe diem.",
-        english: "Seize the day."
-    },
-    {
-        latin: "Veni, vidi, vici.",
-        english: "I came, I saw, I conquered."
-    }
+    { latin: "Alea iacta est.", english: "The die is cast." },
+    { latin: "Aut viam inveniam aut faciam.", english: "I shall either find a way or make one." },
+    { latin: "Nil desperandum.", english: "Never despair." },
+    { latin: "Sic itur ad astra.", english: "Thus one journeys to the stars." },
+    { latin: "Carpe diem.", english: "Seize the day." },
+    { latin: "Veni, vidi, vici.", english: "I came, I saw, I conquered." },
 ];
 
 // ==========================================

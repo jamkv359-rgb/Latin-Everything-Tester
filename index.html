@@ -489,37 +489,8 @@ Dates:
   now.toISOString();        //2026-06-29T07:42:31.112Z
 
 
-BETA: 
-  Hey everyone! First devlog: I started making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language. It contains: 
-  - A vocab type-in tester, with all the words from stage 1-40 (about 888 words). The user can filter the wordpool, and thus what they test themselves on, by 2 clasifications: stage, and type. This means that they can choose specifically what words to revise. There is also a 'remove words once correct' option, so the user doesn't encounter the same word twice.
-  - A vocab dictionary/database, displaying the entire database in an organised and sortable table. The user can search specific words, or sort by stage or word type.
-  - A noun endings tester, where the user can test themselves on the numberous quantities of noun endings, formatted into a table. They can filter out what declentions or cases they want, as well.
-  - A pronoun ending tester, where the user can  revise the varies endings for the various pronouns in Latin. They can choose what pronoun they test themselves on, with all its endings formatted in a table.
-  - Verb ending testers. The number of endings that latin verbs can take is gargantuan (about 672), so I made tests with different table layouts. Either way, they can filter the verb table by: person, number, tense, mood, conjugation, and voice.- A vocab multi-choice tester, where the user is given a latin word, and must choose the correct english meaning out of 4 options.
-  - A vocab Hangman game. essentially, it's 'latin Hangman';where the user is given only the length of a latin word, its english meaning, its gramatical type/classification, and must guess it, either by letters or the full word.
-  - A vocab anagram scramble - where user is given a scrambled latin word, its english meaning, and must unscramble it.
-  Recently, I've added a few neat features to make the website more interactive.
-  - 'Previous tests' - The user can see the results of previous tests they've done on this website, saved to localStorage. The average percentage, standard deviation, highest test score, and total quesitons answered can be seen. Note that this function works only for the vocab type in, noun endings, pronoun, and verb endings tests
-  - Website colour themes - 2 different colour themes are available for all pages - light and dark mode, changeable by tickbox. The user preference is saved to localStorage, so they don't have to change it each time.
-  - Achievements - the user can see what achievements they have and haven't completed. The achievements are saved to loacalStorage, sorted by difficulty, and most definitely never end.
-  - Vocab and Verb grammar completion progress - the user can see what words/verb endings they have and haven't answered correctly to in their history on this website, saved to localStorage.
-  - XP and level feature - the user can accumilate experience points and increase their level, by acing tests, ticking off more vocab words/verb endings, logging in daily, or unlocking achievements.
-  - Time-sensitive quotes - at the top of each page, the user can read a quote. Its attitude may be inspirational, friendly, witty, or reference ancient Roman scholars, depending on what page the user is on. Their comment also depends on what time of day it is, either chastising you to sleep or praising you as an early bird.
-  - Post-test Latin quotes - the user also gets a quote in Latin (from famous Roman history), and its english translation every time they finish a test, depending on how well they did. It's randomly generated, so the same score won't yield the same quote. it can be inspirational, encouraging of your failure, or pleased with your performance.
-  - Beta version archives - The user can access a multitude of scrapped pages that were either replaced or not needed as this project developed.  They're unpolished; no dark mode, no localStorage.
-  - Sample tests - the user can access past test papers from my school, now digitalised. Currently there's only one, but there might be more.
-  In the existing fronted, I used AI to help me with: composing the quotes, giving me some ideas, debugging or formatting, and make the colour scheme. But in the beta-version website pages, AI was used a lot more.
-  I also used excel to help make the huge databases; for vocab, grammar, and achievements.
-  In the future, I'm planning on adding:
-  - Translation; the third, final, pillar of academic Latin, available to be tested 
-  - Playlist for public-domain, lofi beats music, playable anywhere on the website
-  - More practice tests (I'll probs ask my school)
-  - Login streaks, maybe a health bar that renews every day that the user logs in
-  - Username input
-  - 'Notes pages'; the user can view notes on latin - prammar points, how to translate phrases/clauses, etc
-  -  Multiple different themes & colours
-  Obviously, I might not complete ALL of these, but let's see how I run. Thanks for your time!
-
+OFFICIAL NAME: LATIN STUDY AID
+ONE-LINE DESC: A Latin study website for students and educators of the Cambridge Latin Course and De Romanis Course
 
 DESC:
   Hey everyone! I'm making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language. It contains: 
@@ -528,7 +499,7 @@ DESC:
   - Various grammar testers - one for noun endings, another for pronouns, and a few for the 672 verb endings. The frontends and table formatting for these can be altered by the user. 
   - Different vocab games; for example, a Hangman or Unscramble game, multi-choice quizzes, etc.
   - Achievements, test performance, Experience Points and Level system, multiple website themes. 
-  I've  also included a multitude of other frontend, interactive, and personalised features, making this website more like a duolingo than a static app.
+I've  also included a multitude of other frontend, interactive, and personalised features, making this website more like a duolingo than a static app.
 
 FIRST DEVLOG:
   Hey everyone! First devlog: I started making the basis of a study website for the Cambridge Latin Course, a revision resource for this absolutely hellish language.
@@ -557,223 +528,73 @@ THIRD DEVLOG:
 Hey everyone! Third devlog: Just today, I added a new page to my Latin Study Website - the flashcard feature.
 Users can now:
 - Flip through all 800+ latin words in the Cambridge Latin Course wordlist, in anki-style flippable flashcards
-- Filter out the wordlist by 'stage' and 'type', so they can focus their revision to what's relevant to them
-On the side, I also cleaned up the index.html homepage, so that it can display more statistics and data about the user.
+- Filter out the wordlist by ‘stage’ and ‘type’, so they can focus their revision to what’s relevant to them
+I did this mostly by copying my previous code for the Type-in Vocab Tester, and simplifying it so that no input, other than the ‘reveal’ button, is needed to progress.
+On the side, I also cleaned up the index.html homepage, so that it can display more statistics and data about the user: tests completed, average score across all tests, longest login streak, total days logged in.
+Not only that, but I also fixed the position of the macron keyboard to the top left of the viewport, since my addition of the music player, at the bottom of the viewport, covered it.
+I had some trouble uploadng my changes to the project on github, due to the massive number of music files in the ./music folder - so I spent a lotta time uploading them individually.
 Next, I plan on making a seperate vocab database, but from the De Romanis Latin Course rather than the Cambride Latin Course, allowing for more diversity in the website.
 
+FORTH DEVLOG:
+Hey everyone! 
+Fourth devlog: After a LOT of time spent on Excel and Google spreadsheets, I finally composed the vocab database for the De Romanis Latin Course! I implemented this into the website, and now:
+- The user can choose which vocab set they want to learn; either the Cambridge Latin Course, or the De Romanis Course. 
+- The user can see the 'learning progress' for their vocab for each stage
+- The achievements have been altered to accommodate for the new vocab database
+Not only that, but I also added another feature; the Username.
+- After users enter their username on the dashboard/hopepage, it is saved to localStorage
+- Each page in the website greets the user by their username
+Having implemented all I can, I think I'm ready to ship my project soon. If I get no more ideas for this project, this might be my final devlog. Thanks, all of you, for reading!
+
+
+GITHUB DESC:
+A modern, interactive study platform for students of the Cambridge Latin Course and De Romanis Latin Course.
+Rather than being a collection of static revision pages, Latin Study Aid aims to provide a complete learning experience. Built entirely with HTML, CSS and JavaScript (without frameworks), it combines vocabulary revision, grammar practice, progress tracking and gamification into a single website.
+Features:
+- Over 800 Latin vocabulary words across multiple courses
+- Multiple vocabulary revision modes including typing, multiple choice, flashcards, Hangman and word scramble
+- Grammar practice covering noun endings, pronouns and over 670 verb endings
+- Personal statistics, test history and learning progress
+- Achievement, XP and Level system
+- Multiple themes, dark mode and personalised greetings
+- Built-in study music player with a searchable music library
+- Automatic progress saving using localStorage
+- Macron input keyboard with Unicode normalisation
+- Interactive vocabulary databases with powerful filtering and searching
+Designed as a long-term educational project, the goal was to make studying Latin feel less like reading a textbook and more like using a modern learning platform.
+
+
+STARDANCE COMPETITION DESC:
+Latin is a subject with fantastic history — but not always fantastic study resources.
+I built Latin Study Aid to make revision feel more engaging than flipping through vocabulary lists or worksheets. Instead of a collection of isolated pages, I wanted it to feel like a complete learning platform, with persistent progress, achievements, statistics, music, multiple revision modes and personalised features that encourage students to keep coming back.
+The project is written entirely in HTML, CSS and JavaScript without using frameworks. Most pages are generated dynamically with Javascript from large databases, allowing new vocabulary, grammar and achievements to be added with minimal code changes.
+Over the course of development, the project grew from a simple vocabulary tester into a platform containing over 800 vocabulary words, hundreds of grammar endings, multiple revision games, flashcards, music playback, progress tracking, XP, achievements, statistics and many quality-of-life features designed specifically for studying Latin.
+
+NETLIFY DESC:
+Latin Study Aid is an interactive revision platform for students studying the Cambridge Latin Course and De Romanis Latin Course.
+Featuring vocabulary games, flashcards, grammar practice, searchable databases, achievements, XP, statistics, progress tracking, music playback and personalised study tools, it transforms Latin revision into a modern, engaging learning experience.
+Built entirely with HTML, CSS and JavaScript.
+
+ITCH.IO DESC:
+Learn Latin—without the endless vocabulary lists.
+'Latin Study Aid' is a free educational web application designed to make revising Latin more interactive, rewarding and enjoyable.
+Instead of relying on static worksheets, you'll build your progress through achievements, XP, statistics, flashcards, multiple quiz modes and personalised study tools; all while listening to built-in study music.
+It includes:
+- Over 800 Latin vocabulary words
+- Two supported vocabulary courses (Cambridge Latin Course & De Romanis Course)
+- Multiple vocabulary games
+- Flashcards
+- Grammar revision
+- Progress tracking
+- Achievements & Levels
+- Test history & statistics
+- Built-in music player
+- Dark mode and multiple themes
+- Automatic progress saving
+Whether you're preparing for class, revising for exams or simply learning Latin for fun, Latin Study Aid aims to make studying feel engaging rather than repetitive.
 
 
 
-
-
-
-
----
-
-          # Daily Challenge
-
-Every day:
-
-```
-Today's Challenge
-
-10 random words
-5 random nouns
-5 random verbs
-
-Score:
-8/10
-```
-
-Date can be used as a random seed.
-
-Then everyone gets the same challenge each day.
-
----
-
-          # Mistake Review
-
-Since you're already saving answers...
-
-Imagine this page:
-
-```
-Review Mistakes
-
-You missed:
-
-portaveritis
-
-Practice Again
-```
-
-Only questions previously answered incorrectly.
-
-This is probably the biggest educational improvement you could add.
-
----
-
-          # Flashcard Mode
-
-Very simple.
-
-Latin
-
-↓
-
-click
-
-↓
-
-English
-
-↓
-
-Next
-
-People love Anki-style studying.
-
----
-
-          # Favourite Words
-
-Little ⭐ button.
-
-```
-⭐ intellego
-
-⭐ fero
-
-⭐ possum
-```
-
-Then
-
-```
-Study favourites
-```
-
----
-
-          # Smart Revision
-
-This is my favourite idea.
-
-Suppose
-
-```
-porto
-✓
-✓
-✓
-✓
-✓
-```
-
-The website learns you know it.
-
-But
-
-```
-fero
-
-✗
-✗
-✓
-✗
-```
-
-It appears much more often.
-
-Basically a simplified spaced repetition algorithm.
-
----
-
-# Confetti
-
-No joke.
-
-On 100%
-
-```
-🎉
-```
-
-Little burst.
-
-People smile.
-
----
-
-# Sound effects
-
-Tiny click.
-
-Correct
-
-Wrong
-
-Button
-
-Very subtle.
-
-Makes it feel alive.
-
----
-
-          # Latin of the Day
-
-Top banner
-
-```
-Verbum Hodiernum
-
-intellego
-
-to understand
-
-Example:
-Intellego quid dicas.
-```
-
-Random each day.
-
----
-
-          # Roman Fact of the Day
-
-```
-Did you know?
-
-Romans wrote in all capitals.
-
-```
-
-or
-
-```
-The Romans had no letter J.
-```
-
----
-
-          # Colour themes
-
-Besides dark mode
-
-Roman
-
-Forest
-
-Ocean
-
-Sunset
-
-Classic
-
-People enjoy personalising websites.
-
----
 
 
 */
