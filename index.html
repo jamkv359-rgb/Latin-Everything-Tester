@@ -199,12 +199,13 @@
         
   </section>
   <section class="adContainer bottom" style="justify-content: center; align-items: center; width: 50%;">
-        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Current Latin Course</div>
-        <div class='course-interact' style= "background-color: var(--bg);border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;">Select your current course</div>
+        <div style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">Current Latin Course: <span id="course-notif"></span></div>
+        <div class='course-interact' style= "background-color: var(--bg);border: 1px solid var(--border); border-radius: 15px; width: fit-content; padding: 5px 15px 5px 15px;">Select your current course!</div>
         <div style="display: flex; flex-direction:column; align-items: left; justify-content: center;">
-          <div><input type="checkbox" onchange="changeCourse('clc')" class="clc-course-input" style="background-color: var(--bg); color: var(--text);border-radius: 10px; border: 1px solid var(--border);"></input>Cambridge Latin Course (CLC)</div>
-          <div><input type="checkbox" onchange="changeCourse('dr')" class="dr-course-input" style="background-color: var(--bg); color: var(--text); border-radius: 10px; border: 1px solid var(--border);"></input>De Romanis Course (DR)</div>
-        </div>  
+          <ul>
+          <li><div><button onclick="changeCourse('clc')" class="clc-course-input" style="background-color: var(--bg); color: var(--text);border-radius: 10px; border: 1px solid var(--border); padding: 5px 10px;">Cambridge Latin Course (CLC)</button></div></li>
+          <li><div><button onclick="changeCourse('dr')" class="dr-course-input" style="background-color: var(--bg); color: var(--text); border-radius: 10px; border: 1px solid var(--border); padding: 5px 10px;">De Romanis Course (DR)</button></div></li>
+        </ul></div>  
   </section>
   </div>
   <section class="adContainer bottom">
@@ -396,7 +397,11 @@ loadVocab();
     divLoginStreak.textContent = getLoginStreaks().current;
   divBestLoginStreak.textContent = getLoginStreaks().longest;
   divLoginDays.textContent = JSON.parse(localStorage.getItem('savedLogins')).length;
-  console.log("ststs have been updated.");
+  document.querySelector(".clc-course-input").style.backgroundColor = localStorage.getItem('activeCourse')==='clc'? "var(--greenpop)" : "var(--bg)";
+  document.querySelector(".dr-course-input").style.backgroundColor = localStorage.getItem('activeCourse')==='clc'? "var(--bg)" : "var(--greenpop)";
+  document.getElementById("course-notif").textContent = localStorage.getItem('activeCourse')==='clc'? "Cambridge Latin Course" : "De Romanis Course";
+
+  console.log("stats have been updated.");
   }
   
 
@@ -417,6 +422,8 @@ loadVocab();
     let vocabData = vocabDataDR;
   }
   console.log("new course is: "+ localStorage.getItem('activeCourse'));
+
+  
   loadVocab();
   update();
 }
