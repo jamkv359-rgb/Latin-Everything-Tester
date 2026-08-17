@@ -307,7 +307,7 @@ function addMacraInputter() {
   if (document.getElementById("macraInputter")) return;
 
   document.body.insertAdjacentHTML("beforeend", `
-    <div id="macraInputter" style="width: 25%; position: fixed; height: 10vh; object-fit: cover; top: 10%; left: 0%; z-index: 9999; border: 2px solid var(--bluepop); border-radius: 25px; background-color: var(--card); padding: 2px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div id="macraInputter" style="width: 25%; position: fixed; height: 10vh; object-fit: cover; top: 10%; left: 70%; z-index: 9999; border: 2px solid var(--bluepop); border-radius: 25px; background-color: var(--card); padding: 2px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <div class="macra-msg">Click to input macra</div>
       <div style="width: 100%; display: flex;">
       <div class="macra" type="button" data-macron="ā">ā</div>
