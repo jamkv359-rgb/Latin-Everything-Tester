@@ -141,7 +141,33 @@
     border-radius: 6px;
     cursor: pointer;
     transition: opacity 0.2s;
+    margin-right: 10px;
   }
+  .selectByBook{
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top:10px;
+  }
+  .selectionMethod{
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top:10px;
+  }
+  
 
   /* Buttons */
   button {
@@ -348,6 +374,27 @@
         <button type="button" id="toggleStagesBtn" class="allSelector">
             Deselect All
         </button>
+        <button type="button" id="changeMethod" class="selectionMethod">
+            Include
+        </button>
+        <span> <-- used with books below</span>
+        <div class = "book buttons">
+        <button type="button" id="1" class="selectByBook">
+            book one
+        </button>
+        <button type="button" id="2" class="selectByBook">
+            book two
+        </button>
+        <button type="button" id="3" class="selectByBook">
+            book three
+        </button>
+        <button type="button" id="4" class="selectByBook">
+            book four
+        </button>
+        <button type="button" id="5" class="selectByBook">
+            book five
+        </button>
+    </div>
     </div>
 
     <div class= "side side2">
@@ -443,8 +490,6 @@ let score = 0;
 let total = 0;
 let timerInterval = null;
 let timeLeft = 0;
-
-
 
 /* LOAD VOCAB */
 vocab = vocabData;
@@ -906,9 +951,10 @@ document.getElementById("formatToggle").onchange = () => {
 
 let allSelectedStage = true;
 let allSelectedType = true;
+let allStages = document.querySelectorAll(".stageCheckboxes")
 
 document.getElementById("toggleStagesBtn").onclick = function () {
-    const allStages = document.querySelectorAll(".stageCheckboxes");
+    
 
     allStages.forEach(box => {
         box.checked = !allSelectedStage;
@@ -921,6 +967,105 @@ console.log("Hello there");
         allSelectedStage ? "Deselect All" : "Select All";
 };
 
+let selectionButton = document.querySelector(".selectionMethod")
+let methods = [
+    {type: 0, description: "Include"},
+    {type: 1, description: "Exclude"},
+    {type: 2, description: "Up to"}
+];
+let currentMethod = 0;
+selectionButton.onclick = function(){
+    if(currentMethod != methods.length - 1)
+    {
+        currentMethod ++;
+    }
+    else
+    {
+        currentMethod = 0;
+    }
+    for(let method of methods)
+    {
+        if(method.type === currentMethod)
+        {
+            selectionButton.textContent = method.description;
+        }
+    }
+}
+//set up button
+for(let book of document.querySelectorAll(".selectByBook"))
+{
+    book.onclick = function(){
+        selectBook(book.id);
+    };
+}
+
+//convert to book
+function selectBook(id)
+{
+    switch(id){
+        case "1":
+            getStage(1, 12);
+        break;
+        case "2":
+            getStage(13, 20);
+        break;
+        case "3":
+            getStage(21, 28);
+        break;
+        case "4":
+            getStage(29, 34);
+        break;
+        case "5":
+            getStage(35, 40);
+        break;
+    };
+}
+
+//convert to stage
+function getStage(lowerbound, upperbound)
+{
+    let switchedBoxesActivated = [];
+    if(currentMethod === 0 || currentMethod === 1)
+    {
+        allStages.forEach(box=> {
+            if(box.value >= lowerbound && box.value <= upperbound)
+            {
+                switchedBoxesActivated.push(box);
+            }
+        })
+    }
+    switchButton(switchedBoxesActivated, upperbound);
+}
+
+//call button switches, method 1: include, method 2: exclude, method 3: up to
+function switchButton(boxes, methodTwoBound)
+{
+    if(currentMethod === 0)
+    {
+        boxes.forEach(box => {
+            box.checked = true;
+        });
+    }
+    if(currentMethod === 1)
+    {
+        boxes.forEach(box => {
+            box.checked = false;
+        });
+    }
+    if(currentMethod === 2)
+    {
+        allStages.forEach(box=> {
+            if(box.value <= methodTwoBound)
+            {
+                box.checked = true;
+            }
+            else
+            {
+                box.checked = false;
+            }
+        })
+    }
+}
 document.getElementById("toggleTypesBtn").onclick = function () {
     const allTypes = [
         ...document.querySelectorAll(".typeCheckboxes"),
